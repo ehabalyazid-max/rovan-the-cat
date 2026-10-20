@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# القطة روفان — موقع تعليمي للأطفال
+Sitemap: https://rovan-the-cat.vercel.app/sitemap.xml
