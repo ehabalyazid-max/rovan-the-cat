@@ -380,7 +380,8 @@ window.RovanGames = (function () {
           return '<button type="button" class="qopt" data-i="' + i + '">' + esc(o) + "</button>";
         }).join("") +
         "</div>";
-      S.speak(q.q);
+      if (q.speak && window.speakLang && q.speakLang) window.speakLang(q.speak, q.speakLang, 0.8);
+      else S.speak(q.q);
       area.querySelectorAll(".qopt").forEach(function (btn) {
         btn.addEventListener("click", function () {
           S.speak(btn.textContent.replace(/[^\u0621-\u064Aa-zA-Z0-9 ]/g, ""));
@@ -621,6 +622,258 @@ window.RovanGames = (function () {
     return bank;
   }
 
+  /* ============================================================
+     🌟 محركات الحزمة الضخمة (المناهج + الحروف بـ3 لغات)
+     ============================================================ */
+  const CV = (window.ROVAN_CONTENT || {}).curriculum || {};
+  const LG = (window.ROVAN_CONTENT || {}).letters || {};
+
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function randInt(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
+
+  function genMathAdd() {
+    const bank = [];
+    for (let r = 0; r < 8; r++) {
+      const a = randInt(1, 5), b = randInt(1, 5);
+      const opts = shuffle([a + b, Math.max(1, a + b - 1), a + b + 1].map(String));
+      bank.push({ q: "كم يساوي؟", display: "🍎".repeat(a) + " + " + "🍎".repeat(b), opts: opts, a: opts.indexOf(String(a + b)), tag: "جمع" });
+    }
+    return bank;
+  }
+  function genMathSub() {
+    const bank = [];
+    for (let r = 0; r < 8; r++) {
+      const a = randInt(3, 10), b = randInt(1, a - 1);
+      const opts = shuffle([a - b, Math.max(0, a - b - 1), a - b + 1].map(String));
+      bank.push({ q: "اطرح واختار الناتج", display: "⭐".repeat(a) + " − " + "⭐".repeat(b), opts: opts, a: opts.indexOf(String(a - b)), tag: "طرح" });
+    }
+    return bank;
+  }
+  function genCompare() {
+    const bank = [];
+    for (let r = 0; r < 8; r++) {
+      const a = randInt(1, 20), b = randInt(1, 20);
+      const ans = a > b ? "أكبر" : a < b ? "أصغر" : "يساوي";
+      bank.push({ q: "قارن: " + a + " و " + b, display: "⚖️", opts: shuffle(["أكبر", "أصغر", "يساوي"]), a: 0, tag: "مقارنة" });
+      const last = bank[bank.length - 1];
+      last.a = last.opts.indexOf(ans);
+    }
+    return bank;
+  }
+  function genMathQuiz() {
+    const lv = pick([["KG1", "أرقام صغيرة"], ["KG2", "حتى 10"], ["G1", "حتى 20"], ["G2", "حتى 100"]]);
+    const cfg = (CV.mathLevels || {})[lv[0]] || { max: 10, ops: ["+"] };
+    const bank = [];
+    for (let r = 0; r < 8; r++) {
+      const op = pick(cfg.ops);
+      let a, b, ans, txt;
+      if (op === "×") {
+        a = randInt(2, 5); b = randInt(2, 5); ans = a * b; txt = a + " × " + b;
+      } else if (op === "-") {
+        a = randInt(2, cfg.max); b = randInt(1, a); ans = a - b; txt = a + " − " + b;
+      } else {
+        a = randInt(1, cfg.max); b = randInt(1, cfg.max); ans = a + b; txt = a + " + " + b;
+      }
+      const opts = shuffle([ans, Math.max(0, ans - 1), ans + 2].map(String));
+      bank.push({ q: "احسب: " + txt, opts: opts, a: opts.indexOf(String(ans)), tag: "رياضيات " + lv[1] });
+    }
+    return bank;
+  }
+  function genShapesPick() {
+    return (CV.shapes || []).map(function (s) {
+      const others = shuffle((CV.shapes || []).filter(function (x) { return x.name !== s.name; })).slice(0, 2).map(function (x) { return x.emoji + " " + x.name; });
+      const opts = shuffle([s.emoji + " " + s.name].concat(others));
+      return { q: "أين الشكل: " + s.name + "؟", opts: opts, a: opts.indexOf(s.emoji + " " + s.name), tag: "أشكال" };
+    }).slice(0, 8);
+  }
+  function genColorsPick() {
+    return shuffle((CV.colors || []).map(function (c) {
+      const others = shuffle((CV.colors || []).filter(function (x) { return x.name !== c.name; })).slice(0, 2).map(function (x) { return x.name; });
+      const opts = shuffle([c.name].concat(others));
+      return { q: "اختر اللون: " + c.name, display: c.emoji, opts: opts, a: opts.indexOf(c.name), tag: "ألوان" };
+    })).slice(0, 8);
+  }
+  function genBodyParts() {
+    return shuffle((CV.body || []).map(function (p) {
+      const others = shuffle((CV.body || []).filter(function (x) { return x.name !== p.name; })).slice(0, 2).map(function (x) { return x.name; });
+      const opts = shuffle([p.name].concat(others));
+      return { q: "أين " + p.name + "؟", opts: opts, a: opts.indexOf(p.name), tag: "جسم الإنسان" };
+    })).slice(0, 8);
+  }
+  function genAnimalSound() {
+    return shuffle((CV.animalSounds || []).map(function (s) {
+      const others = shuffle((CV.animalSounds || []).filter(function (x) { return x.animal !== s.animal; })).slice(0, 2).map(function (x) { return x.animal; });
+      const opts = shuffle([s.animal].concat(others));
+      return { q: "من صاحب صوت: " + s.sound + "؟", display: "🔊", opts: opts, a: opts.indexOf(s.animal), tag: "أصوات الحيوانات" };
+    })).slice(0, 8);
+  }
+  function genScience() {
+    const sc = CV.science || {};
+    const keys = Object.keys(sc);
+    let pool = [];
+    keys.forEach(function (k) {
+      (sc[k] || []).forEach(function (q) {
+        pool.push({ q: q.q, opts: shuffle(q.c.slice()), a: 0, tag: "علوم " + k });
+        const last = pool[pool.length - 1];
+        last.a = last.opts.indexOf(q.c[q.a]);
+      });
+    });
+    return shuffle(pool).slice(0, 8);
+  }
+  function genPhonicsEn() {
+    return shuffle((LG.en || []).map(function (it) {
+      const others = shuffle((LG.en || []).filter(function (x) { return x.l !== it.l; })).slice(0, 2).map(function (x) { return x.l; });
+      const opts = shuffle([it.l].concat(others));
+      return { q: "استمع واختر الحرف الصحيح 🔊", display: it.emoji + " " + it.word, opts: opts, a: opts.indexOf(it.l), tag: "English", speak: it.l + ". " + it.word + ".", speakLang: "en-US" };
+    })).slice(0, 8);
+  }
+  function genLettersFr() {
+    return shuffle((LG.fr || []).map(function (it) {
+      const others = shuffle((LG.fr || []).filter(function (x) { return x.l !== it.l; })).slice(0, 2).map(function (x) { return x.l; });
+      const opts = shuffle([it.l].concat(others));
+      return { q: "استمع واختر الحرف 🔊", display: it.emoji + " " + it.word, opts: opts, a: opts.indexOf(it.l), tag: "Français", speak: it.l + " comme " + it.word + ".", speakLang: "fr-FR" };
+    })).slice(0, 8);
+  }
+
+  /* ---------- كوّن الكلمة ---------- */
+  function runSpell(area) {
+    const words = shuffle(CV.spell || []).slice(0, 6);
+    const state = { idx: 0, score: 0, picked: [] };
+    function render() {
+      const w = words[state.idx];
+      if (!w) {
+        const stars = Math.max(1, Math.round(state.score * 1.2 + 1));
+        winScreen(area, "🧩🐱", "النتيجة: " + state.score + " من " + words.length,
+          state.score >= words.length * 0.8 ? "بطل الكلمات! روفان فخور بيك!" : "كويس! جرّب تاني تجيب الكلمات كلها 💪",
+          stars, function () { runSpell(area); });
+        return;
+      }
+      const shuffledLetters = shuffle(w.letters.slice());
+      state.picked = [];
+      area.innerHTML =
+        '<div class="quiz-top"><span>الكلمة ' + (state.idx + 1) + " / " + words.length + '</span><span>النتيجة: ' + state.score + " ✅</span></div>" +
+        '<div class="quiz-q">كوّن كلمة: ' + w.word + '<div class="emoji-row">' + w.emoji + "</div></div>" +
+        '<div class="spell-slots" id="spellSlots">' + w.letters.map(function () { return '<span class="spell-slot">_</span>'; }).join("") + "</div>" +
+        '<div class="quiz-opts" id="spellTiles">' + shuffledLetters.map(function (ch, i) {
+          return '<button type="button" class="qopt spell-tile" data-ch="' + ch + '">' + ch + "</button>";
+        }).join("") + "</div>";
+      S.speak(w.word);
+      area.querySelectorAll(".spell-tile").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const ch = btn.getAttribute("data-ch");
+          const need = w.letters[state.picked.length];
+          if (ch === need) {
+            state.picked.push(ch);
+            btn.disabled = true; btn.classList.add("correct");
+            S.sfx.correct();
+            const slots = area.querySelectorAll(".spell-slot");
+            if (slots[state.picked.length - 1]) slots[state.picked.length - 1].textContent = ch;
+            if (state.picked.length === w.letters.length) {
+              state.score++;
+              say("correct");
+              S.speak(w.word);
+              setTimeout(function () { state.idx++; render(); }, 900);
+            }
+          } else {
+            btn.classList.add("wrong");
+            S.sfx.wrong();
+            setTimeout(function () { btn.classList.remove("wrong"); }, 500);
+          }
+        });
+      });
+    }
+    render();
+    markPlayed("spell-word");
+  }
+
+  /* ---------- رتّب الأرقام ---------- */
+  function runNumbersOrder(area) {
+    const state = { idx: 0, score: 0 };
+    function render() {
+      if (state.idx >= 6) {
+        const stars = Math.max(1, Math.round(state.score * 1.2 + 1));
+        winScreen(area, "🔢🐱", "النتيجة: " + state.score + " من 6",
+          state.score >= 5 ? "متسلسل الأرقام الأول!" : "جرّب تاني — الترتيب سهل لما تركز 💪",
+          stars, function () { runNumbersOrder(area); });
+        return;
+      }
+      const start = randInt(0, 20);
+      const nums = [start, start + 1, start + 2, start + 3, start + 4];
+      const shuffled = shuffle(nums.slice());
+      let nextI = 0;
+      area.innerHTML =
+        '<div class="quiz-top"><span>الجولة ' + (state.idx + 1) + ' / 6</span><span>النتيجة: ' + state.score + " ✅</span></div>" +
+        '<div class="quiz-q">اضغط الأرقام بالترتيب من الأصغر للأكبر ⬆️</div>' +
+        '<div class="quiz-opts">' + shuffled.map(function (n) {
+          return '<button type="button" class="qopt" data-n="' + n + '">' + n + "</button>";
+        }).join("") + "</div>";
+      area.querySelectorAll(".qopt").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const n = Number(btn.getAttribute("data-n"));
+          if (n === nums[nextI]) {
+            btn.classList.add("correct"); btn.disabled = true;
+            S.sfx.correct();
+            nextI++;
+            if (nextI === nums.length) {
+              state.score++;
+              setTimeout(function () { state.idx++; render(); }, 700);
+            }
+          } else {
+            btn.classList.add("wrong");
+            S.sfx.wrong();
+            setTimeout(function () { btn.classList.remove("wrong"); }, 450);
+          }
+        });
+      });
+    }
+    render();
+    markPlayed("numbers-order");
+  }
+
+  /* ---------- بوابة الحروف بـ3 لغات ---------- */
+  function runLettersHub(area) {
+    const tabs = [["ar", "العربي 🇸🇦"], ["en", "الإنجليزي 🇬🇧"], ["fr", "الفرنسي 🇫🇷"]];
+    area.innerHTML =
+      '<div class="letters-hub">' +
+      '<div class="hub-tabs" role="tablist">' +
+      tabs.map(function (t, i) { return '<button type="button" class="hub-tab' + (i === 0 ? " active" : "") + '" data-lang="' + t[0] + '" role="tab">' + t[1] + "</button>"; }).join("") +
+      "</div>" +
+      '<div class="hub-grid" id="hubGrid"></div>' +
+      '<p class="hub-hint">اضغط على أي حرف عشان تسمعه 🔊 (النطق العربي والإنجليزي والفرنسي)</p></div>';
+    function fill(lang) {
+      const grid = area.querySelector("#hubGrid");
+      const list = (LG[lang] || []);
+      const sayFn = lang === "ar"
+        ? function (it) { return "حرف " + it.name + ". " + it.l + ". " + it.word; }
+        : lang === "en" ? function (it) { return it.l + ". " + it.word + "."; }
+          : function (it) { return it.l + " comme " + it.word + "."; };
+      const speechLang = lang === "ar" ? "ar-EG" : lang === "en" ? "en-US" : "fr-FR";
+      grid.innerHTML = list.map(function (it, i) {
+        return '<button type="button" class="hub-letter" data-i="' + i + '">' +
+          '<span class="hl">' + it.l + "</span>" + '<span class="he">' + (it.emoji || "") + "</span>" +
+          "<small>" + (lang === "ar" ? it.name : it.word) + "</small></button>";
+      }).join("");
+      grid.querySelectorAll(".hub-letter").forEach(function (b) {
+        b.addEventListener("click", function () {
+          const it = list[+b.getAttribute("data-i")];
+          if (window.speakLang) window.speakLang(sayFn(it), speechLang, 0.8);
+          else S.speak(sayFn(it));
+          grid.querySelectorAll(".hub-letter").forEach(function (x) { x.classList.remove("speaking"); });
+          b.classList.add("speaking");
+        });
+      });
+    }
+    area.querySelectorAll(".hub-tab").forEach(function (t) {
+      t.addEventListener("click", function () {
+        area.querySelectorAll(".hub-tab").forEach(function (x) { x.classList.remove("active"); });
+        t.classList.add("active");
+        fill(t.getAttribute("data-lang"));
+      });
+    });
+    fill("ar");
+    markPlayed("letters-hub");
+  }
+
   /* ---------- واجهة فتح الألعاب ---------- */
   function start(area, type) {
     if (type === "coloring") return startColoring(area);
@@ -634,6 +887,21 @@ window.RovanGames = (function () {
     if (type === "riddles") return startRiddles(area);
     if (type === "letter-order") return startLetterOrder(area);
     if (type === "odd-one") return startOddOne(area);
+    /* 🌟 الحزمة الضخمة */
+    if (type === "math-add") return runChoice(area, { gameId: "math-add", bank: genMathAdd(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "math-sub") return runChoice(area, { gameId: "math-sub", bank: genMathSub(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "compare") return runChoice(area, { gameId: "compare", bank: genCompare(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "math-quiz") return runChoice(area, { gameId: "math-quiz", bank: genMathQuiz(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "shapes-pick") return runChoice(area, { gameId: "shapes-pick", bank: genShapesPick(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "colors-pick") return runChoice(area, { gameId: "colors-pick", bank: genColorsPick(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "body-parts") return runChoice(area, { gameId: "body-parts", bank: genBodyParts(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "animal-sound") return runChoice(area, { gameId: "animal-sound", bank: genAnimalSound(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "science-quiz") return runChoice(area, { gameId: "science-quiz", bank: genScience(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "phonics-en") return runChoice(area, { gameId: "phonics-en", bank: genPhonicsEn(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "letters-fr") return runChoice(area, { gameId: "letters-fr", bank: genLettersFr(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "spell-word") return runSpell(area);
+    if (type === "numbers-order") return runNumbersOrder(area);
+    if (type === "letters-hub") return runLettersHub(area);
     area.innerHTML = '<div class="empty">العبة دي مش متاحة دلوقتي 😿</div>';
     return false;
   }
