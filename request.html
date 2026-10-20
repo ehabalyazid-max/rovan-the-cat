@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✍️ اطلب قصة باسم طفلك | القطة روفان</title>
+<meta name="description" content="اطلب قصة مخصصة باسم طفلك من القطة روفان: اختر اللغة ونوع القصة والفئة العمرية وطول القصة — خدمة آمنة تحترم خصوصية الأطفال.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rovan-the-cat.vercel.app/request.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <div class="page-hero">
+    <span class="ph-icon" aria-hidden="true">✍️</span>
+    <h1 data-i18n="request.title">✍️ خلّي Rovan تحكي قصة باسم طفلك!</h1>
+    <p data-i18n="request.sub">احكي لينا عن طفلك وهنجهزله قصة مميزة باسمه — من روفان نفسها 🐱</p>
+  </div>
+
+  <section id="request">
+    <div class="request-wrap">
+      <form class="request-form" id="requestForm" novalidate>
+        <div class="form-note">📖 <span data-i18n="request.how">كيف تعمل الخدمة؟ املأ الطلب → فريق روفان يجهز القصة → توصلك على القناة أو البريد</span></div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="childName" data-i18n="request.childName">اسم الطفل (الاسم الأول)</label>
+            <input type="text" id="childName" maxlength="30" required autocomplete="off" placeholder="مثال: يوسف">
+          </div>
+          <div class="field">
+            <label for="parentEmail" data-i18n="request.parentEmail">بريد ولي الأمر (لإرسال القصة)</label>
+            <input type="email" id="parentEmail" required autocomplete="email" placeholder="name@example.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="storyLang" data-i18n="request.lang">لغة القصة</label>
+            <select id="storyLang">
+              <option value="ar">العربية</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="storyType" data-i18n="request.type">نوع القصة</label>
+            <select id="storyType">
+              <option value="adventure" data-i18n="request.typeAdventure">مغامرة مشوقة</option>
+              <option value="educational" data-i18n="request.typeEducational">تعليمية</option>
+              <option value="values" data-i18n="request.typeValues">قصة قيم وأخلاق</option>
+              <option value="funny" data-i18n="request.typeFunny">قصة مضحكة</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="storyAge" data-i18n="request.age">الفئة العمرية</label>
+            <select id="storyAge">
+              <option value="3-5" data-i18n="request.age35">3-5 سنوات</option>
+              <option value="5-7" data-i18n="request.age57">5-7 سنوات</option>
+              <option value="7-9" data-i18n="request.age79">7-9 سنوات</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="storyLength" data-i18n="request.length">طول القصة</label>
+            <select id="storyLength">
+              <option value="short" data-i18n="request.lenShort">قصيرة (5 دقائق)</option>
+              <option value="medium" data-i18n="request.lenMedium">متوسطة (10 دقائق)</option>
+              <option value="long" data-i18n="request.lenLong">طويلة (15 دقيقة)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="storyIdea" data-i18n="request.idea">فكرة اختيارية من ولي الأمر</label>
+          <textarea id="storyIdea" maxlength="500" placeholder="مثال: يحب الديناصورات ويتعلم الصبر..."></textarea>
+        </div>
+
+        <div class="form-note">🔒 <span data-i18n="request.privacyNote">نطلب الاسم الأول فقط لتجهيز القصة — لا نجمع أي بيانات أخرى عن الطفل.</span></div>
+
+        <div class="form-msg" id="formMsg" role="status"></div>
+
+        <button type="submit" class="btn btn-primary btn-big" id="requestSubmit" data-i18n="request.submit">📨 إرسال الطلب</button>
+      </form>
+
+      <div class="request-art">
+        <img src="images/art/request-art.jpg" alt="عالم القصص المخصصة">
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+
+<button type="button" id="guideBtn" aria-label="مساعد روفان"><img src="images/avatar.jpg" alt=""></button>
+<div id="guidePanel"><div class="guide-box" role="dialog" aria-label="مساعد روفان">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <b style="font-size:1.15rem;">🐱 Rovan</b>
+    <button type="button" class="modal-close" id="guideClose" aria-label="إغلاق">✕</button>
+  </div><div id="guideBody"></div>
+</div></div>
+<div id="confettiBox" aria-hidden="true"></div>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/games.js"></script>
+<script src="js/academy.js"></script>
+<script src="js/stories.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
