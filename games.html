@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎮 عالم الألعاب | القطة روفان</title>
+<meta name="description" content="11 لعبة تعليمية للأطفال مع القطة روفان: الذاكرة، الألغاز، التلوين، الحروف، الأرقام، الألوان، مطابقة الكلمات وأكثر — بنجوم وشارات.">
+<link rel="canonical" href="https://rovan-the-cat.vercel.app/games.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <div class="page-hero">
+    <span class="ph-icon" aria-hidden="true">🎮</span>
+    <h1 data-i18n="games.title">🎮 عالم الألعاب</h1>
+    <p data-i18n="games.sub">اختار لعبتك من المكتبة — كل لعبة بتجيب نجوم!</p>
+  </div>
+
+  <section id="games">
+    <div class="mascot-guide">
+      <img src="images/avatar.jpg" alt="روفان">
+      <div class="bubble">🌟 هلا بالأبطال! اختاروا لعبتكم — وكل لعبة بتجيب نجوم لصفحتكم!</div>
+    </div>
+
+    <div class="games-controls" role="group" aria-label="البحث والتصفية">
+      <input type="search" id="gameSearch" data-i18n-ph="games.search" placeholder="🔍 اسم اللعبة..." aria-label="البحث عن لعبة">
+      <select id="gameCat" aria-label="التصنيف">
+        <option value="all" data-i18n="games.allCats">كل التصنيفات</option>
+        <option>ذاكرة</option>
+        <option>ألغاز</option>
+        <option>فنون وألوان</option>
+        <option>معرفة</option>
+        <option>حيوانات</option>
+        <option>رياضيات</option>
+        <option>لغة عربية</option>
+        <option>كلمات</option>
+      </select>
+      <select id="gameDiff" aria-label="مستوى الصعوبة">
+        <option value="all" data-i18n="games.allDiff">كل المستويات</option>
+        <option>سهل</option>
+        <option>متوسط</option>
+      </select>
+      <select id="gameSort" aria-label="الترتيب">
+        <option value="name" data-i18n="games.sortName">ترتيب: الاسم</option>
+        <option value="new" data-i18n="games.sortNew">ترتيب: الأحدث</option>
+      </select>
+    </div>
+
+    <div class="games-grid" id="gamesGrid"></div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+
+<button type="button" id="guideBtn" aria-label="مساعد روفان"><img src="images/avatar.jpg" alt=""></button>
+<div id="guidePanel"><div class="guide-box" role="dialog" aria-label="مساعد روفان">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <b style="font-size:1.15rem;">🐱 Rovan</b>
+    <button type="button" class="modal-close" id="guideClose" aria-label="إغلاق">✕</button>
+  </div><div id="guideBody"></div>
+</div></div>
+
+<div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-label="اللعبة">
+  <div class="modal-box light">
+    <div class="modal-title">
+      <span id="gameTitle">🎮</span>
+      <button type="button" class="modal-close" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="game-area">
+      <div id="gameInstructions"></div>
+      <div id="gameArea"></div>
+    </div>
+  </div>
+</div>
+<div id="confettiBox" aria-hidden="true"></div>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/games.js"></script>
+<script src="js/academy.js"></script>
+<script src="js/stories.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
