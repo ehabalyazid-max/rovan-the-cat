@@ -546,18 +546,82 @@
   function buildChips() {
     const box = document.getElementById("filters");
     if (!box) return;
-    const chips = ['<button class="chip' + (activePL === "all" ? " active" : "") + '" data-pl="all">All 🐾</button>'];
+    const groups = {};
     ALL_PLAYLISTS.forEach(function (p) {
-      chips.push('<button class="chip' + (activePL === p.id ? " active" : "") + '" data-pl="' + p.id + '" title="' + esc(p.title) + '">' +
-        plEmoji(p.title) + " " + p.title + "</button>");
+      const g = plGroup(p.title);
+      if (!groups[g]) groups[g] = [];
+      groups[g].push(p);
     });
-    box.innerHTML = chips.join("");
-    box.querySelectorAll(".chip").forEach(function (chip) {
-      chip.addEventListener("click", function () {
-        window.RovanSpeech.sfx.click();
-        activePL = chip.dataset.pl;
+    box.innerHTML =
+      '<button type="button" class="btn btn-primary" id="plMenuBtn" aria-haspopup="dialog">📂 قوائم التشغيل المنظمة (' + ALL_PLAYLISTS.length + ")</button>" +
+      (activePL !== "all"
+        ? '<button type="button" class="btn btn-ghost" id="plReset">✖ إلغاء التصفية</button>'
+        : "");
+    const btn = document.getElementById("plMenuBtn");
+    if (btn) btn.addEventListener("click", function () {
+      window.RovanSpeech.sfx.click();
+      openPlaylistsMenu(groups);
+    });
+    const rst = document.getElementById("plReset");
+    if (rst) rst.addEventListener("click", function () {
+      activePL = "all"; buildChips(); renderVideos();
+    });
+  }
+
+  function plGroup(title) {
+    if (/قصص|أنبياء|أحاديث/.test(title)) return "📚 قصص ودين";
+    if (/علوم/.test(title)) return "🔬 علوم";
+    if (/اجتماعية/.test(title)) return "🌍 اجتماعية";
+    if (/رياضيات|حساب|فونيكس|أرقام/.test(title)) return "🔢 رياضيات وفونيكس";
+    if (/إنجليز|الإنجليزي/.test(title)) return "🔤 الإنجليزية";
+    if (/إسلامية|آداب|نحو|العربية|قراءة|العربي|الحروف/.test(title)) return "📖 العربية والقراءة";
+    return "🐾 أخرى";
+  }
+
+  function openPlaylistsMenu(groups) {
+    const ov = document.createElement("div");
+    ov.className = "modal show";
+    ov.id = "plMenuOverlay";
+    ov.setAttribute("role", "dialog");
+    ov.setAttribute("aria-modal", "true");
+    ov.innerHTML = '<div class="modal-box light"><div class="modal-title">' +
+      "<h2>📂 قوائم التشغيل</h2>" +
+      '<button type="button" class="modal-x" id="plMenuX" aria-label="إغلاق">✕</button></div>' +
+      '<div class="modal-body pl-groups">' +
+      Object.keys(groups).map(function (g) {
+        return '<h3 class="pl-group-title">' + g + "</h3>" +
+          '<div class="pl-group-grid">' + groups[g].map(function (p) {
+            return '<div class="pl-card">' +
+              "<b>" + plEmoji(p.title) + " " + esc(p.title) + "</b>" +
+              "<small>" + (p.count ? p.count + " فيديو" : "قائمة تشغيل") + "</small>" +
+              '<div class="pl-card-actions">' +
+              '<button type="button" class="btn-sm btn-view" data-pl="' + p.id + '">👀 اعرض الفيديوهات</button>' +
+              '<button type="button" class="btn-sm btn-play" data-play="' + p.id + '" data-title="' + esc(p.title) + '">▶️ شغّل</button>' +
+              "</div></div>";
+          }).join("") + "</div>";
+      }).join("") + "</div></div>";
+    document.body.appendChild(ov);
+    function close() {
+      ov.remove();
+      const b = document.getElementById("gmBody");
+      if (b) b.innerHTML = "";
+    }
+    ov.addEventListener("click", function (e) {
+      if (e.target === ov || e.target.id === "plMenuX") close();
+    });
+    ov.querySelectorAll("[data-pl]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        activePL = b.getAttribute("data-pl");
+        close();
         buildChips();
         renderVideos();
+        window.RovanSpeech.sfx.click();
+      });
+    });
+    ov.querySelectorAll("[data-play]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        close();
+        window.openPlaylistPopup(b.getAttribute("data-play"), b.getAttribute("data-title"));
       });
     });
   }
@@ -693,12 +757,14 @@
     if (!grid) return;
     const q = (document.getElementById("gameSearch") ? document.getElementById("gameSearch").value : "").trim();
     const cat = document.getElementById("gameCat") ? document.getElementById("gameCat").value : "all";
+    const grade = document.getElementById("gameGrade") ? document.getElementById("gameGrade").value : "all";
     const diff = document.getElementById("gameDiff") ? document.getElementById("gameDiff").value : "all";
     const sort = document.getElementById("gameSort") ? document.getElementById("gameSort").value : "name";
 
     let list = D.games.filter(function (g) {
       if (!g.published) return false;
       if (cat !== "all" && g.category !== cat) return false;
+      if (grade !== "all" && (g.grade || "").indexOf(grade) === -1) return false;
       if (diff !== "all" && g.difficulty !== diff) return false;
       if (q && (g.name + " " + g.desc + " " + g.category).indexOf(q) === -1) return false;
       return true;
@@ -1104,8 +1170,23 @@
     initTalk();
     initRequestForm();
     renderGames();
+    /* ربط فلاتر الألعاب */
+    ["gameSearch", "gameCat", "gameGrade", "gameDiff", "gameSort"].forEach(function (id) {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener(el.tagName === "INPUT" ? "input" : "change", renderGames);
+    });
     renderSurahs();
     renderHadiths();
+    /* 🎧 مشغّل الحفظ الصوتي */
+    const hifzBox = document.getElementById("hifzBox");
+    if (hifzBox && window.HifzBox) {
+      try { window.HifzBox.render(hifzBox); } catch (e) {}
+      const hb = document.getElementById("hifzMenuBtn");
+      if (hb) hb.addEventListener("click", function () {
+        window.RovanSpeech.sfx.click();
+        if (window.openHifzMenu) window.openHifzMenu();
+      });
+    }
     renderProphets();
     renderProgress();
     renderSettings();
