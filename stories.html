@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 القصص التفاعلية | القطة روفان</title>
+<meta name="description" content="قصص تفاعلية أصلية مع القطة روفان: اختر أحداث القصة، استمع للقراءة الصوتية، وأجب عن الأسئلة في النهاية — مصممة لقراءة الأطفال.">
+<link rel="canonical" href="https://rovan-the-cat.vercel.app/stories.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <div class="page-hero">
+    <div style="max-width:520px; margin:0 auto 14px; border-radius:var(--r-xl); overflow:hidden; box-shadow:var(--sh-md);">
+      <img src="images/art/stories-art.jpg" alt="عالم القصص" style="width:100%; height:190px; object-fit:cover;">
+    </div>
+    <h1 data-i18n="stories.title">📚 عالم القصص التفاعلية</h1>
+    <p data-i18n="stories.sub">قصص أصلية مع القطة روفان — انت اللي تختار أحداث القصة! 🎬</p>
+  </div>
+
+  <section id="stories">
+    <div class="games-grid" id="storiesGrid"></div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+
+<button type="button" id="guideBtn" aria-label="مساعد روفان"><img src="images/avatar.jpg" alt=""></button>
+<div id="guidePanel"><div class="guide-box" role="dialog" aria-label="مساعد روفان">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <b style="font-size:1.15rem;">🐱 Rovan</b>
+    <button type="button" class="modal-close" id="guideClose" aria-label="إغلاق">✕</button>
+  </div><div id="guideBody"></div>
+</div></div>
+
+<div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-label="القصة">
+  <div class="modal-box light">
+    <div class="modal-title">
+      <span id="gameTitle">📚</span>
+      <button type="button" class="modal-close" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="game-area">
+      <div id="gameInstructions"></div>
+      <div id="gameArea"></div>
+    </div>
+  </div>
+</div>
+<div id="confettiBox" aria-hidden="true"></div>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/games.js"></script>
+<script src="js/academy.js"></script>
+<script src="js/stories.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
