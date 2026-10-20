@@ -11,20 +11,7 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header>
-  <nav class="navbar" aria-label="القائمة الرئيسية">
-    <a href="index.html" class="brand">
-      <img class="avatar-img" src="images/avatar.jpg" alt="القطة روفان">
-      <span class="bname">🐱 القطة روفان</span>
-    </a>
-    <div class="nav-links">
-      <a href="index.html#games" class="nlink">🎮 الألعاب</a>
-      <a href="index.html#videos" class="nlink">🎬 الفيديوهات</a>
-      <a href="index.html" class="btn btn-yt">🏠 الرئيسية</a>
-    </div>
-    <button type="button" class="nav-toggle" onclick="location.href='index.html'" aria-label="القائمة">☰</button>
-  </nav>
-</header>
+<div id="siteHeader"></div>
 
 <main class="page-wrap">
   <h1>📜 شروط الاستخدام</h1>
@@ -70,8 +57,10 @@
   <p style="margin-top:26px;"><a class="btn btn-play" href="index.html">🏠 العودة للرئيسية</a></p>
 </main>
 
-<footer>
-  <div class="fnote">© <script>document.write(new Date().getFullYear())</script> القطة روفان — جميع الحقوق محفوظة 🐾</div>
-</footer>
+<div id="siteFooter"></div>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
