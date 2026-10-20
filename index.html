@@ -6,14 +6,17 @@
 <title>🐱 القطة روفان | عالم الأطفال التعليمي – ألعاب وقصص وتحفيظ قرآن</title>
 <meta name="description" content="القطة روفان: عالم تعليمي ممتع للأطفال من KG1 حتى تانية ابتدائي — ألعاب تعليمية، تلوين، قصص الأنبياء، تحفيظ القرآن الكريم، أحاديث نبوية، ومناهج المدرسة بالعربي والإنجليزي.">
 <meta name="keywords" content="القطة روفان, Rovan The Cat, ألعاب أطفال, تحفيظ قرآن للأطفال, قصص الأنبياء, أحاديث للأطفال, تعليم KG1, تعليم أولى ابتدائي, تلوين, موقع أطفال">
+<meta name="theme-color" content="#FF7A5C">
 <meta property="og:title" content="🐱 القطة روفان | عالم الأطفال التعليمي">
 <meta property="og:description" content="ألعاب وقصص وتحفيظ قرآن ومناهج المدرسة مع القطة روفان — موقع الأطفال التعليمي الممتع.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://ehabalyazid-max.github.io/rovan-the-cat/">
-<meta property="og:image" content="https://ehabalyazid-max.github.io/rovan-the-cat/images/avatar.jpg">
+<meta property="og:url" content="https://rovan-the-cat.vercel.app/">
+<meta property="og:image" content="https://rovan-the-cat.vercel.app/images/avatar.jpg">
+<meta property="og:locale" content="ar_AR">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://ehabalyazid-max.github.io/rovan-the-cat/">
+<link rel="canonical" href="https://rovan-the-cat.vercel.app/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
 
 <script type="application/ld+json">
 {
@@ -21,8 +24,8 @@
   "@type": "Organization",
   "name": "القطة روفان",
   "alternateName": "Rovan The Cat",
-  "url": "https://ehabalyazid-max.github.io/rovan-the-cat/",
-  "logo": "https://ehabalyazid-max.github.io/rovan-the-cat/images/avatar.jpg",
+  "url": "https://rovan-the-cat.vercel.app/",
+  "logo": "https://rovan-the-cat.vercel.app/images/avatar.jpg",
   "description": "عالم الأطفال التعليمي بشخصية القطة روفان: ألعاب تعليمية، تحفيظ القرآن، قصص الأنبياء، أحاديث نبوية، ومناهج KG1 حتى تانية ابتدائي.",
   "sameAs": [
     "https://www.youtube.com/@RovanTheCat"
@@ -30,1510 +33,305 @@
   "mainEntity": {
     "@type": "WebSite",
     "name": "القطة روفان – عالم الأطفال",
+    "url": "https://rovan-the-cat.vercel.app/",
     "inLanguage": "ar"
   }
 }
 </script>
-
-<style>
-  :root {
-    --coral: #FF7A5C; --purple: #7C5CFF; --teal: #2ED3B7; --sunny: #FFC93C;
-    --pink: #FF8FAB; --blue: #5CC8FF; --green: #6BCB77;
-    --ink: #2B2140; --cream: #FFF8F2; --card: #FFFFFF;
-    --shadow: 0 10px 30px rgba(43, 33, 64, .12);
-    --shadow-big: 0 18px 50px rgba(43, 33, 64, .18);
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: "Segoe UI", Tahoma, "Noto Kufi Arabic", Arial, sans-serif;
-    background: var(--cream); color: var(--ink); line-height: 1.8;
-    overflow-x: hidden; touch-action: manipulation;
-  }
-  a { text-decoration: none; color: inherit; }
-  img { max-width: 100%; }
-  button { font-family: inherit; }
-
-  /* ===== شريط تقدم القراءة ===== */
-  #progressBar {
-    position: fixed; top: 0; right: 0; height: 5px; width: 0%;
-    background: linear-gradient(90deg, var(--coral), var(--sunny), var(--teal), var(--purple));
-    z-index: 999; transition: width .15s;
-  }
-
-  /* ===== الشريط العلوي ===== */
-  .navbar {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    padding: 10px 4%;
-    background: rgba(255, 248, 242, .93); backdrop-filter: blur(12px);
-    border-bottom: 3px solid #FFE3D5;
-  }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.2rem; }
-  .brand img, .avatar-img {
-    width: 48px; height: 48px; border-radius: 50%;
-    border: 3px solid var(--coral); object-fit: cover;
-    box-shadow: var(--shadow); background: #FFE3D5;
-  }
-  .nav-links { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
-  .nav-links a.nlink {
-    padding: 8px 13px; border-radius: 999px; font-weight: 800; font-size: .92rem;
-    transition: .2s; white-space: nowrap;
-  }
-  .nav-links a.nlink:hover { background: #FFE3D5; transform: translateY(-2px); }
-
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    padding: 13px 28px; border-radius: 999px; font-weight: 900;
-    border: none; cursor: pointer; font-size: 1.05rem; transition: .25s;
-    position: relative; overflow: hidden;
-  }
-  .btn:hover { transform: translateY(-3px) scale(1.03); }
-  .btn:active { transform: scale(.97); }
-  .btn-yt {
-    background: linear-gradient(135deg, #FF0033, #FF4D6D); color: #fff;
-    box-shadow: 0 10px 24px rgba(255, 0, 51, .35);
-    animation: pulseGlow 2.2s infinite;
-  }
-  @keyframes pulseGlow {
-    0%,100% { box-shadow: 0 10px 24px rgba(255,0,51,.35); }
-    50% { box-shadow: 0 10px 38px rgba(255,0,51,.6); }
-  }
-  .btn-big { padding: 17px 40px; font-size: 1.25rem; }
-  .btn-white { background: #fff; color: var(--coral); box-shadow: var(--shadow-big); }
-  .btn-ghost { background: #fff; color: var(--ink); border: 3px solid var(--ink); }
-  .btn-play { background: linear-gradient(135deg, var(--purple), var(--pink)); color: #fff; box-shadow: 0 10px 24px rgba(124,92,255,.35); }
-
-  /* ===== الهيرو ===== */
-  .hero {
-    position: relative; text-align: center;
-    padding: 60px 5% 80px;
-    background: linear-gradient(160deg, #FFE9DF 0%, #FFF3E8 40%, #E8FBF6 75%, #EDE7FF 100%);
-    background-size: 300% 300%; animation: gradientMove 12s ease infinite;
-    overflow: hidden;
-  }
-  @keyframes gradientMove {
-    0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; }
-  }
-  .float-item {
-    position: absolute; user-select: none; pointer-events: none;
-    animation: floaty 5.5s ease-in-out infinite; opacity: .5; font-size: 2rem;
-  }
-  @keyframes floaty {
-    0%,100% { transform: translateY(0) rotate(-10deg); }
-    50% { transform: translateY(-24px) rotate(12deg); }
-  }
-  .mascot-wrap { position: relative; display: inline-block; margin-bottom: 18px; }
-  .mascot {
-    width: clamp(130px, 22vw, 210px); height: clamp(130px, 22vw, 210px);
-    border-radius: 50%; object-fit: cover;
-    border: 6px solid #fff; box-shadow: var(--shadow-big);
-    animation: mascotBob 3s ease-in-out infinite;
-    background: #FFE3D5;
-  }
-  @keyframes mascotBob {
-    0%,100% { transform: translateY(0) rotate(-3deg); }
-    50% { transform: translateY(-16px) rotate(3deg); }
-  }
-  .mascot-wrap:hover .mascot { animation: mascotWiggle .6s ease-in-out infinite; }
-  @keyframes mascotWiggle {
-    0%,100% { transform: rotate(-8deg) scale(1.04); }
-    50% { transform: rotate(8deg) scale(1.08); }
-  }
-  .sparkle {
-    position: absolute; font-size: 1.6rem; animation: sparklePop 1.8s ease-in-out infinite;
-  }
-  @keyframes sparklePop {
-    0%,100% { transform: scale(.6); opacity: .3; } 50% { transform: scale(1.2); opacity: 1; }
-  }
-  .hero h1 {
-    font-size: clamp(2rem, 6vw, 3.6rem); font-weight: 900; margin-bottom: 12px;
-    animation: popIn .8s cubic-bezier(.2,1.4,.4,1) both;
-  }
-  .hero h1 .grad {
-    background: linear-gradient(90deg, var(--coral), var(--purple), var(--teal));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero p.sub {
-    font-size: clamp(1.05rem, 2.6vw, 1.4rem); max-width: 760px; margin: 0 auto 30px;
-    color: #5A4B6B; animation: popIn .8s .15s cubic-bezier(.2,1.4,.4,1) both;
-  }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(.7) translateY(30px); }
-    to { opacity: 1; transform: none; }
-  }
-  .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: popIn .8s .3s both; }
-  .stats { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 38px; }
-  .stat {
-    background: rgba(255,255,255,.85); border-radius: 20px; padding: 14px 24px;
-    box-shadow: var(--shadow); min-width: 120px;
-    transition: .25s; animation: popIn .6s both;
-  }
-  .stat:hover { transform: translateY(-6px) rotate(-2deg); }
-  .stat b { display: block; font-size: 1.6rem; color: var(--purple); }
-  .stat span { font-size: .88rem; color: #6B5B7B; font-weight: 700; }
-
-  /* ===== الأقسام ===== */
-  section { padding: 64px 5%; max-width: 1250px; margin: 0 auto; }
-  .sec-head { text-align: center; margin-bottom: 38px; }
-  .sec-head h2 {
-    font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 900;
-    opacity: 0; transform: translateY(30px); transition: .7s cubic-bezier(.2,1.2,.4,1);
-  }
-  .sec-head p {
-    color: #6B5B7B; margin-top: 10px; font-size: 1.1rem; font-weight: 600;
-    opacity: 0; transform: translateY(20px); transition: .7s .12s cubic-bezier(.2,1.2,.4,1);
-  }
-  .sec-head.visible h2, .sec-head.visible p { opacity: 1; transform: none; }
-
-  /* ===== شبكة الفيديوهات ===== */
-  .filters { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
-  .chip {
-    padding: 10px 20px; border-radius: 999px; font-weight: 800; cursor: pointer;
-    background: #fff; border: 2.5px solid #E8DFF5; transition: .2s; font-size: .92rem;
-    white-space: nowrap;
-  }
-  .chip:hover { border-color: var(--purple); transform: translateY(-3px); }
-  .chip.active {
-    background: linear-gradient(135deg, var(--purple), var(--pink));
-    color: #fff; border-color: var(--purple); transform: scale(1.05);
-  }
-  .pl-banner {
-    display: block; text-align: center;
-    background: linear-gradient(135deg, var(--purple), var(--coral));
-    color: #fff; font-weight: 900; padding: 18px 22px; border-radius: 18px;
-    margin: 0 0 28px; box-shadow: var(--shadow-big); transition: .2s; font-size: 1.05rem;
-  }
-  .pl-banner:hover { transform: translateY(-4px) scale(1.02); }
-  .grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 24px;
-  }
-  .vcard {
-    background: var(--card); border-radius: 22px; overflow: hidden;
-    box-shadow: var(--shadow); cursor: pointer; transition: .28s;
-    border: 3px solid transparent; display: flex; flex-direction: column;
-  }
-  .vcard:hover { transform: translateY(-8px) rotate(-1deg); border-color: var(--coral); box-shadow: var(--shadow-big); }
-  .thumb {
-    position: relative; aspect-ratio: 16/9;
-    background: linear-gradient(135deg, var(--purple), var(--coral)); overflow: hidden;
-  }
-  .thumb img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-    opacity: 0; transition: .3s; position: relative; z-index: 1;
-  }
-  .thumb .fallback {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    font-size: 3.4rem;
-  }
-  .thumb .play {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    background: rgba(43,33,64,.28); opacity: 0; transition: .25s; z-index: 2;
-  }
-  .vcard:hover .play { opacity: 1; }
-  .play span {
-    width: 66px; height: 66px; border-radius: 50%; background: rgba(255,255,255,.95);
-    display: flex; align-items: center; justify-content: center; font-size: 1.6rem; color: var(--coral);
-  }
-  .vinfo { padding: 16px 18px 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
-  .vinfo h3 { font-size: 1.02rem; font-weight: 800; line-height: 1.65; }
-  .vmeta { margin-top: auto; }
-  .tag {
-    font-size: .78rem; font-weight: 800; padding: 4px 14px; border-radius: 999px;
-    background: #E8FBF6; color: #0E9F87;
-  }
-  .empty { text-align: center; padding: 50px 20px; color: #6B5B7B; grid-column: 1/-1; font-size: 1.1rem; }
-
-  /* ===== الألعاب ===== */
-  .games-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px;
-  }
-  .game-card {
-    border-radius: 26px; padding: 30px 22px; text-align: center; cursor: pointer;
-    color: #fff; font-weight: 900; box-shadow: var(--shadow-big);
-    transition: .28s; position: relative; overflow: hidden;
-  }
-  .game-card:hover { transform: translateY(-10px) scale(1.04); }
-  .game-card .gicon {
-    font-size: 3.6rem; display: block; margin-bottom: 12px;
-    animation: floaty 3s ease-in-out infinite;
-  }
-  .game-card h3 { font-size: 1.35rem; margin-bottom: 8px; }
-  .game-card p { font-size: .95rem; opacity: .92; font-weight: 600; line-height: 1.7; }
-  .game-card .ages {
-    display: inline-block; background: rgba(255,255,255,.25); border-radius: 999px;
-    padding: 4px 16px; font-size: .8rem; margin-top: 12px;
-  }
-  .gc1 { background: linear-gradient(135deg, #FF7A5C, #FF8FAB); }
-  .gc2 { background: linear-gradient(135deg, #7C5CFF, #5CC8FF); }
-  .gc3 { background: linear-gradient(135deg, #2ED3B7, #6BCB77); }
-  .gc4 { background: linear-gradient(135deg, #FFC93C, #FF7A5C); }
-  .gc5 { background: linear-gradient(135deg, #FF8FAB, #7C5CFF); }
-
-  .mascot-guide {
-    display: flex; align-items: center; gap: 14px;
-    background: #fff; border-radius: 22px; padding: 16px 22px;
-    box-shadow: var(--shadow); margin-bottom: 30px; max-width: 680px;
-    margin-inline: auto;
-  }
-  .mascot-guide img {
-    width: 64px; height: 64px; border-radius: 50%; border: 3px solid var(--sunny);
-    animation: mascotBob 2.5s ease-in-out infinite;
-  }
-  .mascot-guide .bubble {
-    background: #FFF3D6; border-radius: 18px; padding: 12px 18px;
-    font-weight: 800; position: relative; flex: 1;
-  }
-  .mascot-guide .bubble::before {
-    content: ""; position: absolute; right: -10px; top: 50%; transform: translateY(-50%);
-    border: 10px solid transparent; border-right-color: #FFF3D6;
-  }
-
-  /* ===== القرآن ===== */
-  .quran-progress {
-    background: linear-gradient(135deg, var(--teal), var(--green));
-    border-radius: 22px; padding: 22px 26px; color: #fff; margin-bottom: 28px;
-    box-shadow: var(--shadow-big);
-  }
-  .quran-progress h3 { font-size: 1.25rem; margin-bottom: 10px; }
-  .pbar { background: rgba(255,255,255,.3); border-radius: 999px; height: 18px; overflow: hidden; }
-  .pbar .fill {
-    height: 100%; border-radius: 999px; background: #fff; width: 0%;
-    transition: width .6s cubic-bezier(.2,1,.4,1);
-    background-image: linear-gradient(90deg, #fff, #FFF3C4);
-  }
-  .surah-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 22px;
-  }
-  .surah-card {
-    background: var(--card); border-radius: 22px; padding: 24px;
-    box-shadow: var(--shadow); border: 3px solid transparent; transition: .25s;
-  }
-  .surah-card:hover { transform: translateY(-5px); border-color: var(--teal); }
-  .surah-card.done { border-color: var(--sunny); background: #FFFBEF; }
-  .surah-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
-  .surah-head h3 {
-    font-size: 1.25rem; font-weight: 900; color: var(--purple);
-    display: flex; align-items: center; gap: 10px;
-  }
-  .surah-badge {
-    background: var(--purple); color: #fff; border-radius: 50%;
-    width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
-    font-size: .95rem; flex-shrink: 0;
-  }
-  .surah-text {
-    background: #F8F4FF; border-radius: 16px; padding: 18px;
-    font-size: 1.28rem; line-height: 2.3; text-align: center;
-    font-family: "Traditional Arabic", "Amiri", "Scheherazade New", serif;
-  }
-  .surah-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-  .btn-sm {
-    padding: 9px 18px; border-radius: 999px; font-weight: 800; font-size: .9rem;
-    border: none; cursor: pointer; transition: .2s; display: inline-flex; align-items: center; gap: 6px;
-  }
-  .btn-sm:hover { transform: translateY(-2px); }
-  .btn-done { background: var(--sunny); color: var(--ink); }
-  .btn-done.done { background: var(--green); color: #fff; }
-  .btn-link { background: var(--coral); color: #fff; }
-
-  /* ===== الأحاديث ===== */
-  .hadith-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 22px;
-  }
-  .hadith-card {
-    background: var(--card); border-radius: 22px; padding: 26px;
-    box-shadow: var(--shadow); border-top: 6px solid var(--purple);
-    transition: .25s; display: flex; flex-direction: column; gap: 12px;
-  }
-  .hadith-card:hover { transform: translateY(-6px) rotate(.5deg); box-shadow: var(--shadow-big); }
-  .hadith-text {
-    font-size: 1.18rem; font-weight: 800; line-height: 2.1;
-    background: #F8F4FF; border-radius: 14px; padding: 16px;
-  }
-  .hadith-meaning { color: #5A4B6B; font-size: 1rem; }
-  .hadith-meaning b { color: var(--coral); }
-  .hadith-src {
-    margin-top: auto; font-size: .85rem; font-weight: 800;
-    background: #E8FBF6; color: #0E9F87; border-radius: 999px;
-    padding: 5px 14px; align-self: flex-start;
-  }
-
-  /* ===== قصص الأنبياء ===== */
-  .prophets-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 22px;
-  }
-  .prophet-card {
-    background: var(--card); border-radius: 22px; overflow: hidden;
-    box-shadow: var(--shadow); transition: .25s; text-align: center;
-  }
-  .prophet-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-big); }
-  .prophet-top {
-    padding: 26px 18px 18px; font-size: 3.2rem;
-    background: linear-gradient(135deg, #FFE9DF, #EDE7FF);
-  }
-  .prophet-body { padding: 18px 20px 22px; }
-  .prophet-body h3 { font-size: 1.25rem; font-weight: 900; margin-bottom: 8px; color: var(--purple); }
-  .prophet-body p { font-size: .96rem; color: #5A4B6B; line-height: 1.9; }
-
-  /* ===== عن روفان ===== */
-  .about {
-    background: linear-gradient(135deg, #2B2140, #4A3B72);
-    color: #fff; border-radius: 32px; padding: 52px 6%;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center;
-  }
-  .about h2 { font-size: 2.1rem; font-weight: 900; margin-bottom: 14px; }
-  .about p { color: #DCD4F0; margin-bottom: 12px; font-size: 1.08rem; }
-  .about ul { list-style: none; display: grid; gap: 10px; margin-top: 10px; }
-  .about li {
-    background: rgba(255,255,255,.1); border-radius: 14px; padding: 13px 18px;
-    font-weight: 700; transition: .2s;
-  }
-  .about li:hover { background: rgba(255,255,255,.2); transform: translateX(-6px); }
-  .about .cat-art {
-    background: rgba(255,255,255,.08); border-radius: 26px; padding: 30px; text-align: center;
-  }
-  .about .cat-art img {
-    width: clamp(150px, 25vw, 230px); height: clamp(150px, 25vw, 230px);
-    border-radius: 50%; border: 6px solid var(--sunny);
-    animation: mascotBob 3s ease-in-out infinite;
-  }
-  .about .cat-art .quote {
-    font-size: 1.25rem; font-weight: 900; margin-top: 16px; color: var(--sunny);
-  }
-
-  /* ===== CTA ===== */
-  .cta {
-    text-align: center; border-radius: 32px; padding: 60px 6%;
-    margin-bottom: 44px; position: relative; overflow: hidden;
-    background: linear-gradient(135deg, var(--sunny), var(--coral), var(--pink));
-    background-size: 200% 200%; animation: gradientMove 8s ease infinite;
-  }
-  .cta h2 { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 900; color: #fff; margin-bottom: 14px; }
-  .cta p { color: #fff; font-size: 1.15rem; margin-bottom: 28px; font-weight: 700; }
-
-  /* ===== الفوتر ===== */
-  footer { text-align: center; padding: 42px 5%; background: var(--ink); color: #C9BEE0; }
-  footer .fbrand { display: flex; align-items: center; justify-content: center; gap: 12px; color: #fff; font-weight: 900; font-size: 1.25rem; margin-bottom: 14px; }
-  footer .fbrand img { width: 52px; height: 52px; border-radius: 50%; border: 3px solid var(--sunny); }
-  footer a { color: var(--sunny); font-weight: 800; }
-  footer .fnote { margin-top: 14px; font-size: .88rem; opacity: .75; line-height: 2; }
-
-  /* ===== المودالات ===== */
-  .modal {
-    position: fixed; inset: 0; background: rgba(20, 12, 40, .85); z-index: 500;
-    display: none; align-items: center; justify-content: center; padding: 16px;
-    backdrop-filter: blur(6px);
-  }
-  .modal.open { display: flex; animation: popIn .3s both; }
-  .modal-box {
-    width: min(960px, 100%); max-height: 92vh; overflow-y: auto;
-    background: var(--ink); border-radius: 22px; box-shadow: 0 30px 80px rgba(0,0,0,.5);
-  }
-  .modal-box.light { background: #FFF8F2; }
-  .modal-box .player { aspect-ratio: 16/9; width: 100%; }
-  .modal-box .player iframe { width: 100%; height: 100%; border: 0; display: block; }
-  .modal-title {
-    padding: 15px 22px; color: #fff; font-weight: 900;
-    display: flex; justify-content: space-between; gap: 14px; align-items: center;
-    position: sticky; top: 0; background: var(--ink); z-index: 5;
-  }
-  .modal-box.light .modal-title { color: var(--ink); background: #FFF8F2; border-bottom: 2px solid #FFE3D5; }
-  .modal-close {
-    background: #FF5A6E; color: #fff; border: none; width: 42px; height: 42px;
-    border-radius: 50%; font-size: 1.3rem; cursor: pointer; flex-shrink: 0; transition: .2s;
-  }
-  .modal-close:hover { transform: rotate(90deg) scale(1.1); }
-  .game-area { padding: 24px; }
-
-  /* ===== لعبة التلوين ===== */
-  .paint-tools { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 18px; }
-  .color-dot {
-    width: 46px; height: 46px; border-radius: 50%; cursor: pointer;
-    border: 4px solid #fff; box-shadow: var(--shadow); transition: .18s;
-  }
-  .color-dot:hover, .color-dot.selected { transform: scale(1.22); border-color: var(--ink); }
-  .paint-svg { width: 100%; max-width: 640px; margin: 0 auto; display: block; border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
-  .paint path, .paint circle, .paint ellipse, .paint rect, .paint polygon { cursor: pointer; transition: fill .15s; }
-
-  /* ===== لعبة الذاكرة ===== */
-  .mem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 560px; margin: 0 auto; }
-  .mcard { perspective: 700px; aspect-ratio: 1; cursor: pointer; }
-  .mcard-inner {
-    position: relative; width: 100%; height: 100%;
-    transform-style: preserve-3d; transition: transform .45s cubic-bezier(.2,1.2,.4,1);
-  }
-  .mcard.flipped .mcard-inner, .mcard.matched .mcard-inner { transform: rotateY(180deg); }
-  .mface {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    backface-visibility: hidden; border-radius: 18px; font-size: clamp(1.3rem, 4vw, 2.1rem);
-    font-weight: 900; padding: 6px;
-  }
-  .mback { background: linear-gradient(135deg, var(--purple), var(--pink)); color: #fff; font-size: 2rem; }
-  .mfront {
-    background: #fff; transform: rotateY(180deg);
-    border: 4px solid var(--purple); text-align: center; line-height: 1.5;
-  }
-  .mcard.matched .mfront { background: #E8FBF6; border-color: var(--teal); }
-  .mcard.shake .mcard-inner { animation: shake .4s; }
-  @keyframes shake {
-    0%,100% { transform: rotateY(180deg) translateX(0); }
-    25% { transform: rotateY(180deg) translateX(-8px); }
-    75% { transform: rotateY(180deg) translateX(8px); }
-  }
-  .mem-stats { text-align: center; font-weight: 900; font-size: 1.05rem; margin-bottom: 16px; color: var(--purple); }
-
-  /* ===== لعبة الاختيار ===== */
-  .quiz-q {
-    background: #fff; border-radius: 20px; padding: 24px; text-align: center;
-    font-size: clamp(1.25rem, 3.5vw, 1.75rem); font-weight: 900; margin-bottom: 20px;
-    box-shadow: var(--shadow); line-height: 1.9;
-  }
-  .quiz-opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-  .qopt {
-    padding: 16px 14px; border-radius: 18px; font-size: 1.2rem; font-weight: 900;
-    border: 3px solid #E8DFF5; background: #fff; cursor: pointer; transition: .18s;
-  }
-  .qopt:hover { border-color: var(--purple); transform: translateY(-3px); background: #F8F4FF; }
-  .qopt.correct { background: var(--green); color: #fff; border-color: var(--green); animation: popIn .35s; }
-  .qopt.wrong { background: #FF5A6E; color: #fff; border-color: #FF5A6E; animation: shake .4s; }
-  .quiz-top {
-    display: flex; justify-content: space-between; align-items: center;
-    font-weight: 900; margin-bottom: 14px; flex-wrap: wrap; gap: 10px;
-  }
-  .stars { font-size: 1.5rem; letter-spacing: 3px; }
-
-  /* ===== ألعاب الحيوانات والعد ===== */
-  .game-q {
-    text-align: center; font-size: clamp(1.35rem, 4vw, 2rem); font-weight: 900;
-    background: #fff; border-radius: 22px; padding: 28px 20px; box-shadow: var(--shadow);
-    margin-bottom: 22px; line-height: 2;
-  }
-  .emoji-row { font-size: clamp(2.2rem, 7vw, 3.4rem); letter-spacing: 8px; margin: 10px 0; }
-
-  /* ===== الفوز ===== */
-  .win-box { text-align: center; padding: 30px 16px; }
-  .win-box .big { font-size: 4.2rem; animation: mascotBob 1.4s ease-in-out infinite; display: block; }
-  .win-box h3 { font-size: 1.8rem; font-weight: 900; margin: 12px 0; }
-  .win-box p { font-size: 1.15rem; color: #5A4B6B; font-weight: 700; margin-bottom: 20px; }
-
-  /* ===== الكونفيتي ===== */
-  #confettiBox { position: fixed; inset: 0; pointer-events: none; z-index: 9999; overflow: hidden; }
-  .confetti-piece {
-    position: absolute; top: -24px; width: 13px; height: 13px; border-radius: 4px;
-    animation: confettiFall 3s ease-in forwards;
-  }
-  @keyframes confettiFall {
-    to { top: 112vh; transform: rotate(760deg) translateX(40px); opacity: .15; }
-  }
-
-  /* ===== موبايل/تاب/لابتوب ===== */
-  @media (max-width: 900px) {
-    .about { grid-template-columns: 1fr; padding: 38px 7%; }
-    .navbar { flex-wrap: wrap; }
-    .nav-links { order: 3; width: 100%; justify-content: center; }
-  }
-  @media (max-width: 620px) {
-    .nav-links a.nlink { padding: 7px 10px; font-size: .82rem; }
-    .brand span.bname { display: none; }
-    .btn { padding: 12px 22px; font-size: .98rem; }
-    .btn-big { padding: 15px 30px; font-size: 1.12rem; }
-    .mem-grid { gap: 8px; }
-    section { padding: 48px 4%; }
-    .hero { padding: 40px 4% 60px; }
-  }
-</style>
 </head>
 <body>
 
-<div id="progressBar"></div>
-<div id="confettiBox"></div>
+<a class="skip-link" href="#main">تخطي إلى المحتوى الرئيسي</a>
+<div id="progressBar" aria-hidden="true"></div>
+<div id="confettiBox" aria-hidden="true"></div>
 
 <!-- ================= الشريط العلوي ================= -->
-<nav class="navbar">
-  <a href="#top" class="brand">
-    <img class="avatar-img" src="images/avatar.jpg" alt="القطة روفان"
-         onerror="this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
-    <span class="bname">🐱 القطة روفان</span>
-  </a>
-  <div class="nav-links">
-    <a href="#videos" class="nlink">🎬 الفيديوهات</a>
-    <a href="#games" class="nlink">🎮 الألعاب</a>
-    <a href="#quran" class="nlink">📖 القرآن</a>
-    <a href="#hadith" class="nlink">🕌 أحاديث</a>
-    <a href="#prophets" class="nlink">⭐ قصص الأنبياء</a>
-    <a href="#about" class="nlink">🐾 عن روفان</a>
-    <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-yt">▶ اشترك في القناة</a>
-  </div>
-</nav>
+<header>
+  <nav class="navbar" aria-label="القائمة الرئيسية">
+    <a href="#top" class="brand">
+      <img class="avatar-img" src="images/avatar.jpg" alt="القطة روفان"
+           onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
+      <span class="bname">🐱 القطة روفان</span>
+    </a>
+    <div class="nav-links">
+      <a href="#videos" class="nlink">🎬 الفيديوهات</a>
+      <a href="#games" class="nlink">🎮 الألعاب</a>
+      <a href="#quran" class="nlink">📖 القرآن</a>
+      <a href="#hadith" class="nlink">🕌 أحاديث</a>
+      <a href="#prophets" class="nlink">⭐ قصص الأنبياء</a>
+      <a href="#search" class="nlink">🔎 بحث</a>
+      <a href="#about" class="nlink">🐾 عن روفان</a>
+      <button type="button" class="btn-sm btn-quiet" id="soundToggle" aria-pressed="true">🔊 الصوت</button>
+      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-yt">▶ اشترك في القناة</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+  </nav>
 
-<!-- ================= الهيرو ================= -->
-<header class="hero" id="top">
-  <div class="float-item" style="top:12%; right:8%;">☁️</div>
-  <div class="float-item" style="top:58%; right:14%; animation-delay:1s;">🦋</div>
-  <div class="float-item" style="top:18%; left:9%; animation-delay:2s;">⭐</div>
-  <div class="float-item" style="top:66%; left:12%; animation-delay:.6s;">🐾</div>
-  <div class="float-item" style="top:38%; right:26%; animation-delay:1.4s; font-size:1.4rem;">✨</div>
-  <div class="float-item" style="top:30%; left:24%; animation-delay:.9s; font-size:1.5rem;">🌈</div>
-
-  <div class="mascot-wrap">
-    <img class="mascot" src="images/avatar.jpg" alt="القطة روفان"
-         onerror="this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s900-c-k-c0x00ffffff-no-rj'">
-    <span class="sparkle" style="top:-8px; right:-8px;">✨</span>
-    <span class="sparkle" style="bottom:4px; left:-12px; animation-delay:.7s;">⭐</span>
-    <span class="sparkle" style="top:40%; left:-20px; animation-delay:1.2s;">💫</span>
-  </div>
-
-  <h1>أهلاً بكم في عالم <span class="grad">القطة روفان</span> 🐱</h1>
-  <p class="sub">أنا روفان! 😺 صديقة الأطفال اللي بتلعب معاهم وتتعلم معاهم — ألعاب ممتعة، تحفيظ القرآن، قصص الأنبياء، أحاديث الرسول ﷺ، وشرح الدروس بالمرح! من KG1 لحد تانية ابتدائي 🎓</p>
-  <div class="hero-cta">
-    <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-yt btn-big">▶ اشترك في قناة روفان</a>
-    <a href="#games" class="btn btn-play btn-big">🎮 تعال نلعب!</a>
-    <a href="#videos" class="btn btn-ghost btn-big">🎬 شاهد الفيديوهات</a>
-  </div>
-  <div class="stats">
-    <div class="stat" style="animation-delay:.1s"><b>+300</b><span>فيديو تعليمي</span></div>
-    <div class="stat" style="animation-delay:.2s"><b>21</b><span>بلاي ليست</span></div>
-    <div class="stat" style="animation-delay:.3s"><b>5</b><span>ألعاب ممتعة</span></div>
-    <div class="stat" style="animation-delay:.4s"><b>10</b><span>سورة للتحفيظ</span></div>
-    <div class="stat" style="animation-delay:.5s"><b>∞</b><span>مرح وضحك</span></div>
+  <!-- قائمة الهاتف -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-panel" role="dialog" aria-label="قائمة التنقل">
+      <button type="button" class="mobile-close" id="mobileClose" aria-label="إغلاق القائمة">✕</button>
+      <a href="#top" class="mlink">🏠 الرئيسية</a>
+      <a href="#videos" class="mlink">🎬 الفيديوهات</a>
+      <a href="#games" class="mlink">🎮 الألعاب</a>
+      <a href="#quran" class="mlink">📖 القرآن والتحفيظ</a>
+      <a href="#hadith" class="mlink">🕌 أحاديث النبي ﷺ</a>
+      <a href="#prophets" class="mlink">⭐ قصص الأنبياء</a>
+      <a href="#search" class="mlink">🔎 البحث</a>
+      <a href="#progress" class="mlink">🏅 نجومي وإنجازاتي</a>
+      <a href="#about" class="mlink">🐾 عن روفان</a>
+      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="mlink">▶ اشترك في يوتيوب</a>
+    </div>
   </div>
 </header>
 
-<!-- ================= الفيديوهات ================= -->
-<section id="videos">
-  <div class="sec-head">
-    <h2>🎬 مغامرات روفان على يوتيوب</h2>
-    <p>اختار البلاي ليست اللي تعجبك واتفرج على روفان وهي بتشرح وبتلعب 🐾</p>
-  </div>
-  <div class="filters" id="filters"></div>
-  <div id="plBanner"></div>
-  <div class="grid" id="videoGrid">
-    <div class="empty">جاري تحميل الفيديوهات... 🐱</div>
-  </div>
-</section>
+<main id="main">
 
-<!-- ================= الألعاب ================= -->
-<section id="games">
-  <div class="sec-head">
-    <h2>🎮 ألعاب روفان التعليمية</h2>
-    <p>العب واتعلم مع القطة روفان — ألعاب للأذكياء من KG1 لحد تانية ابتدائي!</p>
-  </div>
+  <!-- ================= الهيرو ================= -->
+  <section class="hero" id="top" aria-label="مرحبًا بكم">
+    <div class="float-item" style="top:12%; right:8%;" aria-hidden="true">☁️</div>
+    <div class="float-item" style="top:58%; right:14%; animation-delay:1s;" aria-hidden="true">🦋</div>
+    <div class="float-item" style="top:18%; left:9%; animation-delay:2s;" aria-hidden="true">⭐</div>
+    <div class="float-item" style="top:66%; left:12%; animation-delay:.6s;" aria-hidden="true">🐾</div>
+    <div class="float-item" style="top:38%; right:26%; animation-delay:1.4s; font-size:1.4rem;" aria-hidden="true">✨</div>
+    <div class="float-item" style="top:30%; left:24%; animation-delay:.9s; font-size:1.5rem;" aria-hidden="true">🌈</div>
 
-  <div class="mascot-guide">
-    <img src="images/avatar.jpg" alt="روفان"
-         onerror="this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
-    <div class="bubble">هلا بكم يا أبطال! 🌟 روفان جهزتلكم ألعاب حلوة — كلكم جاهزين؟ يلا نبدأ! 🎉</div>
-  </div>
-
-  <div class="games-grid">
-    <div class="game-card gc1" onclick="openGame('coloring')">
-      <span class="gicon">🎨</span>
-      <h3>لعبة التلوين مع روفان</h3>
-      <p>لوّن مشهد روفان والطبيعة بألوانك المفضلة!</p>
-      <span class="ages">👧 KG1 – تانية</span>
+    <div class="mascot-wrap">
+      <img class="mascot" src="images/avatar.jpg" alt="شخصية القطة روفان"
+           onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s900-c-k-c0x00ffffff-no-rj'">
+      <span class="sparkle" style="top:-8px; right:-8px;" aria-hidden="true">✨</span>
+      <span class="sparkle" style="bottom:4px; left:-12px; animation-delay:.7s;" aria-hidden="true">⭐</span>
+      <span class="sparkle" style="top:40%; left:-20px; animation-delay:1.2s;" aria-hidden="true">💫</span>
     </div>
-    <div class="game-card gc2" onclick="openGame('memory')">
-      <span class="gicon">🧠</span>
-      <h3>لعبة الذاكرة الذكية</h3>
-      <p>اقلب الكروت وطابق الحيوانات والفواكه والحروف!</p>
-      <span class="ages">👧 KG1 – تانية</span>
+
+    <h1>أهلاً بكم في عالم <span class="grad">القطة روفان</span> 🐱</h1>
+    <p class="sub">أنا روفان! 😺 صديقة الأطفال اللي بتلعب معاهم وتتعلم معاهم — ألعاب ممتعة، تحفيظ القرآن، قصص الأنبياء، أحاديث الرسول ﷺ، وشرح الدروس بالمرح! من KG1 لحد تانية ابتدائي 🎓</p>
+    <div class="hero-cta">
+      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-yt btn-big">▶ اشترك في قناة روفان</a>
+      <a href="#games" class="btn btn-play btn-big">🎮 تعال نلعب!</a>
+      <a href="#videos" class="btn btn-ghost btn-big">🎬 شاهد الفيديوهات</a>
     </div>
-    <div class="game-card gc3" onclick="openGame('quiz')">
-      <span class="gicon">✅</span>
-      <h3>اختر الإجابة الصحيحة</h3>
-      <p>أسئلة في العلوم واللغة والحساب والآداب — كم نجمة هتجيب؟</p>
-      <span class="ages">📚 كل المراحل</span>
+    <div class="stats" aria-label="محتوى الموقع">
+      <div class="stat" style="animation-delay:.1s"><b>21</b><span>بلاي ليست تعليمية</span></div>
+      <div class="stat" style="animation-delay:.2s"><b>8</b><span>ألعاب ممتعة</span></div>
+      <div class="stat" style="animation-delay:.3s"><b>10</b><span>سورة للتحفيظ</span></div>
+      <div class="stat" style="animation-delay:.4s"><b>10</b><span>أحاديث صحيحة</span></div>
+      <div class="stat" style="animation-delay:.5s"><b>7</b><span>قصص أنبياء</span></div>
     </div>
-    <div class="game-card gc4" onclick="openGame('animals')">
-      <span class="gicon">🐾</span>
-      <h3>عالم الحيوانات</h3>
-      <p>مين ولد الأسد؟ والقطة بتقول إيه؟ لعبة الحيوانات الممتعة!</p>
-      <span class="ages">🧒 KG1 – KG2</span>
+  </section>
+
+  <!-- ================= البحث ================= -->
+  <section id="search">
+    <div class="sec-head">
+      <h2>🔎 ابحث في عالم روفان</h2>
+      <p>ابحث عن لعبة أو فيديو أو سورة أو حديث أو قصة</p>
     </div>
-    <div class="game-card gc5" onclick="openGame('counting')">
-      <span class="gicon">🔢</span>
-      <h3>العد والحساب</h3>
-      <p>عدّ النجوم والسمكات واختار الرقم الصحيح!</p>
-      <span class="ages">🧒 KG1 – أولى</span>
+    <div class="search-box" role="search">
+      <input type="search" id="siteSearch" placeholder="اكتب كلمة البحث... (مثال: الحيوانات، الإخلاص، حساب)" aria-label="البحث في الموقع">
+      <button type="button" class="btn btn-play" id="searchBtn">🔎 بحث</button>
     </div>
-  </div>
-</section>
-
-<!-- ================= القرآن ================= -->
-<section id="quran">
-  <div class="sec-head">
-    <h2>📖 تحفيظ القرآن الكريم</h2>
-    <p>احفظ أقصر السور مع روفان، وعلّمها على صفحتك! كل ما تحفظ سورة اضغط "حفظتها" ⭐</p>
-  </div>
-
-  <div class="quran-progress">
-    <h3>🏆 سجل التحفيظ بتاعك</h3>
-    <p id="hifzText" style="margin-bottom:10px; font-weight:800;">لسه محفظتش أي سورة — يلا نبدأ بسورة الإخلاص! 💪</p>
-    <div class="pbar"><div class="fill" id="hifzFill"></div></div>
-  </div>
-
-  <div class="surah-grid" id="surahGrid"></div>
-
-  <div style="text-align:center; margin-top:28px;">
-    <a href="https://www.youtube.com/@RovanTheCat/search?q=%D8%AA%D8%AD%D9%81%D9%8A%D8%B8" target="_blank" rel="noopener" class="btn btn-yt">▶ احفظ مع روفان على يوتيوب</a>
-  </div>
-</section>
-
-<!-- ================= الأحاديث ================= -->
-<section id="hadith">
-  <div class="sec-head">
-    <h2>🕌 أحاديث النبي ﷺ للأطفال</h2>
-    <p>أحاديث صحيحة قصيرة مع شرح مبسط يفهمه الصغار — مراجَعة ومذكورة بمصادرها</p>
-  </div>
-  <div class="hadith-grid" id="hadithGrid"></div>
-</section>
-
-<!-- ================= قصص الأنبياء ================= -->
-<section id="prophets">
-  <div class="sec-head">
-    <h2>⭐ قصص الأنبياء للأطفال</h2>
-    <p>حكايات مشوقة من القرآن الكريم — اتفرج على القصة كاملة مع روفان على يوتيوب</p>
-  </div>
-  <div class="prophets-grid" id="prophetsGrid"></div>
-  <div style="text-align:center; margin-top:28px;">
-    <a href="https://www.youtube.com/playlist?list=PLa82TLGr0UKA" target="_blank" rel="noopener" class="btn btn-play">▶ شاهد بلاي ليست قصص الأنبياء كاملة</a>
-  </div>
-</section>
-
-<!-- ================= عن روفان ================= -->
-<section id="about">
-  <div class="about">
-    <div>
-      <h2>🌸 مين القطة روفان؟</h2>
-      <p>روفان قطة لطيفة وشقيّة بتحب المغامرات واللعب والتعلم! كل يوم بتعيش حكاية جديدة مليانة مرح وضحك ومفاجآت 🎉</p>
-      <p>مهمة روفان إنها تساعد كل الأطفال يتعلموا وهم مبسوطين — في المدرسة والبيت والمسجد.</p>
-      <ul>
-        <li>🎮 <b>ألعاب تعليمية</b> ممتعة لكل المراحل</li>
-        <li>📖 <b>تحفيظ القرآن</b> والأحاديث النبوية</li>
-        <li>⭐ <b>قصص الأنبياء</b> والآداب والقيم</li>
-        <li>🔬 <b>شرح المناهج</b> (علوم – عربي – حساب – إنجليزي)</li>
-        <li>✅ <b>محتوى آمن ومراجَع</b> للأطفال</li>
-      </ul>
+    <div class="search-results" id="searchResults" aria-live="polite">
+      <p class="search-note">اكتب كلمة زي «الحيوانات» أو «الإخلاص» أو «الحساب» 🔎</p>
     </div>
-    <div class="cat-art">
-      <img src="images/avatar.jpg" alt="القطة روفان"
-           onerror="this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s900-c-k-c0x00ffffff-no-rj'">
-      <div class="quote">"كل حكاية معلومة… وكل معلومة مغامرة!"</div>
+  </section>
+
+  <!-- ================= الفيديوهات ================= -->
+  <section id="videos">
+    <div class="sec-head">
+      <h2>🎬 مغامرات روفان على يوتيوب</h2>
+      <p>اختار البلاي ليست اللي تعجبك واتفرج على روفان وهي بتشرح وبتلعب 🐾</p>
     </div>
-  </div>
-</section>
+    <div class="filters" id="filters" role="group" aria-label="تصفية البلاي ليستات"></div>
+    <div id="plBanner"></div>
+    <div class="grid" id="videoGrid" aria-live="polite">
+      <div class="empty">جاري تحميل الفيديوهات... 🐱</div>
+    </div>
+    <div style="text-align:center; margin-top:26px;">
+      <a href="https://www.youtube.com/@RovanTheCat" target="_blank" rel="noopener" class="btn btn-yt">▶ زوروا قناة القطة روفان</a>
+    </div>
+  </section>
 
-<!-- ================= CTA ================= -->
-<section>
-  <div class="cta">
-    <h2>🔔 متبنيش مغامرة روفان الجديدة!</h2>
-    <p>اشترك في القناة وخلي أولادك يتعلموا ويستمتعوا كل يوم مع القطة روفان 🐱</p>
-    <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-white btn-big">▶ اشترك في قناة القطة روفان</a>
-  </div>
-</section>
+  <!-- ================= الألعاب ================= -->
+  <section id="games">
+    <div class="sec-head">
+      <h2>🎮 مكتبة ألعاب روفان التعليمية</h2>
+      <p>العب واتعلم مع القطة روفان — ألعاب للأذكياء من KG1 لحد تانية ابتدائي!</p>
+    </div>
 
-<!-- ================= الفوتر ================= -->
+    <div class="mascot-guide">
+      <img src="images/avatar.jpg" alt="روفان"
+           onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
+      <div class="bubble">هلا بكم يا أبطال! 🌟 اختاروا لعبتكم من المكتبة تحت، وكل لعبة بتجيب نجوم لصفحتكم!</div>
+    </div>
+
+    <div class="games-controls" role="group" aria-label="البحث والتصفية">
+      <input type="search" id="gameSearch" placeholder="🔍 اسم اللعبة..." aria-label="البحث عن لعبة">
+      <select id="gameCat" aria-label="التصنيف">
+        <option value="all">كل التصنيفات</option>
+        <option>فنون وألوان</option>
+        <option>ذاكرة</option>
+        <option>معرفة</option>
+        <option>حيوانات</option>
+        <option>رياضيات</option>
+        <option>لغة عربية</option>
+        <option>كلمات</option>
+      </select>
+      <select id="gameDiff" aria-label="مستوى الصعوبة">
+        <option value="all">كل المستويات</option>
+        <option>سهل</option>
+        <option>متوسط</option>
+      </select>
+      <select id="gameSort" aria-label="الترتيب">
+        <option value="name">ترتيب: الاسم</option>
+        <option value="new">ترتيب: الأحدث</option>
+      </select>
+    </div>
+
+    <div class="games-grid" id="gamesGrid"></div>
+  </section>
+
+  <!-- ================= القرآن ================= -->
+  <section id="quran">
+    <div class="sec-head">
+      <h2>📖 تحفيظ القرآن الكريم</h2>
+      <p>احفظ أقصر السور مع روفان، وعلّمها على صفحتك! كل ما تحفظ سورة اضغط «حفظتها» ⭐</p>
+    </div>
+
+    <div class="quran-progress">
+      <h3>🏆 سجل التحفيظ بتاعك</h3>
+      <p id="hifzText" style="margin-bottom:10px; font-weight:800;">لسه محفظتش أي سورة — يلا نبدأ بسورة الإخلاص! 💪</p>
+      <div class="pbar" role="progressbar" aria-label="تقدم التحفيظ"><div class="fill" id="hifzFill"></div></div>
+    </div>
+
+    <div class="surah-grid" id="surahGrid"></div>
+
+    <div style="text-align:center; margin-top:28px;">
+      <a href="https://www.youtube.com/@RovanTheCat/search?q=%D8%AA%D8%AD%D9%81%D9%8A%D8%B8" target="_blank" rel="noopener" class="btn btn-yt">▶ احفظ مع روفان على يوتيوب</a>
+    </div>
+  </section>
+
+  <!-- ================= الأحاديث ================= -->
+  <section id="hadith">
+    <div class="sec-head">
+      <h2>🕌 أحاديث النبي ﷺ للأطفال</h2>
+      <p>أحاديث صحيحة قصيرة مع شرح مبسط يفهمه الصغار — مراجَعة ومذكورة بمصادرها</p>
+    </div>
+    <div class="hadith-grid" id="hadithGrid"></div>
+  </section>
+
+  <!-- ================= قصص الأنبياء ================= -->
+  <section id="prophets">
+    <div class="sec-head">
+      <h2>⭐ قصص الأنبياء للأطفال</h2>
+      <p>حكايات مشوقة كما وردت في القرآن الكريم — اتفرج على القصة كاملة مع روفان على يوتيوب</p>
+    </div>
+    <div class="prophets-grid" id="prophetsGrid"></div>
+    <div style="text-align:center; margin-top:28px;">
+      <a href="https://www.youtube.com/playlist?list=PLa82TLGr0UKA" target="_blank" rel="noopener" class="btn btn-play">▶ شاهد بلاي ليست قصص الأنبياء كاملة</a>
+    </div>
+  </section>
+
+  <!-- ================= نجومي وإنجازاتي ================= -->
+  <section id="progress">
+    <div class="sec-head">
+      <h2>🏅 نجومي وإنجازاتي</h2>
+      <p>كل لعبة وسورة بتجيبلك نجوم وشارات — شوف تقدمك!</p>
+    </div>
+    <div class="progress-panel">
+      <div class="progress-stats" id="progressStats"></div>
+      <div class="badges-grid" id="badgesGrid"></div>
+      <p class="device-note">📌 تقدمك محفوظ على الجهاز ده بس — لو فتحت من جهاز تاني هتبدأ من الأول.</p>
+      <div style="text-align:center; margin-top:16px;">
+        <button type="button" class="btn btn-white" id="resetProgress">🔄 إعادة تعيين التقدم</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= عن روفان ================= -->
+  <section id="about">
+    <div class="about">
+      <div>
+        <h2>🌸 مين القطة روفان؟</h2>
+        <p>روفان قطة لطيفة وشقيّة بتحب المغامرات واللعب والتعلم! كل يوم بتعيش حكاية جديدة مليانة مرح وضحك ومفاجآت 🎉</p>
+        <p>مهمة روفان إنها تساعد كل الأطفال يتعلموا وهم مبسوطين — في المدرسة والبيت والمسجد.</p>
+        <ul>
+          <li>🎮 <b>ألعاب تعليمية</b> ممتعة لكل المراحل</li>
+          <li>📖 <b>تحفيظ القرآن</b> والأحاديث النبوية</li>
+          <li>⭐ <b>قصص الأنبياء</b> والآداب والقيم</li>
+          <li>🔬 <b>شرح المناهج</b> (علوم – عربي – حساب – إنجليزي)</li>
+          <li>✅ <b>محتوى آمن ومراجَع</b> للأطفال</li>
+        </ul>
+      </div>
+      <div class="cat-art">
+        <img src="images/avatar.jpg" alt="القطة روفان"
+             onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s900-c-k-c0x00ffffff-no-rj'">
+        <div class="quote">"كل حكاية معلومة… وكل معلومة مغامرة!"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section aria-label="اشترك في القناة">
+    <div class="cta">
+      <h2>🔔 متبنيش مغامرة روفان الجديدة!</h2>
+      <p>اشترك في القناة وخلي أولادك يتعلموا ويستمتعوا كل يوم مع القطة روفان 🐱</p>
+      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-white btn-big">▶ اشترك في قناة القطة روفان</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= التذييل ================= -->
 <footer>
   <div class="fbrand">
     <img src="images/avatar.jpg" alt="القطة روفان"
-         onerror="this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
+         onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
     <span>القطة روفان – Rovan The Cat</span>
   </div>
-  <p>عالم الأطفال التعليمي | <a href="https://www.youtube.com/@RovanTheCat" target="_blank" rel="noopener">youtube.com/@RovanTheCat</a></p>
+  <nav class="flinks" aria-label="روابط التذييل">
+    <a href="#videos">الفيديوهات</a>
+    <a href="#games">الألعاب</a>
+    <a href="#quran">القرآن</a>
+    <a href="#prophets">القصص</a>
+    <a href="privacy.html">سياسة الخصوصية</a>
+    <a href="terms.html">شروط الاستخدام</a>
+    <a href="https://www.youtube.com/@RovanTheCat" target="_blank" rel="noopener">قناة يوتيوب ▶</a>
+  </nav>
   <div class="fnote">
     🕌 نصوص القرآن الكريم والأحاديث النبوية مراجَعة من مصادرها المعتمدة • محتوى تعليمي آمن للأطفال<br>
-    © 2026 القطة روفان — جميع الحقوق محفوظة 🐾
+    الموقع لا يجمع أي بيانات شخصية عن الأطفال — التقدم محفوظ على الجهاز فقط.<br>
+    © <span id="year">2026</span> القطة روفان — جميع الحقوق محفوظة 🐾
   </div>
 </footer>
 
 <!-- ================= مودال الفيديو ================= -->
-<div class="modal" id="modal">
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="مشغل الفيديو">
   <div class="modal-box">
     <div class="player" id="player"></div>
     <div class="modal-title">
       <span id="modalTitle">فيديو</span>
-      <button class="modal-close" onclick="closeVideo()">✕</button>
+      <button type="button" class="modal-close" aria-label="إغلاق الفيديو">✕</button>
     </div>
+    <div class="modal-fallback" id="videoFallback"></div>
   </div>
 </div>
 
 <!-- ================= مودال الألعاب ================= -->
-<div class="modal" id="gameModal">
+<div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-label="اللعبة">
   <div class="modal-box light">
     <div class="modal-title">
       <span id="gameTitle">🎮 لعبة</span>
-      <button class="modal-close" onclick="closeGame()">✕</button>
+      <button type="button" class="modal-close" aria-label="إغلاق اللعبة">✕</button>
     </div>
-    <div class="game-area" id="gameArea"></div>
+    <div class="game-area">
+      <div id="gameInstructions"></div>
+      <div id="gameArea"></div>
+    </div>
   </div>
 </div>
 
-<script>
-/* ============================================================
-   🐱 القطة روفان — الموقع التفاعلي
-   ============================================================ */
-const CHANNEL_ID = "UCfe5kWm6NIalmc2P_uvsQdw";
-const FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
-const CACHE_KEY = "rovan_videos_cache_v2";
-const CACHE_MAX_AGE = 6 * 60 * 60 * 1000;
-
-/* ---------- نسخ احتياطية ---------- */
-const FALLBACK_VIDEOS = [
-  { id: "wXX5XcjoDO0", title: "[أولى ابتدائي] الجهاز التنفسي الأنف والرئتين مع روفان | The Breathing System", date: "2026-10-20" },
-  { id: "KwKNpitYy2Y", title: "[KG2] قصة روفان والكوباية المكسورة قيمة الصدق | Honesty Story", date: "2026-10-20" },
-  { id: "IKMnZNi794M", title: "[أولى ابتدائي] النجوم في السما بالليل مع روفان | Stars in the Sky", date: "2026-10-20" },
-  { id: "8Ikq-FzvLzE", title: "[KG2] آداب الزيارة والاستئذان والسلام مع روفان | Visiting Manners", date: "2026-10-20" },
-  { id: "b70CkTZYTeg", title: "[KG2] آداب المسجد للأطفال مع روفان | Mosque Manners", date: "2026-10-20" },
-  { id: "yjXXJM98iyg", title: "[أولى ابتدائي] البراكين والزلازل وإزاي نحمي نفسنا مع روفان | Volcanoes and Earthquakes", date: "2026-10-20" },
-  { id: "CIrDMPEhi7o", title: "[أولى ابتدائي] الحواس الخمس العين والأذن والأنف واللسان والجلد مع روفان | The Five Senses", date: "2026-10-20" },
-  { id: "_Zk3xleFApo", title: "[أولى ابتدائي] الهواء حوالينا وبنتنفسه مع روفان | Air Around Us", date: "2026-10-20" },
-  { id: "cHqwElozi_M", title: "[أولى ابتدائي] أجزاء النبات الجذر والساق والورقة والزهرة مع روفان | Parts of a Plant", date: "2026-10-20" },
-  { id: "uHvvAEKBw2s", title: "[أولى ابتدائي] الشمس مصدر النور والدفء مع روفان | The Sun", date: "2026-10-20" },
-  { id: "9tivJO0Kw6k", title: "[تانية ابتدائي] جمع التكسير كتاب وكتب وقلم وأقلام مع روفان | Broken Plurals", date: "2026-10-20" },
-  { id: "Xk_lvhEB2Ts", title: "[أولى ابتدائي] كلمتين للسؤال كم وكيف مع روفان | Kam and Kayf", date: "2026-10-20" },
-  { id: "hXBC_CX5vN8", title: "[تانية ابتدائي] المبتدأ والخبر في الجملة الاسمية مع روفان | Subject and Predicate", date: "2026-10-20" },
-  { id: "Dr4_FxA08Lw", title: "[أولى ابتدائي] مذكر ومؤنث الحيوانات أسد ولبوة مع روفان | Animal Genders", date: "2026-10-20" },
-  { id: "R94H6z-X7I4", title: "[أولى ابتدائي] next to وbehind وin front of بالإنجليزي مع روفان | Next To Behind In Front Of", date: "2026-10-20" }
-];
-
-const FALLBACK_PLAYLISTS = [
-  { id: "PLG50mJYVDDco", title: "[أولى ابتدائي] العلوم مع روفان", count: 29 },
-  { id: "PLIVpDYcFIcm4", title: "[أولى ابتدائي] الدراسات الاجتماعية مع روفان", count: 9 },
-  { id: "PLRozo9ag1Lag", title: "[تانية ابتدائي] اللغة العربية مع روفان", count: 8 },
-  { id: "PLJRD26p0HcoE", title: "النحو", count: 6 },
-  { id: "PLMYbZgP_wMZE", title: "[تانية ابتدائي] الحساب مع روفان", count: 29 },
-  { id: "PLWCN2vGHzWgE", title: "[تانية ابتدائي] دروس الإنجليزي مع روفان", count: 22 },
-  { id: "PLLPWuYzjWbxw", title: "[KG2] القراءة بالعربي والحروف مع روفان", count: 4 },
-  { id: "PLduABixlqgso", title: "[KG2] تربية إسلامية مع روفان", count: 10 },
-  { id: "PLCnaNGQU8SbA", title: "[KG2] الفونيكس والأرقام والكلمات بالإنجليزي مع روفان", count: 50 },
-  { id: "PLKtI8IXHHqzE", title: "[KG1] تعلم الإنجليزية للأطفال مع روفان", count: 55 },
-  { id: "PLVhMrXuQw4Ak", title: "[KG1] تعلم الإنجليزية للأطفال مع روفان", count: 5 },
-  { id: "PLDo92YXMwDyE", title: "[أولى ابتدائي] الرياضيات بالإنجليزي مع روفان", count: 19 },
-  { id: "PLIYkrsqz2ywM", title: "[أولى ابتدائي] القراءة والجمل بالإنجليزي مع روفان", count: 62 },
-  { id: "PLLUWe7PcHG98", title: "سلسلة الآداب مع روفان", count: 26 },
-  { id: "PLFaRbrIzTz1o", title: "قصص مصورة", count: 8 },
-  { id: "PLa82TLGr0UKA", title: "قصص الأنبياء", count: 24 },
-  { id: "PLWwW8uOfUEYI", title: "الأحاديث النبوية", count: 31 },
-  { id: "PLGgO-9ttvWaY", title: "قصص روفان التعليمية", count: 6 },
-  { id: "PLYe9vHcpOKzQ", title: "تربية الأبناء", count: 6 },
-  { id: "PLaNIk5VLXQIc", title: "نصائح لأولياء الأمور مع روفان", count: 2 },
-  { id: "PLSDZ7QiBOhRQ", title: "للأهل: تعليم الأطفال في البيت", count: 5 }
-].map(p => ({ ...p, url: `https://www.youtube.com/playlist?list=${p.id}`, videos: [] }));
-
-/* ============================================================
-   🔊 أصوات اللعبة (Web Audio — بدون ملفات)
-   ============================================================ */
-let _actx = null;
-function beep(freq, dur, type, when) {
-  try {
-    _actx = _actx || new (window.AudioContext || window.webkitAudioContext)();
-    const o = _actx.createOscillator(), g = _actx.createGain();
-    o.type = type || "sine"; o.frequency.value = freq;
-    g.gain.value = 0.09; o.connect(g); g.connect(_actx.destination);
-    const t = _actx.currentTime + (when || 0);
-    g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-    o.start(t); o.stop(t + dur + .02);
-  } catch (e) {}
-}
-function sfxClick() { beep(560, .07, "triangle"); }
-function sfxCorrect() { beep(660, .12); beep(880, .14, "sine", .09); beep(1170, .2, "sine", .2); }
-function sfxWrong() { beep(200, .18, "square"); beep(150, .24, "square", .11); }
-function sfxWin() { [523, 659, 784, 1046, 1318, 1568].forEach((f, i) => beep(f, .2, "triangle", i * .11)); }
-
-/* ---------- كونفيتي ---------- */
-function confetti(n) {
-  const box = document.getElementById("confettiBox");
-  const colors = ["#FF7A5C", "#7C5CFF", "#2ED3B7", "#FFC93C", "#FF8FAB", "#5CC8FF"];
-  for (let i = 0; i < (n || 50); i++) {
-    const c = document.createElement("div");
-    c.className = "confetti-piece";
-    c.style.left = Math.random() * 100 + "vw";
-    c.style.background = colors[i % colors.length];
-    c.style.animationDelay = Math.random() * .9 + "s";
-    if (i % 3 === 0) c.style.borderRadius = "50%";
-    box.appendChild(c);
-    setTimeout(() => c.remove(), 4200);
-  }
-}
-
-/* ============================================================
-   🎬 نظام الفيديوهات والبلاي ليستات
-   ============================================================ */
-function plEmoji(title) {
-  if (/قصص|أنبياء|أحاديث/.test(title)) return "📚";
-  if (/علوم/.test(title)) return "🔬";
-  if (/اجتماعية/.test(title)) return "🌍";
-  if (/رياضيات|حساب|فونيكس|أرقام/.test(title)) return "🔢";
-  if (/إنجليز|الإنجليزي/.test(title)) return "🔤";
-  if (/إسلامية|آداب/.test(title)) return "🕌";
-  if (/نحو|العربية|قراءة|العربي|الحروف/.test(title)) return "📖";
-  if (/تربية|نصائح|للأهل/.test(title)) return "👨‍👩‍👧";
-  return "🐾";
-}
-function cleanDesc(d) { return (d || "").replace(/#[^\s#]+/g, "").replace(/\s+/g, " ").trim(); }
-function fmtDate(d) {
-  try { return new Date(d).toLocaleDateString("ar-EG", { year: "numeric", month: "long", day: "numeric" }); }
-  catch (e) { return d; }
-}
-function fallbackPlaylistVideos(pl) {
-  const words = pl.title.replace(/\[.*?\]/g, " ").replace(/مع روفان/g, " ")
-    .split(/\s+/).map(w => w.replace(/^ال/, "")).filter(w => w.length > 2);
-  return FALLBACK_VIDEOS.filter(v => {
-    const s = v.title + " " + (v.desc || "");
-    return words.some(w => s.includes(w) || s.includes("ال" + w));
-  });
-}
-
-async function fetchFromYouTube() {
-  const attempts = [
-    async () => {
-      const r = await fetch("https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(FEED_URL));
-      return await r.text();
-    },
-    async () => {
-      const r = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent(FEED_URL));
-      const j = await r.json(); return j.contents;
-    },
-    async () => {
-      const r = await fetch("https://corsproxy.io/?url=" + encodeURIComponent(FEED_URL));
-      return await r.text();
-    }
-  ];
-  for (const attempt of attempts) {
-    try {
-      const out = await attempt();
-      if (typeof out === "string" && out.includes("<")) {
-        const doc = new DOMParser().parseFromString(out, "application/xml");
-        const entries = [...doc.getElementsByTagName("entry")];
-        return entries.map(e => {
-          const get = (tag) => e.getElementsByTagNameNS("*", tag)[0]?.textContent?.trim() || "";
-          return { id: get("videoId"), title: get("title"), date: get("published").slice(0, 10), desc: cleanDesc(get("description")) };
-        }).filter(v => v.id);
-      }
-    } catch (e) {}
-  }
-  throw new Error("feed failed");
-}
-
-let ALL_VIDEOS = [];
-let ALL_PLAYLISTS = [];
-let activePL = "all";
-
-function buildChips() {
-  const box = document.getElementById("filters");
-  const chips = [`<button class="chip ${activePL === "all" ? "active" : ""}" data-pl="all">الكل 🐾</button>`];
-  for (const p of ALL_PLAYLISTS) {
-    chips.push(`<button class="chip ${activePL === p.id ? "active" : ""}" data-pl="${p.id}" title="${p.title}">${plEmoji(p.title)} ${p.title}</button>`);
-  }
-  box.innerHTML = chips.join("");
-}
-
-function vcard(v, i) {
-  return `
-    <article class="vcard" onclick="openVideo('${v.id}', ${JSON.stringify(v.title).replace(/"/g, "&quot;")})" style="animation:popIn .5s ${i * 0.05}s both">
-      <div class="thumb">
-        <div class="fallback">🐱</div>
-        <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="${v.title.replace(/"/g, "&quot;")}"
-             onload="this.style.opacity=1" loading="lazy">
-        <div class="play"><span>▶</span></div>
-      </div>
-      <div class="vinfo">
-        <h3>${v.title}</h3>
-        <div class="vmeta"><span class="tag">📅 ${fmtDate(v.date)}</span></div>
-      </div>
-    </article>`;
-}
-
-function renderVideos() {
-  const grid = document.getElementById("videoGrid");
-  const banner = document.getElementById("plBanner");
-  let list = ALL_VIDEOS;
-  if (activePL !== "all") {
-    const p = ALL_PLAYLISTS.find(x => x.id === activePL);
-    if (p) {
-      list = (p.videos && p.videos.length) ? p.videos : fallbackPlaylistVideos(p);
-      banner.innerHTML = `<a class="pl-banner" href="${p.url}" target="_blank" rel="noopener">▶ افتح بلاي ليست "${p.title}" كاملة على يوتيوب (${p.count} فيديو)</a>`;
-    }
-  } else {
-    banner.innerHTML = "";
-  }
-  if (!list.length) {
-    grid.innerHTML = '<div class="empty">مافيش فيديوهات في البلاي ليست دي لسه 🐱</div>';
-    return;
-  }
-  grid.innerHTML = list.map(vcard).join("");
-}
-
-async function loadVideos() {
-  let payload = { videos: FALLBACK_VIDEOS, playlists: FALLBACK_PLAYLISTS };
-  try {
-    const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
-    if (cached && Date.now() - cached.at < CACHE_MAX_AGE && cached.videos?.length) payload = cached;
-  } catch (e) {}
-  ALL_VIDEOS = payload.videos;
-  ALL_PLAYLISTS = (payload.playlists && payload.playlists.length)
-    ? payload.playlists.map(p => ({ ...p, url: p.url || `https://www.youtube.com/playlist?list=${p.id}` }))
-    : FALLBACK_PLAYLISTS;
-  buildChips(); renderVideos();
-
-  try {
-    let fresh = null;
-    try {
-      const r = await fetch("videos.json?t=" + Date.now());
-      if (r.ok) {
-        const j = await r.json();
-        if (j.videos && j.videos.length) fresh = j;
-      }
-    } catch (e) {}
-    if (!fresh) {
-      const vids = await fetchFromYouTube();
-      if (vids && vids.length) fresh = { videos: vids, playlists: FALLBACK_PLAYLISTS };
-    }
-    if (fresh && fresh.videos && fresh.videos.length) {
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), videos: fresh.videos, playlists: fresh.playlists }));
-      ALL_VIDEOS = fresh.videos;
-      ALL_PLAYLISTS = (fresh.playlists && fresh.playlists.length) ? fresh.playlists : FALLBACK_PLAYLISTS;
-      buildChips(); renderVideos();
-    }
-  } catch (e) {}
-}
-
-document.getElementById("filters").addEventListener("click", (e) => {
-  const btn = e.target.closest(".chip");
-  if (!btn) return;
-  sfxClick();
-  document.querySelectorAll("#filters .chip").forEach(c => c.classList.remove("active"));
-  btn.classList.add("active");
-  activePL = btn.dataset.pl;
-  renderVideos();
-});
-
-function openVideo(id, title) {
-  sfxClick();
-  document.getElementById("player").innerHTML =
-    `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${title}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-  document.getElementById("modalTitle").textContent = title;
-  document.getElementById("modal").classList.add("open");
-  document.body.style.overflow = "hidden";
-}
-function closeVideo() {
-  document.getElementById("player").innerHTML = "";
-  document.getElementById("modal").classList.remove("open");
-  document.body.style.overflow = "";
-}
-document.getElementById("modal").addEventListener("click", (e) => { if (e.target.id === "modal") closeVideo(); });
-
-/* ============================================================
-   📖 نصوص القرآن الكريم (سور قصيرة — نص مراجَع)
-   ============================================================ */
-const SURAHS = [
-  { name: "الفاتحة", num: 1, text: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ ﴿١﴾ الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ ﴿٢﴾ الرَّحْمَٰنِ الرَّحِيمِ ﴿٣﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٤﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾ اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ ﴿٦﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٧﴾" },
-  { name: "الإخلاص", num: 112, text: "قُلْ هُوَ اللَّهُ أَحَدٌ ﴿١﴾ اللَّهُ الصَّمَدُ ﴿٢﴾ لَمْ يَلِدْ وَلَمْ يُولَدْ ﴿٣﴾ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ ﴿٤﴾" },
-  { name: "الفلق", num: 113, text: "قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ﴿١﴾ مِن شَرِّ مَا خَلَقَ ﴿٢﴾ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ﴿٣﴾ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ﴿٤﴾ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ ﴿٥﴾" },
-  { name: "الناس", num: 114, text: "قُلْ أَعُوذُ بِرَبِّ النَّاسِ ﴿١﴾ مَلِكِ النَّاسِ ﴿٢﴾ إِلَٰهِ النَّاسِ ﴿٣﴾ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ﴿٤﴾ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ﴿٥﴾ مِنَ الْجِنَّةِ وَالنَّاسِ ﴿٦﴾" },
-  { name: "الكوثر", num: 108, text: "إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ ﴿١﴾ فَصَلِّ لِرَبِّكَ وَانْحَرْ ﴿٢﴾ إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ ﴿٣﴾" },
-  { name: "العصر", num: 103, text: "وَالْعَصْرِ ﴿١﴾ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ﴿٢﴾ إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ ﴿٣﴾" },
-  { name: "الفيل", num: 105, text: "أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ ﴿١﴾ أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ ﴿٢﴾ وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ ﴿٣﴾ تَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ ﴿٤﴾ فَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍ ﴿٥﴾" },
-  { name: "قريش", num: 106, text: "لِإِيلَافِ قُرَيْشٍ ﴿١﴾ إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ ﴿٢﴾ فَلْيَعْبُدُوا رَبَّ هَٰذَا الْبَيْتِ ﴿٣﴾ الَّذِي أَطْعَمَهُم مِّن جُوعٍ وَآمَنَهُم مِّنْ خَوْفٍ ﴿٤﴾" },
-  { name: "الماعون", num: 107, text: "أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ ﴿١﴾ فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ ﴿٢﴾ وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ ﴿٣﴾ فَوَيْلٌ لِّلْمُصَلِّينَ ﴿٤﴾ الَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ ﴿٥﴾ الَّذِينَ هُمْ يُرَاءُونَ ﴿٦﴾ وَيَمْنَعُونَ الْمَاعُونَ ﴿٧﴾" },
-  { name: "التكاثر", num: 102, text: "أَلْهَاكُمُ التَّكَاثُرُ ﴿١﴾ حَتَّىٰ زُرْتُمُ الْمَقَابِرَ ﴿٢﴾ كَلَّا سَوْفَ تَعْلَمُونَ ﴿٣﴾ ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ ﴿٤﴾ كَلَّا لَوْ تَعْلَمُونَ عِلْمَ الْيَقِينِ ﴿٥﴾ لَتَرَوُنَّ الْجَحِيمَ ﴿٦﴾ ثُمَّ لَتَرَوُنَّهَا عَيْنَ الْيَقِينِ ﴿٧﴾ ثُمَّ لَتُسْأَلُنَّ يَوْمَئِذٍ عَنِ النَّعِيمِ ﴿٨﴾" }
-];
-
-const HIFZ_KEY = "rovan_hifz_v1";
-function getHifz() {
-  try { return JSON.parse(localStorage.getItem(HIFZ_KEY) || "[]"); } catch (e) { return []; }
-}
-function saveHifz(list) { localStorage.setItem(HIFZ_KEY, JSON.stringify(list)); }
-
-function renderSurahs() {
-  const done = getHifz();
-  const grid = document.getElementById("surahGrid");
-  grid.innerHTML = SURAHS.map(s => {
-    const isDone = done.includes(s.name);
-    return `
-    <div class="surah-card ${isDone ? "done" : ""}">
-      <div class="surah-head">
-        <h3><span class="surah-badge">${s.num}</span> سورة ${s.name}</h3>
-        <span style="font-size:1.6rem;">${isDone ? "⭐" : "🌙"}</span>
-      </div>
-      <div class="surah-text">${s.text}</div>
-      <div class="surah-actions">
-        <button class="btn-sm btn-done ${isDone ? "done" : ""}" onclick="toggleHifz('${s.name}')">
-          ${isDone ? "✅ حفظتها!" : "⭐ حفظتها!"}
-        </button>
-        <a class="btn-sm btn-link" href="https://www.youtube.com/@RovanTheCat/search?q=%D8%B3%D9%88%D8%B1%D8%A9%20${encodeURIComponent(s.name)}" target="_blank" rel="noopener">▶ احفظها مع روفان</a>
-      </div>
-    </div>`;
-  }).join("");
-  const count = done.length;
-  document.getElementById("hifzFill").style.width = (count / SURAHS.length * 100) + "%";
-  document.getElementById("hifzText").textContent =
-    count === 0 ? "لسه محفظتش أي سورة — يلا نبدأ بسورة الإخلاص! 💪" :
-    count === SURAHS.length ? "ماشاء الله عليك! 🎉 حفظت كل السور — ربنا يبارك فيك!" :
-    `ماشاء الله! حفظت ${count} من ${SURAHS.length} سور — كمّل يا بطل! 💪`;
-}
-function toggleHifz(name) {
-  let done = getHifz();
-  if (done.includes(name)) {
-    done = done.filter(n => n !== name);
-  } else {
-    done.push(name);
-    sfxCorrect(); confetti(30);
-  }
-  saveHifz(done);
-  renderSurahs();
-}
-
-/* ============================================================
-   🕌 أحاديث النبي ﷺ (صحيحة بمصادرها)
-   ============================================================ */
-const HADITHS = [
-  { text: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى", meaning: "العمل الحلو لازم يكون معاه نيّة صادقة من القلب — الله بيقبل العمل اللي قلبه فيه خير.", src: "متفق عليه (البخاري 1 – مسلم 1907)" },
-  { text: "مَنْ كَانَ يُؤْمِنُ بِاللهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ", meaning: "لو الكلام مش حلو... الصمت أحسن! المسلم بيختار كلامه بعناية.", src: "متفق عليه (البخاري 6018 – مسلم 47)" },
-  { text: "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ", meaning: "افرح لنجاح أصحابك زي ما بتفرح لنفسك، وحبّلهم الخير زي ما بتحبّه لك.", src: "متفق عليه (البخاري 13 – مسلم 45)" },
-  { text: "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَة", meaning: "ابتسامتك الحلوة في وش أصحابك وأهلك صدقة بتؤجر عليها! متخزّنهاش 😊", src: "رواه الترمذي (1879) وحسّنه" },
-  { text: "اتَّقِ اللهَ حَيْثُمَا كُنْتَ، وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا، وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ", meaning: "خلي دايمًا خُلقك حلو، ولو غلطت بغلطة اتبعها بحاجة حسنة.", src: "رواه الترمذي (1987) وحسّنه" },
-  { text: "الطُّهُورُ شَطْرُ الإِيمَانِ", meaning: "النظافة والوضوء نص الإيمان — عشان كده بنحافظ على نظافتنا دائمًا.", src: "رواه مسلم (223)" },
-  { text: "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ", meaning: "أحسن الناس اللي بيتعلم القرآن وبيعلّمه لغيره — زي ما بتعمل أنت مع روفان!", src: "رواه البخاري (5027)" },
-  { text: "مَا نَقَصَتْ صَدَقَةٌ مِنْ مَالٍ", meaning: "الصدقة مش بتقلّل الفلوس، بالعكس بتكسب بركة وزيادة من عند الله.", src: "رواه مسلم (2588)" },
-  { text: "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ", meaning: "المسلم الحقيقي مأمون على الناس — مش بيعوّر حد بكلامه ولا بيأذيه بإيديه.", src: "متفق عليه (البخاري 10 – مسلم 41)" },
-  { text: "الرَّاحِمُونَ يَرْحَمُهُمُ الرَّحْمَنُ، ارْحَمُوا مَنْ فِي الأَرْضِ يَرْحَمْكُمْ مَنْ فِي السَّمَاءِ", meaning: "لما ترحم الحيوانات والناس، الله يرحمك — الرحمة أحلى حاجة في القلب.", src: "رواه أبو داود (4941) والترمذي (1924)" }
-];
-
-function renderHadiths() {
-  document.getElementById("hadithGrid").innerHTML = HADITHS.map(h => `
-    <div class="hadith-card">
-      <div class="hadith-text">« ${h.text} »</div>
-      <div class="hadith-meaning"><b>يعني إيه؟</b> ${h.meaning}</div>
-      <div class="hadith-src">📖 ${h.src}</div>
-    </div>`).join("");
-}
-
-/* ============================================================
-   ⭐ قصص الأنبياء
-   ============================================================ */
-const PROPHETS = [
-  { emoji: "🌍", name: "النبي آدم عليه السلام", story: "أول إنسان خلقه الله على الأرض، وعلّمه الله الأسماء كلها. تعلّمنا منه إن التوبة مقبولة دائمًا والعلم نعمة عظيمة." },
-  { emoji: "🚢", name: "النبي نوح عليه السلام", story: "دعا قومه لله سنين طويلة بصبر، وصنع السفينة الضخمة بأمر الله ونجّاه الله من الطوفان مع المؤمنين." },
-  { emoji: "🔥", name: "النبي إبراهيم عليه السلام", story: "النبي الحنيف اللي كسر الأصنام، ونجّاه الله من النار فجعلها بردًا وسلامًا. أبو الأنبياء وصديق الرحمن." },
-  { emoji: "🌙", name: "النبي يوسف عليه السلام", story: "صاحب الحلم الجميل، صبر على الغياب والسجن حتى أصبح أمينًا على خزائن الأرض — وسامح إخوته بقلب أبيض." },
-  { emoji: "🌊", name: "النبي موسى عليه السلام", story: "كلّمه الله تكليمًا، وفلق البحر بأمر الله ونجّاه من فرعون وجنوده — نبي الله موسى الكليم." },
-  { emoji: "🕊️", name: "النبي عيسى عليه السلام", story: "كلّمه الناس في المهد، وأبرأ الأكمه والأبرص بإذن الله — نبي الله عيسى روح الله." },
-  { emoji: "🕌", name: "النبي محمد ﷺ", story: "سيد ولد آدم وخاتم الأنبياء، أرسله الله رحمة للعالمين، وعلّمنا الخُلق الحسن وحب الخير للناس." }
-];
-
-function renderProphets() {
-  document.getElementById("prophetsGrid").innerHTML = PROPHETS.map(p => `
-    <div class="prophet-card">
-      <div class="prophet-top">${p.emoji}</div>
-      <div class="prophet-body">
-        <h3>${p.name}</h3>
-        <p>${p.story}</p>
-      </div>
-    </div>`).join("");
-}
-
-/* ============================================================
-   🎮 الألعاب
-   ============================================================ */
-function openGame(type) {
-  sfxClick();
-  const titles = {
-    coloring: "🎨 لعبة التلوين مع روفان",
-    memory: "🧠 لعبة الذاكرة الذكية",
-    quiz: "✅ اختر الإجابة الصحيحة",
-    animals: "🐾 عالم الحيوانات",
-    counting: "🔢 لعبة العد والحساب"
-  };
-  document.getElementById("gameTitle").textContent = titles[type] || "🎮 لعبة";
-  document.getElementById("gameModal").classList.add("open");
-  document.body.style.overflow = "hidden";
-  const area = document.getElementById("gameArea");
-  if (type === "coloring") startColoring(area);
-  else if (type === "memory") startMemory(area);
-  else if (type === "quiz") startQuiz(area);
-  else if (type === "animals") startAnimals(area);
-  else if (type === "counting") startCounting(area);
-}
-function closeGame() {
-  document.getElementById("gameModal").classList.remove("open");
-  document.getElementById("gameArea").innerHTML = "";
-  document.body.style.overflow = "";
-}
-document.getElementById("gameModal").addEventListener("click", (e) => {
-  if (e.target.id === "gameModal") closeGame();
-});
-
-/* ---------- 🎨 التلوين ---------- */
-const PALETTE = ["#FF5A6E", "#FF7A5C", "#FFC93C", "#6BCB77", "#2ED3B7", "#5CC8FF", "#7C5CFF", "#FF8FAB", "#8D6E63", "#2B2140"];
-let currentColor = "#FF5A6E";
-
-function startColoring(area) {
-  area.innerHTML = `
-    <p style="text-align:center; font-weight:900; font-size:1.15rem; margin-bottom:14px;">🎨 اختار لون ودوس على أي حتة في الصورة تلوّنها!</p>
-    <div class="paint-tools" id="paintTools">
-      ${PALETTE.map((c, i) => `<div class="color-dot ${i === 0 ? "selected" : ""}" style="background:${c}" onclick="pickColor(this, '${c}')"></div>`).join("")}
-    </div>
-    <div style="text-align:center; margin-bottom:16px;">
-      <button class="btn-sm btn-done" onclick="randomPaint()">🌈 ألوان عشوائية</button>
-      <button class="btn-sm btn-link" onclick="resetPaint()">🧽 مسح الكل</button>
-    </div>
-    <svg class="paint-svg paint" id="paintSvg" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="640" height="430" fill="#FFFFFF"/>
-      <rect class="paint" x="0" y="0" width="640" height="300" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <circle class="paint" cx="90" cy="80" r="46" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <g onclick="paintRegion(event)"><ellipse class="paint" cx="480" cy="80" rx="60" ry="30" fill="#fff" stroke="#2B2140" stroke-width="4"/></g>
-      <g onclick="paintRegion(event)"><ellipse class="paint" cx="530" cy="95" rx="42" ry="22" fill="#fff" stroke="#2B2140" stroke-width="4"/></g>
-      <path class="paint" d="M0,300 Q160,230 320,300 T640,300 L640,430 L0,430 Z" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <polygon class="paint" points="250,180 275,120 300,180" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <polygon class="paint" points="340,180 365,120 390,180" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <circle class="paint" cx="320" cy="235" r="72" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <circle cx="295" cy="222" r="9" fill="#2B2140"/>
-      <circle cx="345" cy="222" r="9" fill="#2B2140"/>
-      <polygon class="paint" points="320,240 310,252 330,252" fill="#fff" stroke="#2B2140" stroke-width="3" onclick="paintRegion(event)"/>
-      <path d="M300,262 Q320,272 340,262" stroke="#2B2140" stroke-width="4" fill="none"/>
-      <ellipse class="paint" cx="320" cy="360" rx="85" ry="58" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <path class="paint" d="M405,360 Q470,330 455,270 Q445,240 415,255" fill="none" stroke="#2B2140" stroke-width="16" stroke-linecap="round" onclick="paintRegion(event)"/>
-      <line x1="215" y1="235" x2="175" y2="222" stroke="#2B2140" stroke-width="3"/>
-      <line x1="215" y1="248" x2="175" y2="252" stroke="#2B2140" stroke-width="3"/>
-      <line x1="425" y1="235" x2="465" y2="222" stroke="#2B2140" stroke-width="3"/>
-      <line x1="425" y1="248" x2="465" y2="252" stroke="#2B2140" stroke-width="3"/>
-      <line x1="120" y1="330" x2="120" y2="430" stroke="#2B2140" stroke-width="6"/>
-      <circle class="paint" cx="120" cy="315" r="18" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <circle class="paint" cx="95" cy="335" r="18" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <circle class="paint" cx="145" cy="335" r="18" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <circle class="paint" cx="120" cy="355" r="18" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      <circle class="paint" cx="120" cy="333" r="11" fill="#fff" stroke="#2B2140" stroke-width="3" onclick="paintRegion(event)"/>
-      <g>
-        <ellipse class="paint" cx="545" cy="330" rx="34" ry="22" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-        <ellipse class="paint" cx="590" cy="330" rx="34" ry="22" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-        <ellipse class="paint" cx="545" cy="375" rx="30" ry="20" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-        <ellipse class="paint" cx="590" cy="375" rx="30" ry="20" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-        <ellipse class="paint" cx="567" cy="352" rx="14" ry="26" fill="#fff" stroke="#2B2140" stroke-width="4" onclick="paintRegion(event)"/>
-      </g>
-    </svg>`;
-}
-function pickColor(el, c) {
-  currentColor = c;
-  document.querySelectorAll(".color-dot").forEach(d => d.classList.remove("selected"));
-  el.classList.add("selected");
-  sfxClick();
-}
-function paintRegion(e) {
-  e.target.setAttribute("fill", currentColor);
-  sfxClick();
-}
-function resetPaint() {
-  document.querySelectorAll("#paintSvg .paint").forEach(el => el.setAttribute("fill", "#fff"));
-  sfxClick();
-}
-function randomPaint() {
-  document.querySelectorAll("#paintSvg .paint").forEach(el => {
-    el.setAttribute("fill", PALETTE[Math.floor(Math.random() * PALETTE.length)]);
-  });
-  sfxCorrect();
-}
-
-/* ---------- 🧠 الذاكرة ---------- */
-const MEM_SETS = {
-  animals: { name: "🐾 الحيوانات", pairs: [["🐱", "قطة"], ["🐶", "كلب"], ["🦁", "أسد"], ["🐘", "فيل"], ["🐰", "أرنب"], ["🦆", "بطة"]] },
-  fruits: { name: "🍎 الفواكه", pairs: [["🍎", "تفاحة"], ["🍌", "موزة"], ["🍊", "برتقالة"], ["🍇", "عنب"], ["🍓", "فراولة"], ["🍉", "بطيخ"]] },
-  letters: { name: "🔤 الحروف", pairs: [["أ", "أرنب"], ["ب", "بطة"], ["ت", "تفاحة"], ["ث", "ثعلب"], ["ج", "جمل"], ["ح", "حصان"]] },
-  numbers: { name: "🔢 الأرقام", pairs: [["1️⃣", "واحد"], ["2️⃣", "اثنان"], ["3️⃣", "ثلاثة"], ["4️⃣", "أربعة"], ["5️⃣", "خمسة"], ["6️⃣", "ستة"]] }
-};
-let memState = null;
-
-function startMemory(area, setName) {
-  setName = setName || "animals";
-  const set = MEM_SETS[setName];
-  const cards = [];
-  set.pairs.forEach((p, i) => {
-    cards.push({ key: i, display: p[0] });
-    cards.push({ key: i, display: p[1] });
-  });
-  for (let i = cards.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [cards[i], cards[j]] = [cards[j], cards[i]];
-  }
-  memState = { flipped: [], matched: 0, moves: 0, lock: false, setName };
-  area.innerHTML = `
-    <div style="text-align:center; margin-bottom:16px;">
-      ${Object.keys(MEM_SETS).map(k => `<button class="btn-sm ${k === setName ? "btn-link" : "btn-done"}" onclick='startMemory(document.getElementById("gameArea"), ${JSON.stringify(k)})'>${MEM_SETS[k].name}</button>`).join(" ")}
-    </div>
-    <div class="mem-stats" id="memStats">المحاولات: 0 • الازواج: 0/6</div>
-    <div class="mem-grid">
-      ${cards.map((c, i) => `
-        <div class="mcard" data-key="${c.key}" data-i="${i}" onclick="flipCard(this)">
-          <div class="mcard-inner">
-            <div class="mface mback">🐱</div>
-            <div class="mface mfront">${c.display}</div>
-          </div>
-        </div>`).join("")}
-    </div>`;
-}
-function flipCard(el) {
-  if (memState.lock || el.classList.contains("flipped") || el.classList.contains("matched")) return;
-  sfxClick();
-  el.classList.add("flipped");
-  memState.flipped.push(el);
-  if (memState.flipped.length === 2) {
-    memState.moves++;
-    memState.lock = true;
-    const [a, b] = memState.flipped;
-    if (a.dataset.key === b.dataset.key) {
-      a.classList.add("matched"); b.classList.add("matched");
-      memState.matched++;
-      memState.flipped = [];
-      memState.lock = false;
-      sfxCorrect();
-      if (memState.matched === 6) {
-        setTimeout(() => {
-          confetti(70); sfxWin();
-          document.getElementById("gameArea").innerHTML = `
-            <div class="win-box">
-              <span class="big">🎉🐱</span>
-              <h3>أحسنت يا بطل!</h3>
-              <p>خلصت اللعبة في ${memState.moves} محاولة — روفان فخورة بيك!</p>
-              <button class="btn btn-play btn-big" onclick='startMemory(document.getElementById("gameArea"), ${JSON.stringify(memState.setName)})'>🔄 العب تاني</button>
-            </div>`;
-        }, 450);
-      }
-    } else {
-      setTimeout(() => {
-        a.classList.remove("flipped"); b.classList.remove("flipped");
-        a.classList.add("shake"); b.classList.add("shake");
-        setTimeout(() => { a.classList.remove("shake"); b.classList.remove("shake"); }, 400);
-        memState.flipped = [];
-        memState.lock = false;
-        sfxWrong();
-      }, 750);
-    }
-    const stats = document.getElementById("memStats");
-    if (stats) stats.textContent = `المحاولات: ${memState.moves} • الازواج: ${memState.matched}/6`;
-  }
-}
-
-/* ---------- ✅ الاختيار ---------- */
-const QUIZ = [
-  { q: "كم مرة التفاحة دي؟ 🍎🍎🍎", opts: ["2", "3", "4"], a: 1, tag: "KG1 • حساب" },
-  { q: "العدد اللي بعد 5 هو...", opts: ["4", "6", "7"], a: 1, tag: "KG1 • حساب" },
-  { q: "1 + 1 = ?", opts: ["2", "3", "11"], a: 0, tag: "KG1 • حساب" },
-  { q: "إيه لون التفاحة؟ 🍎", opts: ["أزرق", "أصفر", "أحمر"], a: 2, tag: "KG1 • ألوان" },
-  { q: "بأي حرف تبدأ كلمة «أسد»؟", opts: ["أ", "ب", "ت"], a: 0, tag: "KG1 • حروف" },
-  { q: "بأي حرف تبدأ كلمة «بطة»؟", opts: ["ث", "ب", "ن"], a: 1, tag: "KG2 • حروف" },
-  { q: "3 + 3 = ?", opts: ["5", "6", "9"], a: 1, tag: "KG2 • حساب" },
-  { q: "كم حرفًا كلمة «كتاب»؟", opts: ["3", "4", "5"], a: 1, tag: "KG2 • لغة" },
-  { q: "نسمع بـ...", opts: ["العين 👁️", "الأذن 👂", "الأنف 👃"], a: 1, tag: "أولى • علوم" },
-  { q: "الشمس بتدينا...", opts: ["النور والدفء ☀️", "البرد", "الظلام"], a: 0, tag: "أولى • علوم" },
-  { q: "نتنفس بـ...", opts: ["القدم", "الرئتين 🫁", "المعدة"], a: 1, tag: "أولى • علوم" },
-  { q: "إيه اللي مش جزء من النبات؟", opts: ["الجذر", "الورقة", "الحجر 🪨"], a: 2, tag: "أولى • علوم" },
-  { q: "مؤنث «أسد» هو...", opts: ["لبوة 🦁", "جمل", "فيل"], a: 0, tag: "أولى • لغة" },
-  { q: "نسأل بكلمة «كم» عن...", opts: ["المكان", "العدد", "اللون"], a: 1, tag: "أولى • لغة" },
-  { q: "نسأل بكلمة «كيف» عن...", opts: ["الحال", "العدد", "الوقت"], a: 0, tag: "أولى • لغة" },
-  { q: "«كتب» هي جمع تكسير لكلمة...", opts: ["قلم", "كتاب 📕", "شجرة"], a: 1, tag: "تانية • لغة" },
-  { q: "في «الولد مجتهد» — المبتدأ هو...", opts: ["الولد", "مجتهد"], a: 0, tag: "تانية • نحو" },
-  { q: "في «السماء صافية» — الخبر هو...", opts: ["السماء", "صافية"], a: 1, tag: "تانية • نحو" },
-  { q: "10 + 5 = ?", opts: ["12", "15", "13"], a: 1, tag: "تانية • حساب" },
-  { q: "ضعف 4 هو...", opts: ["6", "8", "10"], a: 1, tag: "تانية • حساب" },
-  { q: "كم عدد الصلوات في اليوم؟", opts: ["3", "5", "7"], a: 1, tag: "آداب • تربية إسلامية" },
-  { q: "ندخل المسجد برجلنا...", opts: ["اليسرى", "اليمنى ☪️"], a: 1, tag: "آداب • تربية إسلامية" },
-  { q: "نقول قبل الأكل...", opts: ["بسم الله", "مرحبًا", "تصبح على خير"], a: 0, tag: "آداب • تربية إسلامية" },
-  { q: "القطة حيوان...", opts: ["بحري", "أليف 🐱", "برّي"], a: 1, tag: "أولى • علوم" }
-];
-let quizState = null;
-
-function startQuiz(area, filter) {
-  const questions = (filter ? QUIZ.filter(q => q.tag.includes(filter)) : QUIZ.slice()).sort(() => Math.random() - .5).slice(0, 10);
-  quizState = { questions, idx: 0, score: 0, filter: filter || null };
-  area.innerHTML = `
-    <div style="text-align:center; margin-bottom:16px;">
-      ${["الكل", "KG1", "KG2", "أولى", "تانية", "آداب"].map(f =>
-        `<button class="btn-sm ${(filter || "الكل") === f ? "btn-link" : "btn-done"}" onclick='startQuiz(document.getElementById("gameArea"), ${JSON.stringify(f === "الكل" ? null : f)})'>${f}</button>`).join(" ")}
-    </div>
-    <div id="quizBox"></div>`;
-  renderQuizQ();
-}
-function renderQuizQ() {
-  const box = document.getElementById("quizBox");
-  const q = quizState.questions[quizState.idx];
-  const stars = "⭐".repeat(Math.min(3, Math.floor(quizState.score / 2))) + "☆".repeat(Math.max(0, 3 - Math.min(3, Math.floor(quizState.score / 2))));
-  if (!q) {
-    const pct = quizState.score / quizState.questions.length;
-    confetti(pct >= .6 ? 80 : 30);
-    if (pct >= .6) sfxWin(); else sfxCorrect();
-    box.innerHTML = `
-      <div class="win-box">
-        <span class="big">${pct >= .8 ? "🏆🐱" : pct >= .5 ? "🎉🐱" : "💪🐱"}</span>
-        <h3>النتيجة: ${quizState.score} من ${quizState.questions.length}</h3>
-        <p>${pct >= .8 ? "واااو! أنت عبقري زي روفان!" : pct >= .5 ? "أداء جميل! جرّب تاني تجيب الـ 10/10 💪" : "معلش، جرّب تاني — روفان معاك!"}</p>
-        <button class="btn btn-play btn-big" onclick='startQuiz(document.getElementById("gameArea"), ${JSON.stringify(quizState.filter)})'>🔄 العب تاني</button>
-      </div>`;
-    return;
-  }
-  box.innerHTML = `
-    <div class="quiz-top">
-      <span>السؤال ${quizState.idx + 1} / ${quizState.questions.length} <small style="color:#8D7BA8">(${q.tag})</small></span>
-      <span class="stars">${stars}</span>
-      <span>النتيجة: ${quizState.score} ✅</span>
-    </div>
-    <div class="quiz-q">${q.q}</div>
-    <div class="quiz-opts">
-      ${q.opts.map((o, i) => `<button class="qopt" onclick="answerQuiz(this, ${i})">${o}</button>`).join("")}
-    </div>`;
-}
-function answerQuiz(el, i) {
-  const q = quizState.questions[quizState.idx];
-  const opts = document.querySelectorAll(".qopt");
-  if (i === q.a) {
-    el.classList.add("correct");
-    quizState.score++;
-    sfxCorrect();
-    opts.forEach(o => o.disabled = true);
-    setTimeout(() => { quizState.idx++; renderQuizQ(); }, 750);
-  } else {
-    el.classList.add("wrong");
-    sfxWrong();
-    opts[q.a].classList.add("correct");
-    opts.forEach(o => o.disabled = true);
-    setTimeout(() => { quizState.idx++; renderQuizQ(); }, 1300);
-  }
-}
-
-/* ---------- 🐾 الحيوانات ---------- */
-const ANIMAL_QS = [
-  { q: "القطة بتقول إيه؟", sound: "🐱❓", opts: ["مياو 🐱", "بق بق 🦆", "مووو 🐮"], a: 0 },
-  { q: "البطة بتقول إيه؟", sound: "🦆❓", opts: ["هاها 🐴", "بق بق 🦆", "نهيق 🫏"], a: 1 },
-  { q: "مين ولد الأسد؟", sound: "🦁", opts: ["شبل 🦁", "هريرة 🐱", "جرو 🐶"], a: 0 },
-  { q: "مين ولد البقرة؟", sound: "🐮", opts: ["حمل 🐑", "عجل 🐮", "مهر 🐴"], a: 1 },
-  { q: "السمكة عايشة فين؟", sound: "🐟", opts: ["الشجرة 🌳", "الماء 🌊", "السماء ☁️"], a: 1 },
-  { q: "العصفور بيطير فين؟", sound: "🐦", opts: ["السماء ☁️", "الماء 🌊", "الرمل 🏖️"], a: 0 },
-  { q: "مين بيدّينا الحليب؟", sound: "🥛", opts: ["الدجاجة 🐔", "البقرة 🐮", "القطة 🐱"], a: 1 },
-  { q: "مين بيدّينا البيض؟", sound: "🥚", opts: ["الدجاجة 🐔", "الحصان 🐴", "الخروف 🐑"], a: 0 },
-  { q: "الأرنب بياكل إيه؟", sound: "🐰", opts: ["الجزر 🥕", "السمك 🐟", "اللحم 🍖"], a: 0 },
-  { q: "الجمل بيقول إيه؟", sound: "🐫❓", opts: ["مووو", "ثئ", "هزييع"], a: 2 },
-  { q: "مين صديق الإنسان وفي بيته؟", sound: "🏠", opts: ["الذئب 🐺", "الكلب 🐶", "الثعلب 🦊"], a: 1 },
-  { q: "الضفدع بيعيش فين؟", sound: "🐸", opts: ["الصحرا 🏜️", "الماء والبرّ 💧", "الجبل ⛰️"], a: 1 }
-];
-let animalState = null;
-
-function startAnimals(area) {
-  const qs = ANIMAL_QS.slice().sort(() => Math.random() - .5).slice(0, 8);
-  animalState = { qs, idx: 0, score: 0 };
-  renderAnimalQ();
-}
-function renderAnimalQ() {
-  const area = document.getElementById("gameArea");
-  const q = animalState.qs[animalState.idx];
-  if (!q) {
-    confetti(70); sfxWin();
-    area.innerHTML = `
-      <div class="win-box">
-        <span class="big">🐾🎉</span>
-        <h3>النتيجة: ${animalState.score} من ${animalState.qs.length}</h3>
-        <p>أنت خبير الحيوانات! روفان مبسوطة منك 😺</p>
-        <button class="btn btn-play btn-big" onclick="startAnimals(document.getElementById('gameArea'))">🔄 العب تاني</button>
-      </div>`;
-    return;
-  }
-  area.innerHTML = `
-    <div class="quiz-top">
-      <span>السؤال ${animalState.idx + 1} / ${animalState.qs.length}</span>
-      <span>النتيجة: ${animalState.score} ✅</span>
-    </div>
-    <div class="game-q">${q.q}<div class="emoji-row">${q.sound}</div></div>
-    <div class="quiz-opts">
-      ${q.opts.map((o, i) => `<button class="qopt" onclick="answerAnimal(this, ${i})">${o}</button>`).join("")}
-    </div>`;
-}
-function answerAnimal(el, i) {
-  const q = animalState.qs[animalState.idx];
-  const opts = document.querySelectorAll(".qopt");
-  if (i === q.a) {
-    el.classList.add("correct"); animalState.score++; sfxCorrect();
-    opts.forEach(o => o.disabled = true);
-    setTimeout(() => { animalState.idx++; renderAnimalQ(); }, 700);
-  } else {
-    el.classList.add("wrong"); sfxWrong();
-    opts[q.a].classList.add("correct");
-    opts.forEach(o => o.disabled = true);
-    setTimeout(() => { animalState.idx++; renderAnimalQ(); }, 1250);
-  }
-}
-
-/* ---------- 🔢 العد والحساب ---------- */
-const COUNT_EMOJIS = ["⭐", "🐟", "🎈", "🌸", "🍎", "🦋", "🌻", "🐠"];
-let countState = null;
-
-function startCounting(area) {
-  countState = { round: 0, score: 0, total: 8 };
-  renderCountQ();
-}
-function renderCountQ() {
-  const area = document.getElementById("gameArea");
-  if (countState.round >= countState.total) {
-    confetti(70); sfxWin();
-    area.innerHTML = `
-      <div class="win-box">
-        <span class="big">🔢🎉</span>
-        <h3>النتيجة: ${countState.score} من ${countState.total}</h3>
-        <p>أنت نجم الحساب! 🌟 جرّب لعبة الاختيار كمان!</p>
-        <button class="btn btn-play btn-big" onclick="startCounting(document.getElementById('gameArea'))">🔄 العب تاني</button>
-      </div>`;
-    return;
-  }
-  const n = Math.floor(Math.random() * 8) + 1;
-  const emoji = COUNT_EMOJIS[Math.floor(Math.random() * COUNT_EMOJIS.length)];
-  const shown = emoji.repeat(n);
-  const optsSet = new Set([n]);
-  while (optsSet.size < 3) optsSet.add(Math.max(1, Math.min(10, n + Math.floor(Math.random() * 5) - 2)));
-  const opts = [...optsSet].sort(() => Math.random() - .5);
-  countState.current = n;
-  area.innerHTML = `
-    <div class="quiz-top">
-      <span>الجولة ${countState.round + 1} / ${countState.total}</span>
-      <span>النتيجة: ${countState.score} ✅</span>
-    </div>
-    <div class="game-q">كم مرة شفت دي؟ 🤔<div class="emoji-row">${shown}</div></div>
-    <div class="quiz-opts">
-      ${opts.map(o => `<button class="qopt" onclick="answerCount(this, ${o})">${o}</button>`).join("")}
-    </div>`;
-}
-function answerCount(el, val) {
-  const opts = document.querySelectorAll(".qopt");
-  if (val === countState.current) {
-    el.classList.add("correct"); countState.score++; sfxCorrect();
-    opts.forEach(o => o.disabled = true);
-    setTimeout(() => { countState.round++; renderCountQ(); }, 700);
-  } else {
-    el.classList.add("wrong"); sfxWrong();
-    opts.forEach(o => { if (Number(o.textContent) === countState.current) o.classList.add("correct"); o.disabled = true; });
-    setTimeout(() => { countState.round++; renderCountQ(); }, 1250);
-  }
-}
-
-/* ============================================================
-   ✨ أنيميشن الظهور عند التمرير + شريط التقدم + لوحة المفاتيح
-   ============================================================ */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-}, { threshold: .15 });
-document.querySelectorAll(".sec-head").forEach(el => observer.observe(el));
-
-window.addEventListener("scroll", () => {
-  const h = document.documentElement;
-  const pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
-  document.getElementById("progressBar").style.width = pct + "%";
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") { closeVideo(); closeGame(); }
-});
-
-/* ---------- ابدأ ---------- */
-loadVideos();
-renderSurahs();
-renderHadiths();
-renderProphets();
-</script>
+<script src="js/data.js"></script>
+<script src="js/games.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
