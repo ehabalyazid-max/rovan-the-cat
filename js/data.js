@@ -119,6 +119,27 @@ window.ROVAN = (function () {
       desc: "طابق الصورة بكلمتها الصحيحة وقوّي مفرداتك!",
       instructions: "شوف الصورة (الإيموجي) واختار الكلمة اللي معناها.",
       published: true, dateAdded: "2026-10-21"
+    },
+    {
+      id: "riddles", name: "لعبة الألغاز", category: "ألغاز",
+      difficulty: "متوسط", grade: "KG1 – تانية", icon: "🧩",
+      desc: "ألغاز ذكية مع تلميحات وشرح لكل إجابة — كم لغز هتحل؟",
+      instructions: "اقرا اللغز واختار الإجابة. محتاج تلميح؟ اضغط زر 💡 — وفي الآخر بيشرحلك الإجابة.",
+      published: true, dateAdded: "2026-10-22"
+    },
+    {
+      id: "letter-order", name: "ترتيب الحروف", category: "لغة عربية",
+      difficulty: "متوسط", grade: "KG2 – تانية", icon: "🔤",
+      desc: "رتب الحروف عشان تعمل الكلمة الصح — بيت، قطة، شمس!",
+      instructions: "شوف الصورة واضغط على الحروف بالترتيب الصح. غلطت؟ لا مشكلة، جرّب تاني!",
+      published: true, dateAdded: "2026-10-22"
+    },
+    {
+      id: "odd-one", name: "اكتشف المختلف", category: "معرفة",
+      difficulty: "سهل", grade: "KG1 – KG2", icon: "🔍",
+      desc: "عينك فين؟ اكتشف الحاجة المختلفة في كل صف!",
+      instructions: "هتشوف صف صور — فيهم حاجة واحدة مختلفة. اضغط عليها بسرعة!",
+      published: true, dateAdded: "2026-10-22"
     }
   ];
 
@@ -262,6 +283,404 @@ window.ROVAN = (function () {
     { emoji: "🕌", name: "النبي محمد ﷺ", story: "سيد ولد آدم وخاتم الأنبياء، أرسله الله رحمة للعالمين، وعلّمنا الخُلق الحسن وحب الخير للناس.", ref: "القرآن الكريم — سورة الأنبياء" }
   ];
 
+  /* ============================================================
+     🎓 أكاديمية روفان — دروس تفاعلية
+     ============================================================ */
+  const academy = [
+    {
+      id: "ar-letters", title: "الحروف العربية", icon: "🔤", category: "لغة عربية",
+      grade: "KG1 – KG2", desc: "اتعلم الحروف العربية مع كلمات وصور ممتعة",
+      items: [
+        { letter: "أ", word: "أسد", emoji: "🦁" },
+        { letter: "ب", word: "بطة", emoji: "🦆" },
+        { letter: "ت", word: "تفاحة", emoji: "🍎" },
+        { letter: "ث", word: "ثعلب", emoji: "🦊" },
+        { letter: "ج", word: "جمل", emoji: "🐫" },
+        { letter: "ح", word: "حصان", emoji: "🐴" }
+      ],
+      quiz: [
+        { q: "أي كلمة تبدأ بحرف «أ»؟", opts: ["أسد 🦁", "بطة 🦆", "تفاحة 🍎"], a: 0 },
+        { q: "حرف «ب» موجود في كلمة...", opts: ["بطة 🦆", "أسد 🦁", "جمل 🐫"], a: 0 },
+        { q: "«تفاحة» تبدأ بحرف...", opts: ["ث", "ت", "ج"], a: 1 }
+      ]
+    },
+    {
+      id: "en-letters", title: "الحروف الإنجليزية", icon: "🇬🇧", category: "إنجليزي",
+      grade: "KG1 – KG2", desc: "Learn English letters with fun words!",
+      items: [
+        { letter: "A", word: "Apple", emoji: "🍎", ar: "تفاحة" },
+        { letter: "B", word: "Ball", emoji: "⚽", ar: "كرة" },
+        { letter: "C", word: "Cat", emoji: "🐱", ar: "قطة" },
+        { letter: "D", word: "Dog", emoji: "🐶", ar: "كلب" },
+        { letter: "E", word: "Egg", emoji: "🥚", ar: "بيضة" },
+        { letter: "F", word: "Fish", emoji: "🐟", ar: "سمكة" }
+      ],
+      quiz: [
+        { q: "Which letter does Cat start with?", opts: ["A", "B", "C"], a: 2, tag: "إنجليزي" },
+        { q: "Apple starts with...", opts: ["A", "E", "F"], a: 0, tag: "إنجليزي" },
+        { q: "Fish starts with...", opts: ["D", "F", "G"], a: 1, tag: "إنجليزي" }
+      ]
+    },
+    {
+      id: "numbers", title: "الأرقام والعد", icon: "🔢", category: "رياضيات",
+      grade: "KG1 – أولى", desc: "نتعلم الأرقام من 1 لـ 10 ونعد مع روفان",
+      items: [
+        { letter: "1", word: "واحد ⭐", emoji: "1️⃣" },
+        { letter: "2", word: "اثنان ⭐⭐", emoji: "2️⃣" },
+        { letter: "3", word: "ثلاثة ⭐⭐⭐", emoji: "3️⃣" },
+        { letter: "4", word: "أربعة", emoji: "4️⃣" },
+        { letter: "5", word: "خمسة", emoji: "5️⃣" },
+        { letter: "6", word: "ستة", emoji: "6️⃣" }
+      ],
+      quiz: [
+        { q: "كم مرة التفاحة دي؟ 🍎🍎🍎", opts: ["2", "3", "4"], a: 1 },
+        { q: "العدد اللي بعد 4 هو...", opts: ["3", "5", "6"], a: 1 },
+        { q: "2 + 2 = ؟", opts: ["3", "4", "5"], a: 1 }
+      ]
+    },
+    {
+      id: "colors", title: "الألوان", icon: "🌈", category: "فنون وألوان",
+      grade: "KG1 – KG2", desc: "نتعرف على الألوان الجميلة ونسمع أسماءها",
+      items: [
+        { letter: "أحمر", word: "🍎", emoji: "🔴" },
+        { letter: "أزرق", word: "🌊", emoji: "🔵" },
+        { letter: "أصفر", word: "🌞", emoji: "🟡" },
+        { letter: "أخضر", word: "🌿", emoji: "🟢" },
+        { letter: "برتقالي", word: "🍊", emoji: "🟠" },
+        { letter: "بنفسجي", word: "🍇", emoji: "🟣" }
+      ],
+      quiz: [
+        { q: "إيه لون التفاحة؟ 🍎", opts: ["أحمر", "أزرق", "أصفر"], a: 0 },
+        { q: "إيه لون الشمس؟ ☀️", opts: ["أخضر", "أصفر", "بنفسجي"], a: 1 },
+        { q: "إيه لون السماء؟ 🌤️", opts: ["أزرق", "أحمر", "برتقالي"], a: 0 }
+      ]
+    },
+    {
+      id: "shapes", title: "الأشكال", icon: "🔷", category: "فنون وألوان",
+      grade: "KG1 – KG2", desc: "الدائرة والمربع والمثلث والنجمة",
+      items: [
+        { letter: "دائرة", word: "◯", emoji: "🔵" },
+        { letter: "مربع", word: "■", emoji: "🟥" },
+        { letter: "مثلث", word: "▲", emoji: "🔺" },
+        { letter: "نجمة", word: "★", emoji: "⭐" },
+        { letter: "قلب", word: "♥", emoji: "❤️" }
+      ],
+      quiz: [
+        { q: "إيه اسم الشكل ده؟ ▲", opts: ["دائرة", "مثلث", "مربع"], a: 1 },
+        { q: "النجمة شكلها...", opts: ["★", "■", "●"], a: 0 },
+        { q: "الدائرة فيها...", opts: ["أركان", "ناعمة من غير أركان", "ضلع واحد طويل"], a: 1 }
+      ]
+    },
+    {
+      id: "animals", title: "الحيوانات وأصواتها", icon: "🐾", category: "حيوانات",
+      grade: "KG1 – KG2", desc: "نتعرف على الحيوانات وأصواتها المضحكة",
+      items: [
+        { letter: "قطة", word: "مياو! 🐱", emoji: "🐱" },
+        { letter: "بطة", word: "بق بق! 🦆", emoji: "🦆" },
+        { letter: "بقرة", word: "مووو! 🐮", emoji: "🐮" },
+        { letter: "أسد", word: "زئير! 🦁", emoji: "🦁" },
+        { letter: "كلب", word: "هاو هاو! 🐶", emoji: "🐶" },
+        { letter: "فيل", word: "زووم! 🐘", emoji: "🐘" }
+      ],
+      quiz: [
+        { q: "القطة بتقول إيه؟", opts: ["مياو 🐱", "بق بق 🦆", "مووو 🐮"], a: 0 },
+        { q: "مين بيدّينا الحليب؟", opts: ["الدجاجة", "البقرة 🐮", "القطة"], a: 1 },
+        { q: "الأسد ملك...", opts: ["الغابة 🦁", "الماء", "السماء"], a: 0 }
+      ]
+    },
+    {
+      id: "words", title: "كلمات أساسية بالعربي والإنجليزي", icon: "📚", category: "كلمات",
+      grade: "KG2 – تانية", desc: "كلمات مهمة باللغتين — بيت House، شمس Sun",
+      items: [
+        { letter: "بيت", word: "House", emoji: "🏠" },
+        { letter: "شمس", word: "Sun", emoji: "☀️" },
+        { letter: "كتاب", word: "Book", emoji: "📕" },
+        { letter: "ماء", word: "Water", emoji: "💧" },
+        { letter: "قمر", word: "Moon", emoji: "🌙" },
+        { letter: "شجرة", word: "Tree", emoji: "🌳" }
+      ],
+      quiz: [
+        { q: "«بيت» بالإنجليزي...", opts: ["House", "Book", "Sun"], a: 0, tag: "ثنائي اللغة" },
+        { q: "«Water» معناها...", opts: ["شمس", "ماء", "قمر"], a: 1, tag: "ثنائي اللغة" },
+        { q: "«شجرة» بالإنجليزي...", opts: ["Moon", "Tree", "House"], a: 1, tag: "ثنائي اللغة" }
+      ]
+    },
+    {
+      id: "listen", title: "تمارين استماع", icon: "👂", category: "استماع",
+      grade: "KG1 – تانية", desc: "اسمع الكلمة واختار الصورة الصح (بيستخدم صوت جهازك)",
+      items: [
+        { letter: "قطة", word: "🐱", emoji: "🐱", en: "Cat" },
+        { letter: "تفاحة", word: "🍎", emoji: "🍎", en: "Apple" },
+        { letter: "شمس", word: "☀️", emoji: "☀️", en: "Sun" },
+        { letter: "كتاب", word: "📕", emoji: "📕", en: "Book" },
+        { letter: "سمكة", word: "🐟", emoji: "🐟", en: "Fish" },
+        { letter: "بطة", word: "🦆", emoji: "🦆", en: "Duck" }
+      ],
+      quiz: [
+        { q: "🎧 (اسمع الكلمة) اختار الصورة اللي سمعتها", opts: ["🐱 قطة", "🍎 تفاحة", "📕 كتاب"], a: 0, listen: "قطة" },
+        { q: "🎧 (اسمع الكلمة) اختار الصورة اللي سمعتها", opts: ["🐟 سمكة", "🦆 بطة", "☀️ شمس"], a: 2, listen: "شمس" },
+        { q: "🎧 (اسمع الكلمة) اختار الصورة اللي سمعتها", opts: ["📕 كتاب", "🍎 تفاحة", "🐱 قطة"], a: 1, listen: "تفاحة" }
+      ]
+    }
+  ];
+
+  /* ---------- بنك التحدي اليومي (يُختار منه بثبات كل يوم) ---------- */
+  const dailyBank = [
+    { q: "كم مرة النجمة دي؟ ⭐⭐⭐⭐", opts: ["3", "4", "5"], a: 1 },
+    { q: "بأي حرف تبدأ كلمة «قمر»؟", opts: ["ك", "ق", "غ"], a: 1 },
+    { q: "إيه لون التفاحة؟ 🍎", opts: ["أصفر", "أحمر", "أخضر"], a: 1 },
+    { q: "القطة بتقول إيه؟", opts: ["مووو", "مياو", "بق بق"], a: 1 },
+    { q: "5 + 2 = ؟", opts: ["6", "7", "8"], a: 1 },
+    { q: "نسمع بـ...", opts: ["العين", "الأذن 👂", "الأنف"], a: 1 },
+    { q: "«كتب» جمع تكسير لكلمة...", opts: ["قلم", "كتاب 📕", "شجرة"], a: 1 },
+    { q: "كم عدد الصلوات في اليوم؟", opts: ["3", "5", "7"], a: 1 },
+    { q: "الشمس بتظهر في...", opts: ["الليل", "النهار ☀️", "الغابة"], a: 1 },
+    { q: "إيه اللي مش جزء من النبات؟", opts: ["الجذر", "الورقة", "الكرسي 🪑"], a: 2 },
+    { q: "مؤنث «أسد» هو...", opts: ["لبوة 🦁", "جمل", "فيل"], a: 0 },
+    { q: "10 - 3 = ؟", opts: ["6", "7", "8"], a: 1 },
+    { q: "أي كلمة تبدأ بحرف «م»؟", opts: ["موزة 🍌", "تفاحة 🍎", "كتاب 📕"], a: 0 },
+    { q: "السمكة عايشة فين؟", opts: ["الشجرة", "الماء 🌊", "الصحرا"], a: 1 },
+    { q: "ندخل المسجد برجلنا...", opts: ["اليسرى", "اليمنى ☪️"], a: 1 },
+    { q: "إيه اسم الشكل ده؟ ■", opts: ["دائرة", "مربع", "مثلث"], a: 1 },
+    { q: "الطائر بيطير فين؟", opts: ["السماء ☁️", "الماء", "التراب"], a: 0 },
+    { q: "نقول قبل الأكل...", opts: ["بسم الله", "تصبح على خير", "مع السلامة"], a: 0 },
+    { q: "ضعف 3 هو...", opts: ["4", "6", "9"], a: 1 },
+    { q: "«Water» معناها...", opts: ["ماء 💧", "نار", "تراب"], a: 0 },
+    { q: "إيه لون ده؟ 🟡", opts: ["أحمر", "أصفر", "أزرق"], a: 1 },
+    { q: "المثلث فيه كم ضلع؟", opts: ["2", "3", "4"], a: 1 },
+    { q: "النبي محمد ﷺ هو...", opts: ["خاتم الأنبياء 🕌", "ملك", "طبيب"], a: 0 },
+    { q: "أي حيوان بياكل الجزر؟ 🥕", opts: ["الأرنب 🐰", "الأسد", "الحوت"], a: 0 },
+    { q: "العدد اللي قبل 5 هو...", opts: ["3", "4", "6"], a: 1 },
+    { q: "في «الولد مجتهد» — المبتدأ هو...", opts: ["الولد", "مجتهد"], a: 0 },
+    { q: "مين صديق الإنسان في بيته؟", opts: ["الذئب", "الكلب 🐶", "الثعلب"], a: 1 },
+    { q: "الصدقة...", opts: ["بتقلّل المال", "بتكسب بركة 🌟", "مفيش فايدة منها"], a: 1 },
+    { q: "الحرف الناقص: كِت__", opts: ["ا", "ب", "ت"], a: 0 },
+    { q: "النجوم بتشوفها في...", opts: ["النهار", "الليل 🌙", "البحر"], a: 1 },
+    { q: "«الكلمة الطيبة» حاجة...", opts: ["حلوة وبتفرّح 😊", "بتزعل", "بتوجع"], a: 0 }
+  ];
+
+  /* ---------- ألغاز الأطفال (تُستخدم في الألعاب والتحدي) ---------- */
+  const riddles = [
+    { q: "حيوان لطيف بيقول «مياو» وبيحب يلعب... مين هو؟", opts: ["الكلب", "القطة 🐱", "الحصان"], a: 1, hint: "هو صديقك في الموقع ده!", explain: "القطة روفان بالظبط! 🐱" },
+    { q: "بيلمع في السماء بالليل وبيورينا الطريق... إيه هو؟", opts: ["الشمس", "القمر 🌙", "الشجرة"], a: 1, hint: "بيظهر لما الشمس تنام.", explain: "القمر بيلمع في السما بالليل 🌙" },
+    { q: "بنشرب منها الماء... إيه هي؟", opts: ["الكوباية 🥛", "الكتاب", "القلم"], a: 0, hint: "بتبقى على الترابيزة جنب الأكل.", explain: "الكوباية اللي بنشرب منها 🥛" },
+    { q: "النحل بيعيش فيه وبيعمل فيه العسل... إيه هو؟", opts: ["البيت", "خلية النحل 🐝", "العش"], a: 1, hint: "محل العسل الحلو!", explain: "خلية النحل — بيت النحل 🐝" },
+    { q: "أداة بنكتب بيها في الكراسة... إيه هي؟", opts: ["المقص", "القلم ✏️", "الممحاة"], a: 1, hint: "بتستخدمها في المدرسة كل يوم.", explain: "القلم ✏️ اللي بنهزر بيه نتعلم" },
+    { q: "أكبر حيوان في البرّ... خرطومه طويل... مين؟", opts: ["الأسد", "الزرافة", "الفيل 🐘"], a: 2, hint: "جسمه ضخم وبيحب يشرب مية كتير.", explain: "الفيل 🐘 أكبر حيوان في البرّ" },
+    { q: "حاجة في كل مكان حوالينا بس مش بنشوفها... إيه هي؟", opts: ["الهواء 💨", "النار", "التراب"], a: 0, hint: "بنتنفسه كل لحظة.", explain: "الهواء 💨 اللي بنتنفسه" },
+    { q: "بتبيض كل يوم وصوتها «كوكو»... مين هي؟", opts: ["البطة", "الدجاجة 🐔", "الحمامة"], a: 1, hint: "بيضها بيتاكل على الفطار!", explain: "الدجاجة 🐔" }
+  ];
+
+  /* ---------- قصص روفان التفاعلية (أصلية 100%) ---------- */
+  const stories = [
+    {
+      id: "treasure", title: "روفان والكنز المفقود", icon: "🗺️",
+      desc: "مغامرة روفان في البحث عن الكنز — ومعناها الحقيقى!",
+      scenes: [
+        { text: "في يوم مشمس، لقت روفان قطعة خريطة قديمة في الحديقة! 🗺️ الخريطة مرسوم عليها طريق لكنز مخفي... يلا نروح نشوف!", art: "🗺️🐱🌤️" },
+        {
+          text: "الخريطة عليها طريقين... إيه رأيك نمشي أنهي طريق؟", art: "🌊🌲",
+          choices: [
+            { label: "طريق النهر 🌊", next: 2 },
+            { label: "طريق الغابة 🌲", next: 2 }
+          ]
+        },
+        {
+          text: "في الطريق، شافت روفان صديقها أرنوب (الأرنب) 🐰 زعلان لأنه ضلّ من أمه... صوت روفان: «متقلقش، هساعدك تلاقيها!»",
+          art: "🐱🐰😟",
+          choices: [
+            { label: "نساعد أرنوب ندوّر على أمه 💛", next: 3 },
+            { label: "نكمل طريقنا بسرعة ⏩", next: 3 }
+          ]
+        },
+        { text: "أكيد هنختار نساعد! روفان وأرنوب دوروا مع بعض، ولقوها قريبة من الشجرة الكبيرة 🌳. أمه شكرت روفان وقالت: «المساعدة أجمل كنز!» وقالتلها على مكان الكنز الحقيقي.", art: "🐱🐰🌳💛" },
+        { text: "وصلت روفان للصندوق القديم وفتحته... 😮 الصندوق فيه كتب ومداد وألوان وحلوى! روفان قررت تشارك كل حاجة مع أصحابها.", art: "📦📚🍬✨" },
+        {
+          text: "وصفت روفان البيت مبسوطة. تعرف إيه أهم حاجة اتعلمتها النهارده؟", art: "🐱💭",
+          choices: [
+            { label: "إن المساعدة أجمل كنز 💛", next: 6 },
+            { label: "إن الكنز هو الفلوس 💰", next: 6 }
+          ]
+        },
+        {
+          text: "بالظبط! المساعدة والحب بين الناس هما الكنز الحقيقي. 🌟 والحلوة اللي شاركتها مع أصحابها خلتها أسعد من أي حاجة!",
+          art: "🐱💛🎉",
+          quiz: [
+            { q: "إيه أهم حاجة اتعلمتها من القصة؟", opts: ["المساعدة 💛", "الأكل", "النوم"], a: 0 },
+            { q: "مين روفان ساعدته؟", opts: ["أرنوب 🐰", "الأسد", "الحوت"], a: 0 }
+          ]
+        }
+      ]
+    },
+    {
+      id: "colors-party", title: "حفلة الألوان", icon: "🎨",
+      desc: "روفان بتجهز حفلة الألوان وبتتعلم مشاركة أصحابها",
+      scenes: [
+        { text: "قررت روفان تعمل حفلة ألوان مبهجة! 🎨🌈 جابت الألوان كلها: أحمر وأزرق وأصفر وأخضر... بس فيه حاجة ناقصة.", art: "🐱🎨🌈" },
+        {
+          text: "أصحابها: شامة (البطة) 🦆 وأرنوب 🐰 وصلوا عشان يساعدوا. إيه نعمل الأول؟", art: "🐱🦆🐰",
+          choices: [
+            { label: "نلوّن الورق مع بعض 🖍️", next: 2 },
+            { label: "نأكل الحلوى الأول 🍰", next: 2 }
+          ]
+        },
+        { text: "روفان عندها ألوان كتير... بس شامة معندهاش أزرق! 😟 فين نلاقي أزرق؟", art: "🦆💙❓",
+          choices: [
+            { label: "نشارك شامة من الأزرق 💙", next: 3 },
+            { label: "نخبي الأزرق عندنا 🤫", next: 3 }
+          ]
+        },
+        { text: "أكيد هنشارك! لما روفان شاركت، شامة فرحت أوي ورسمتلها بطة جميلة. المشاركة بتخلي الحلو أكتر! 💙", art: "🦆💙🎁" },
+        { text: "خلصوا الرسم كلهم: سمكة زرقاء 🔵 وتفاحة حمراء 🔴 وشمس صفراء 🟡. الحفلة بقت أحلى حاجة في الدنيا!", art: "🖼️🎉✨" },
+        {
+          text: "وقت الجد... إيه اللي خلى الحفلة تحلى؟", art: "🐱💭",
+          choices: [
+            { label: "المشاركة والتعاون 💛", next: 5 },
+            { label: "الألوان بس 🎨", next: 5 }
+          ]
+        },
+        {
+          text: "صح! لما بنتشارك ونساعد بعض، أي حاجة بتحلى. 🌟✨ وشكراً لأصدقائي اللي خلوا الحفلة مميزة!",
+          art: "🐱🎉💛",
+          quiz: [
+            { q: "إيه اللي خلى الحفلة تحلى؟", opts: ["المشاركة 💛", "الزعيق", "النوم"], a: 0 },
+            { q: "إيه لون السمكة اللي رسموها؟", opts: ["أزرق 💙", "أحمر", "أصفر"], a: 0 }
+          ]
+        }
+      ]
+    },
+    {
+      id: "honesty", title: "روفان والمصباح المكسور", icon: "💡",
+      desc: "قصة عن الصدق — قيمة روفان اتعلمتها",
+      scenes: [
+        { text: "روّفان كانت بتلعب بالكرة في البيت ⚽... وفجأة! 💥 الكرة اتخبطت في المصباح فوقع واتكسر! 😟", art: "🐱⚽💥" },
+        {
+          text: "ماما جت على صوت الكسر وسألت: «إيه اللي حصل؟»... إيه رأيك روفان تعمل إيه؟", art: "🐱💭❓",
+          choices: [
+            { label: "تقول الحقيقة: أنا كسرته بالغلط 🙏", next: 2 },
+            { label: "تقول: مش عارفة مين كسره 🤥", next: 2 }
+          ]
+        },
+        { text: "روفان قالت الصدق: «أنا آسفة، الكرة خبطت فيه بالغلط». ماما ابتسمت وقالت: «الصدق أهم من أي مصباح!» 💛", art: "🐱💡💛" },
+        { text: "بعدها، روفان ومابا رتّبوا المكان مع بعض، ووعدت روفان تلعب بالكرة بره البيت المرادي. 🏡⚽", art: "🐱🏡⚽" },
+        {
+          text: "إيه الدرس اللي اتعلمناه؟", art: "🐱✨",
+          choices: [
+            { label: "الصدق قيمة جميلة 🌟", next: 5 },
+            { label: "الكذب أسهل", next: 5 }
+          ]
+        },
+        {
+          text: "بالظبط! الصدق بيخلي الناس تحبنا وتطمن علينا. 🌟 ورفان بقت أشجع لما قالت الحقيقة!",
+          art: "🐱🌟💛",
+          quiz: [
+            { q: "إيه اللي حصل للمصباح؟", opts: ["اتكسر بالغلط 💥", "اتشال", "اتصلح"], a: 0 },
+            { q: "إيه القيمة اللي اتعلمتها روفان؟", opts: ["الصدق 🌟", "الكذب", "الزعيق"], a: 0 }
+          ]
+        }
+      ]
+    }
+  ];
+
+  /* ---------- النسخة الإنجليزية للقصص (أصلية — تُضاف للبيانات) ---------- */
+  const STORIES_EN = {
+    treasure: {
+      titleEn: "Rovan and the Lost Treasure",
+      descEn: "Rovan's treasure hunt — and the real treasure!",
+      scenesEn: [
+        { textEn: "One sunny day, Rovan found an old treasure map in the garden! 🗺️ It showed a path to a hidden treasure... let's go find it!" },
+        { textEn: "The map shows two paths... which way should we go?", choicesEn: ["Follow the river 🌊", "Enter the forest 🌲"] },
+        { textEn: "On the way, Rovan saw her friend Bunny 🐰 feeling sad — he lost his mommy... Rovan said: «Don't worry, I'll help you find her!»", choicesEn: ["Help Bunny find mommy 💛", "Keep walking fast ⏩"] },
+        { textEn: "Of course we help! Rovan and Bunny searched together and found mommy near the big tree 🌳. She said: «Helping others is the greatest treasure!»" },
+        { textEn: "Rovan reached the old chest and opened it... 😮 Books, crayons, colors and candy! Rovan decided to share everything with her friends." },
+        { textEn: "Rovan went home happy. Do you know the most important thing she learned today?", choicesEn: ["Helping is the greatest treasure 💛", "Treasure means money 💰"] },
+        { textEn: "Exactly! Helping and loving people is the real treasure. 🌟 Sharing made her happier than anything!" }
+      ]
+    },
+    "colors-party": {
+      titleEn: "The Colors Party",
+      descEn: "Rovan throws a colors party and learns about sharing",
+      scenesEn: [
+        { textEn: "Rovan decided to throw a colorful party! 🎨🌈 She got red, blue, yellow and green... but something was missing." },
+        { textEn: "Her friends Ducky 🦆 and Bunny 🐰 arrived to help. What first?", choicesEn: ["Color together 🖍️", "Eat cake first 🍰"] },
+        { textEn: "Rovan has lots of colors... but Ducky has no blue! 😟 Where can we find blue?", choicesEn: ["Share the blue 💙", "Hide the blue 🤫"] },
+        { textEn: "Of course we share! Ducky was so happy she drew Rovan a beautiful duck. Sharing makes everything sweeter! 💙" },
+        { textEn: "They finished: a blue fish 🔵, a red apple 🔴 and a yellow sun 🟡. The party became the best thing ever!" },
+        { textEn: "The big question: what made the party so special?", choicesEn: ["Sharing and teamwork 💛", "Just the colors 🎨"] },
+        { textEn: "Right! When we share and help each other, everything gets better. 🌟✨" }
+      ]
+    },
+    honesty: {
+      titleEn: "Rovan and the Broken Lamp",
+      descEn: "A story about honesty — a value Rovan learned",
+      scenesEn: [
+        { textEn: "Rovan was playing ball in the house ⚚... and suddenly! 💥 The ball hit the lamp and it broke! 😟" },
+        { textEn: "Mom asked: «What happened?»... What should Rovan do?", choicesEn: ["Tell the truth 🙏", "Say: I don't know 🤥"] },
+        { textEn: "Rovan told the truth: «I'm sorry, it was an accident». Mom smiled: «Honesty is more important than any lamp!» 💛" },
+        { textEn: "Rovan and Mom cleaned up together, and Rovan promised to play ball outside. 🏡⚽" },
+        { textEn: "What lesson did we learn?", choicesEn: ["Honesty is beautiful 🌟", "Lying is easier"] },
+        { textEn: "Exactly! Honesty makes people love and trust us. 🌟" }
+      ]
+    }
+  };
+  stories.forEach(function (s) {
+    const en = STORIES_EN[s.id];
+    if (!en) return;
+    s.titleEn = en.titleEn;
+    s.descEn = en.descEn;
+    s.scenes.forEach(function (sc, i) {
+      const e = en.scenesEn[i];
+      if (!e) return;
+      sc.textEn = e.textEn;
+      if (sc.choices && e.choicesEn) {
+        sc.choices.forEach(function (c, j) {
+          if (e.choicesEn[j]) c.labelEn = e.choicesEn[j];
+        });
+      }
+    });
+  });
+
+  /* ---------- ألعاب إضافية: ترتيب الحروف واكتشاف المختلف ---------- */
+  const letterOrder = [
+    { word: "قِطَّة", letters: ["ط", "ة", "ق"], emoji: "🐱" },
+    { word: "شَمْس", letters: ["س", "ش", "م"], emoji: "☀️" },
+    { word: "كِتاب", letters: ["ب", "ك", "ا", "ت"], emoji: "📕" },
+    { word: "بَيْت", letters: ["ت", "ي", "ب"], emoji: "🏠" },
+    { word: "قَمَر", letters: ["ر", "ق", "م"], emoji: "🌙" },
+    { word: "أَسَد", letters: ["د", "س", "أ"], emoji: "🦁" },
+    { word: "مَاء", letters: ["ء", "م", "ا"], emoji: "💧" },
+    { word: "نَجْمَة", letters: ["ة", "ج", "ن", "م"], emoji: "⭐" }
+  ];
+
+  const oddOneOut = [
+    { items: ["🍎", "🍎", "🍌", "🍎"], odd: 2, say: "أي واحد مختلف؟" },
+    { items: ["🐱", "🐶", "🐱", "🐱"], odd: 1, say: "مين المختلف؟" },
+    { items: ["⭐", "🌙", "⭐", "⭐"], odd: 1, say: "إيه المختلف؟" },
+    { items: ["🐟", "🐟", "🐦", "🐟"], odd: 2, say: "مين المختلف؟" },
+    { items: ["🟥", "🟥", "🟥", "🟦"], odd: 3, say: "إيه المختلف؟" },
+    { items: ["1️⃣", "2️⃣", "2️⃣", "2️⃣"], odd: 0, say: "إيه المختلف؟" },
+    { items: ["🌳", "🌸", "🌳", "🌳"], odd: 1, say: "إيه المختلف؟" },
+    { items: ["🔴", "🔵", "🔵", "🔵"], odd: 0, say: "إيه المختلف؟" }
+  ];
+
+  const listenItems = [
+    { ar: "قِطَّة", en: "Cat", emoji: "🐱" },
+    { ar: "تُفَّاحَة", en: "Apple", emoji: "🍎" },
+    { ar: "شَمْس", en: "Sun", emoji: "☀️" },
+    { ar: "كِتَاب", en: "Book", emoji: "📕" },
+    { ar: "سَمَكَة", en: "Fish", emoji: "🐟" },
+    { ar: "بَيْت", en: "House", emoji: "🏠" }
+  ];
+
+  /* ---------- مستويات Rovan Rewards ---------- */
+  const rovanLevels = [
+    { min: 0, name: "مبتدئ 🐣" },
+    { min: 50, name: "مجتهد 🌟" },
+    { min: 150, name: "ذكي 🧠" },
+    { min: 300, name: "بطل 🦸" },
+    { min: 600, name: "أسطورة روفان 🏆" }
+  ];
+
   /* ---------- نظام النقاط والإنجازات ---------- */
   const achievements = [
     { id: "first-game", name: "أول لعبة 🎮", desc: "العب أي لعبة لأول مرة", stars: 5 },
@@ -271,12 +690,26 @@ window.ROVAN = (function () {
     { id: "all-games", name: "مستكشف الألعاب 🗺️", desc: "العب كل ألعاب روفان", stars: 10 },
     { id: "hifz-1", name: "أول حافظ 📖", desc: "احفظ أول سورة", stars: 5 },
     { id: "hifz-5", name: "نصف الطريق 💪", desc: "احفظ 5 سور", stars: 10 },
-    { id: "hifz-all", name: "حفظت كل السور 🏅", desc: "احفظ كل سور التحفيظ", stars: 20 }
+    { id: "hifz-all", name: "حفظت كل السور 🏅", desc: "احفظ كل سور التحفيظ", stars: 20 },
+    { id: "academy-1", name: "طالب الأكاديمية 🎓", desc: "أكمل أول درس في الأكاديمية", stars: 5 },
+    { id: "academy-5", name: "متخصص الأكاديمية 📘", desc: "أكمل 5 دروس", stars: 15 },
+    { id: "daily-1", name: "أول تحدٍ 🎯", desc: "أكمل أول تحدٍ يومي", stars: 5 },
+    { id: "daily-7", name: "سبعة أيام متتالية 🗓️", desc: "أكمل 7 تحديات يومية", stars: 20 },
+    { id: "story-1", name: "قارئ القصص 📚", desc: "أكمل أول قصة", stars: 5 },
+    { id: "story-all", name: "صديق القصص 📖", desc: "أكمل كل قصص روفان", stars: 15 },
+    { id: "stars-100", name: "جامع النجوم 🌌", desc: "اجمع 100 نجمة", stars: 0 }
   ];
+
+  /* ---------- نقطة استلام طلب القصة (تُفعَّل بسطر واحد) ---------- */
+  /* ضع هنا رابط نقطة الاستلام مثل FormSubmit: https://formsubmit.co/your@email.com
+     أو Formspree: https://formspree.io/f/xxxx — بدون قيمة = الحفظ المحلي فقط */
+  const requestEndpoint = "";
 
   return {
     channel, playlists, fallbackVideos,
     games, quizBank, memorySets, animalBank, letterBank, shapesBank, wordsBank,
-    surahs, hadiths, prophets, achievements
+    surahs, hadiths, prophets, achievements,
+    academy, dailyBank, riddles, stories, letterOrder, oddOneOut, listenItems, rovanLevels,
+    requestEndpoint
   };
 })();
