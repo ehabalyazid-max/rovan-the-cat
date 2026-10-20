@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<title>🐱 القطة روفان | عالم الأطفال التعليمي – ألعاب وقصص وتحفيظ قرآن</title>
-<meta name="description" content="القطة روفان: عالم تعليمي ممتع للأطفال من KG1 حتى تانية ابتدائي — ألعاب تعليمية، تلوين، قصص الأنبياء، تحفيظ القرآن الكريم، أحاديث نبوية، ومناهج المدرسة بالعربي والإنجليزي.">
-<meta name="keywords" content="القطة روفان, Rovan The Cat, ألعاب أطفال, تحفيظ قرآن للأطفال, قصص الأنبياء, أحاديث للأطفال, تعليم KG1, تعليم أولى ابتدائي, تلوين, موقع أطفال">
-<meta name="theme-color" content="#FF7A5C">
+<title>🐱 القطة روفان | عالم الأطفال — ألعاب وقصص وأكاديمية تعليمية</title>
+<meta name="description" content="عالم القطة روفان التعليمي الترفيهي للأطفال: ألعاب تعليمية، قصص تفاعلية، أكاديمية Rovan بالصوت، تحدي يومي، تحفيظ قرآن، ومكتبة فيديوهات — من KG1 حتى تانية ابتدائي.">
+<meta name="theme-color" content="#FF6B6B">
 <meta property="og:title" content="🐱 القطة روفان | عالم الأطفال التعليمي">
-<meta property="og:description" content="ألعاب وقصص وتحفيظ قرآن ومناهج المدرسة مع القطة روفان — موقع الأطفال التعليمي الممتع.">
+<meta property="og:description" content="ألعاب وقصص تفاعلية وأكاديمية تعليمية مع القطة روفان — موقع الأطفال العالمي الممتع.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rovan-the-cat.vercel.app/">
 <meta property="og:image" content="https://rovan-the-cat.vercel.app/images/avatar.jpg">
@@ -17,7 +16,6 @@
 <link rel="canonical" href="https://rovan-the-cat.vercel.app/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
 <link rel="stylesheet" href="css/styles.css">
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -26,312 +24,191 @@
   "alternateName": "Rovan The Cat",
   "url": "https://rovan-the-cat.vercel.app/",
   "logo": "https://rovan-the-cat.vercel.app/images/avatar.jpg",
-  "description": "عالم الأطفال التعليمي بشخصية القطة روفان: ألعاب تعليمية، تحفيظ القرآن، قصص الأنبياء، أحاديث نبوية، ومناهج KG1 حتى تانية ابتدائي.",
-  "sameAs": [
-    "https://www.youtube.com/@RovanTheCat"
-  ],
+  "sameAs": ["https://www.youtube.com/@RovanTheCat"],
   "mainEntity": {
     "@type": "WebSite",
-    "name": "القطة روفان – عالم الأطفال",
+    "name": "Rovan The Cat – عالم الأطفال",
     "url": "https://rovan-the-cat.vercel.app/",
-    "inLanguage": "ar"
+    "inLanguage": ["ar", "en"]
   }
 }
 </script>
 </head>
 <body>
 
-<a class="skip-link" href="#main">تخطي إلى المحتوى الرئيسي</a>
-<div id="progressBar" aria-hidden="true"></div>
-<div id="confettiBox" aria-hidden="true"></div>
-
-<!-- ================= الشريط العلوي ================= -->
-<header>
-  <nav class="navbar" aria-label="القائمة الرئيسية">
-    <a href="#top" class="brand">
-      <img class="avatar-img" src="images/avatar.jpg" alt="القطة روفان"
-           onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
-      <span class="bname">🐱 القطة روفان</span>
-    </a>
-    <div class="nav-links">
-      <a href="#videos" class="nlink">🎬 الفيديوهات</a>
-      <a href="#games" class="nlink">🎮 الألعاب</a>
-      <a href="#quran" class="nlink">📖 القرآن</a>
-      <a href="#hadith" class="nlink">🕌 أحاديث</a>
-      <a href="#prophets" class="nlink">⭐ قصص الأنبياء</a>
-      <a href="#search" class="nlink">🔎 بحث</a>
-      <a href="#about" class="nlink">🐾 عن روفان</a>
-      <button type="button" class="btn-sm btn-quiet" id="soundToggle" aria-pressed="true">🔊 الصوت</button>
-      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-yt">▶ اشترك في القناة</a>
-    </div>
-    <button type="button" class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
-  </nav>
-
-  <!-- قائمة الهاتف -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-panel" role="dialog" aria-label="قائمة التنقل">
-      <button type="button" class="mobile-close" id="mobileClose" aria-label="إغلاق القائمة">✕</button>
-      <a href="#top" class="mlink">🏠 الرئيسية</a>
-      <a href="#videos" class="mlink">🎬 الفيديوهات</a>
-      <a href="#games" class="mlink">🎮 الألعاب</a>
-      <a href="#quran" class="mlink">📖 القرآن والتحفيظ</a>
-      <a href="#hadith" class="mlink">🕌 أحاديث النبي ﷺ</a>
-      <a href="#prophets" class="mlink">⭐ قصص الأنبياء</a>
-      <a href="#search" class="mlink">🔎 البحث</a>
-      <a href="#progress" class="mlink">🏅 نجومي وإنجازاتي</a>
-      <a href="#about" class="mlink">🐾 عن روفان</a>
-      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="mlink">▶ اشترك في يوتيوب</a>
-    </div>
-  </div>
-</header>
+<div id="siteHeader"></div>
 
 <main id="main">
 
-  <!-- ================= الهيرو ================= -->
-  <section class="hero" id="top" aria-label="مرحبًا بكم">
+  <!-- ============ Hero ============ -->
+  <section class="hero" id="top" aria-label="مرحبًا">
+    <div class="hero-bg" style="background-image:url('images/art/hero-bg.jpg');" aria-hidden="true"></div>
     <div class="float-item" style="top:12%; right:8%;" aria-hidden="true">☁️</div>
     <div class="float-item" style="top:58%; right:14%; animation-delay:1s;" aria-hidden="true">🦋</div>
     <div class="float-item" style="top:18%; left:9%; animation-delay:2s;" aria-hidden="true">⭐</div>
     <div class="float-item" style="top:66%; left:12%; animation-delay:.6s;" aria-hidden="true">🐾</div>
-    <div class="float-item" style="top:38%; right:26%; animation-delay:1.4s; font-size:1.4rem;" aria-hidden="true">✨</div>
-    <div class="float-item" style="top:30%; left:24%; animation-delay:.9s; font-size:1.5rem;" aria-hidden="true">🌈</div>
 
     <div class="mascot-wrap">
-      <img class="mascot" src="images/avatar.jpg" alt="شخصية القطة روفان"
-           onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s900-c-k-c0x00ffffff-no-rj'">
+      <img class="mascot" src="images/avatar.jpg" alt="شخصية القطة روفان">
       <span class="sparkle" style="top:-8px; right:-8px;" aria-hidden="true">✨</span>
       <span class="sparkle" style="bottom:4px; left:-12px; animation-delay:.7s;" aria-hidden="true">⭐</span>
       <span class="sparkle" style="top:40%; left:-20px; animation-delay:1.2s;" aria-hidden="true">💫</span>
     </div>
 
-    <h1>أهلاً بكم في عالم <span class="grad">القطة روفان</span> 🐱</h1>
-    <p class="sub">أنا روفان! 😺 صديقة الأطفال اللي بتلعب معاهم وتتعلم معاهم — ألعاب ممتعة، تحفيظ القرآن، قصص الأنبياء، أحاديث الرسول ﷺ، وشرح الدروس بالمرح! من KG1 لحد تانية ابتدائي 🎓</p>
+    <h1><span data-i18n="hero.title1">أهلاً بكم في عالم</span> <span class="grad" data-i18n="hero.title2">القطة روفان</span></h1>
+    <p class="sub" data-i18n="hero.sub">أنا روفان! 😺 صديقة الأطفال اللي بتلعب معاهم وتتعلم معاهم — ألعاب، قصص صوتية، تحفيظ القرآن، وأكاديمية تعليمية ممتعة! من KG1 لحد تانية ابتدائي 🎓</p>
     <div class="hero-cta">
-      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-yt btn-big">▶ اشترك في قناة روفان</a>
-      <a href="#games" class="btn btn-play btn-big">🎮 تعال نلعب!</a>
-      <a href="#videos" class="btn btn-ghost btn-big">🎬 شاهد الفيديوهات</a>
+      <a href="games.html" class="btn btn-primary btn-big" data-i18n="hero.play">🎮 هيا نلعب</a>
+      <a href="stories.html" class="btn btn-play btn-big" data-i18n="hero.stories">📚 اكتشف القصص</a>
+      <a href="tv.html" class="btn btn-ghost btn-big" data-i18n="hero.watch">🎬 شاهد الفيديوهات</a>
     </div>
     <div class="stats" aria-label="محتوى الموقع">
-      <div class="stat" style="animation-delay:.1s"><b>21</b><span>بلاي ليست تعليمية</span></div>
-      <div class="stat" style="animation-delay:.2s"><b>8</b><span>ألعاب ممتعة</span></div>
-      <div class="stat" style="animation-delay:.3s"><b>10</b><span>سورة للتحفيظ</span></div>
-      <div class="stat" style="animation-delay:.4s"><b>10</b><span>أحاديث صحيحة</span></div>
-      <div class="stat" style="animation-delay:.5s"><b>7</b><span>قصص أنبياء</span></div>
+      <div class="stat" style="animation-delay:.1s"><b>8</b><span data-i18n="hero.stat1">دروس أكاديمية</span></div>
+      <div class="stat" style="animation-delay:.2s"><b>11</b><span data-i18n="hero.stat2">لعبة ممتعة</span></div>
+      <div class="stat" style="animation-delay:.3s"><b>3</b><span data-i18n="hero.stat3">قصص تفاعلية</span></div>
+      <div class="stat" style="animation-delay:.4s"><b>🎯</b><span data-i18n="hero.stat4">تحدي جديد كل يوم</span></div>
+      <div class="stat" style="animation-delay:.5s"><b>🔊</b><span data-i18n="hero.stat5">نطق عربي وإنجليزي</span></div>
     </div>
   </section>
 
-  <!-- ================= البحث ================= -->
-  <section id="search">
+  <!-- ============ اكتشف عالم Rovan ============ -->
+  <section id="discover">
     <div class="sec-head">
-      <h2>🔎 ابحث في عالم روفان</h2>
-      <p>ابحث عن لعبة أو فيديو أو سورة أو حديث أو قصة</p>
+      <h2 data-i18n="discover.title">🧭 اكتشف عالم Rovan</h2>
+      <p data-i18n="discover.sub">اختار مغامرتك المفضلة — كل الأبواب مفتوحة!</p>
     </div>
-    <div class="search-box" role="search">
-      <input type="search" id="siteSearch" placeholder="اكتب كلمة البحث... (مثال: الحيوانات، الإخلاص، حساب)" aria-label="البحث في الموقع">
-      <button type="button" class="btn btn-play" id="searchBtn">🔎 بحث</button>
-    </div>
-    <div class="search-results" id="searchResults" aria-live="polite">
-      <p class="search-note">اكتب كلمة زي «الحيوانات» أو «الإخلاص» أو «الحساب» 🔎</p>
+    <div class="discover-grid">
+      <a class="discover-card dc1" href="games.html">
+        <span class="dc-icon">🎮</span><h3 data-i18n="discover.games">عالم الألعاب</h3>
+        <p data-i18n="discover.gamesDesc">11 لعبة تعليمية: ذاكرة، ألغاز، تلوين، حروف وأرقام</p>
+        <span class="dc-go">←</span>
+      </a>
+      <a class="discover-card dc2" href="academy.html">
+        <span class="dc-icon">🎓</span><h3 data-i18n="discover.academy">أكاديمية Rovan</h3>
+        <p data-i18n="discover.academyDesc">دروس تفاعلية بالصوت والصور مع اختبارات ونجوم</p>
+        <span class="dc-go">←</span>
+      </a>
+      <a class="discover-card dc3" href="stories.html">
+        <span class="dc-icon">📚</span><h3 data-i18n="discover.stories">القصص التفاعلية</h3>
+        <p data-i18n="discover.storiesDesc">قصص مع اختياراتك — انت اللي تقرر مسار القصة!</p>
+        <span class="dc-go">←</span>
+      </a>
+      <a class="discover-card dc4" href="#daily">
+        <span class="dc-icon">🎯</span><h3 data-i18n="discover.daily">التحدي اليومي</h3>
+        <p data-i18n="discover.dailyDesc">3 أسئلة مفاجأة كل يوم + مكافأة نجوم</p>
+        <span class="dc-go">←</span>
+      </a>
+      <a class="discover-card dc5" href="games.html#g=coloring">
+        <span class="dc-icon">🎨</span><h3 data-i18n="discover.coloring">التلوين والإبداع</h3>
+        <p data-i18n="discover.coloringDesc">لوّن مشهد روفان واحفظ لوحتك كصورة</p>
+        <span class="dc-go">←</span>
+      </a>
+      <a class="discover-card dc6" href="request.html">
+        <span class="dc-icon">✍️</span><h3 data-i18n="discover.request">اطلب قصة لطفلك</h3>
+        <p data-i18n="discover.requestDesc">قصة مخصصة باسم طفلك من روفان herself!</p>
+        <span class="dc-go">←</span>
+      </a>
+      <a class="discover-card dc7" href="tv.html">
+        <span class="dc-icon">📺</span><h3 data-i18n="discover.tv">مكتبة الفيديوهات</h3>
+        <p data-i18n="discover.tvDesc">كل فيديوهات القناة على Rovan TV</p>
+        <span class="dc-go">←</span>
+      </a>
     </div>
   </section>
 
-  <!-- ================= الفيديوهات ================= -->
-  <section id="videos">
+  <!-- ============ التحدي اليومي ============ -->
+  <section id="daily">
     <div class="sec-head">
-      <h2>🎬 مغامرات روفان على يوتيوب</h2>
-      <p>اختار البلاي ليست اللي تعجبك واتفرج على روفان وهي بتشرح وبتلعب 🐾</p>
+      <h2 data-i18n="daily.title">🎯 التحدي اليومي</h2>
+      <p data-i18n="daily.sub">كل يوم تحدي جديد ومفاجأة — أكمله واكسب نجوم!</p>
     </div>
-    <div class="filters" id="filters" role="group" aria-label="تصفية البلاي ليستات"></div>
-    <div id="plBanner"></div>
-    <div class="grid" id="videoGrid" aria-live="polite">
-      <div class="empty">جاري تحميل الفيديوهات... 🐱</div>
-    </div>
-    <div style="text-align:center; margin-top:26px;">
-      <a href="https://www.youtube.com/@RovanTheCat" target="_blank" rel="noopener" class="btn btn-yt">▶ زوروا قناة القطة روفان</a>
-    </div>
+    <div id="dailyBox"></div>
   </section>
 
-  <!-- ================= الألعاب ================= -->
-  <section id="games">
+  <!-- ============ روفان تتحدث ============ -->
+  <section id="talk">
     <div class="sec-head">
-      <h2>🎮 مكتبة ألعاب روفان التعليمية</h2>
-      <p>العب واتعلم مع القطة روفان — ألعاب للأذكياء من KG1 لحد تانية ابتدائي!</p>
+      <h2 data-i18n="talk.title">🐱 روفان تتحدث</h2>
+      <p data-i18n="talk.sub">اضغط على الصوت واستمع لروّفان — جرّب العبارات!</p>
     </div>
-
-    <div class="mascot-guide">
-      <img src="images/avatar.jpg" alt="روفان"
-           onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
-      <div class="bubble">هلا بكم يا أبطال! 🌟 اختاروا لعبتكم من المكتبة تحت، وكل لعبة بتجيب نجوم لصفحتكم!</div>
-    </div>
-
-    <div class="games-controls" role="group" aria-label="البحث والتصفية">
-      <input type="search" id="gameSearch" placeholder="🔍 اسم اللعبة..." aria-label="البحث عن لعبة">
-      <select id="gameCat" aria-label="التصنيف">
-        <option value="all">كل التصنيفات</option>
-        <option>فنون وألوان</option>
-        <option>ذاكرة</option>
-        <option>معرفة</option>
-        <option>حيوانات</option>
-        <option>رياضيات</option>
-        <option>لغة عربية</option>
-        <option>كلمات</option>
-      </select>
-      <select id="gameDiff" aria-label="مستوى الصعوبة">
-        <option value="all">كل المستويات</option>
-        <option>سهل</option>
-        <option>متوسط</option>
-      </select>
-      <select id="gameSort" aria-label="الترتيب">
-        <option value="name">ترتيب: الاسم</option>
-        <option value="new">ترتيب: الأحدث</option>
-      </select>
-    </div>
-
-    <div class="games-grid" id="gamesGrid"></div>
+    <div id="talkBox"></div>
   </section>
 
-  <!-- ================= القرآن ================= -->
-  <section id="quran">
+  <!-- ============ أحدث القصص والفيديوهات ============ -->
+  <section id="latest">
     <div class="sec-head">
-      <h2>📖 تحفيظ القرآن الكريم</h2>
-      <p>احفظ أقصر السور مع روفان، وعلّمها على صفحتك! كل ما تحفظ سورة اضغط «حفظتها» ⭐</p>
+      <h2 data-i18n="latest.stories">📚 أحدث القصص</h2>
     </div>
-
-    <div class="quran-progress">
-      <h3>🏆 سجل التحفيظ بتاعك</h3>
-      <p id="hifzText" style="margin-bottom:10px; font-weight:800;">لسه محفظتش أي سورة — يلا نبدأ بسورة الإخلاص! 💪</p>
-      <div class="pbar" role="progressbar" aria-label="تقدم التحفيظ"><div class="fill" id="hifzFill"></div></div>
+    <div class="games-grid" id="storiesMini"></div>
+    <div style="text-align:center; margin:18px 0 46px;">
+      <a href="stories.html" class="btn btn-play" data-i18n="latest.storiesAll">كل القصص ←</a>
     </div>
-
-    <div class="surah-grid" id="surahGrid"></div>
-
-    <div style="text-align:center; margin-top:28px;">
-      <a href="https://www.youtube.com/@RovanTheCat/search?q=%D8%AA%D8%AD%D9%81%D9%8A%D8%B8" target="_blank" rel="noopener" class="btn btn-yt">▶ احفظ مع روفان على يوتيوب</a>
-    </div>
-  </section>
-
-  <!-- ================= الأحاديث ================= -->
-  <section id="hadith">
     <div class="sec-head">
-      <h2>🕌 أحاديث النبي ﷺ للأطفال</h2>
-      <p>أحاديث صحيحة قصيرة مع شرح مبسط يفهمه الصغار — مراجَعة ومذكورة بمصادرها</p>
+      <h2 data-i18n="latest.videos">📺 من Rovan TV</h2>
     </div>
-    <div class="hadith-grid" id="hadithGrid"></div>
-  </section>
-
-  <!-- ================= قصص الأنبياء ================= -->
-  <section id="prophets">
-    <div class="sec-head">
-      <h2>⭐ قصص الأنبياء للأطفال</h2>
-      <p>حكايات مشوقة كما وردت في القرآن الكريم — اتفرج على القصة كاملة مع روفان على يوتيوب</p>
-    </div>
-    <div class="prophets-grid" id="prophetsGrid"></div>
-    <div style="text-align:center; margin-top:28px;">
-      <a href="https://www.youtube.com/playlist?list=PLa82TLGr0UKA" target="_blank" rel="noopener" class="btn btn-play">▶ شاهد بلاي ليست قصص الأنبياء كاملة</a>
+    <div class="grid" id="videoGridMini"></div>
+    <div style="text-align:center; margin-top:18px;">
+      <a href="tv.html" class="btn btn-yt" data-i18n="latest.videosAll">كل الفيديوهات ←</a>
     </div>
   </section>
 
-  <!-- ================= نجومي وإنجازاتي ================= -->
-  <section id="progress">
-    <div class="sec-head">
-      <h2>🏅 نجومي وإنجازاتي</h2>
-      <p>كل لعبة وسورة بتجيبلك نجوم وشارات — شوف تقدمك!</p>
-    </div>
-    <div class="progress-panel">
-      <div class="progress-stats" id="progressStats"></div>
-      <div class="badges-grid" id="badgesGrid"></div>
-      <p class="device-note">📌 تقدمك محفوظ على الجهاز ده بس — لو فتحت من جهاز تاني هتبدأ من الأول.</p>
-      <div style="text-align:center; margin-top:16px;">
-        <button type="button" class="btn btn-white" id="resetProgress">🔄 إعادة تعيين التقدم</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= عن روفان ================= -->
+  <!-- ============ عن روفان ============ -->
   <section id="about">
     <div class="about">
       <div>
-        <h2>🌸 مين القطة روفان؟</h2>
-        <p>روفان قطة لطيفة وشقيّة بتحب المغامرات واللعب والتعلم! كل يوم بتعيش حكاية جديدة مليانة مرح وضحك ومفاجآت 🎉</p>
-        <p>مهمة روفان إنها تساعد كل الأطفال يتعلموا وهم مبسوطين — في المدرسة والبيت والمسجد.</p>
+        <h2 data-i18n="about.title">🌸 مين القطة روفان؟</h2>
+        <p data-i18n="about.p1"></p>
+        <p data-i18n="about.p2"></p>
         <ul>
-          <li>🎮 <b>ألعاب تعليمية</b> ممتعة لكل المراحل</li>
+          <li>🎮 <b>11 لعبة</b> تعليمية لكل المراحل</li>
+          <li>🎓 <b>أكاديمية</b> دروس تفاعلية بالصوت</li>
+          <li>📚 <b>قصص تفاعلية</b> مع اختياراتك</li>
           <li>📖 <b>تحفيظ القرآن</b> والأحاديث النبوية</li>
-          <li>⭐ <b>قصص الأنبياء</b> والآداب والقيم</li>
-          <li>🔬 <b>شرح المناهج</b> (علوم – عربي – حساب – إنجليزي)</li>
           <li>✅ <b>محتوى آمن ومراجَع</b> للأطفال</li>
         </ul>
       </div>
       <div class="cat-art">
-        <img src="images/avatar.jpg" alt="القطة روفان"
-             onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s900-c-k-c0x00ffffff-no-rj'">
-        <div class="quote">"كل حكاية معلومة… وكل معلومة مغامرة!"</div>
+        <img src="images/avatar.jpg" alt="القطة روفان">
+        <div class="quote" data-i18n="about.quote">«كل حكاية معلومة… وكل معلومة مغامرة!»</div>
       </div>
     </div>
   </section>
 
-  <!-- ================= CTA ================= -->
-  <section aria-label="اشترك في القناة">
+  <!-- ============ CTA ============ -->
+  <section aria-label="اشترك">
     <div class="cta">
-      <h2>🔔 متبنيش مغامرة روفان الجديدة!</h2>
-      <p>اشترك في القناة وخلي أولادك يتعلموا ويستمتعوا كل يوم مع القطة روفان 🐱</p>
-      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-white btn-big">▶ اشترك في قناة القطة روفان</a>
+      <h2 data-i18n="cta.title">🔔 متبنيش مغامرة روفان الجديدة!</h2>
+      <p data-i18n="cta.sub"></p>
+      <a href="https://www.youtube.com/@RovanTheCat?sub_confirmation=1" target="_blank" rel="noopener" class="btn btn-white btn-big" data-i18n="cta.btn">▶ اشترك في قناة القطة روفان</a>
     </div>
   </section>
 
 </main>
 
-<!-- ================= التذييل ================= -->
-<footer>
-  <div class="fbrand">
-    <img src="images/avatar.jpg" alt="القطة روفان"
-         onerror="this.onerror=null; this.src='https://yt3.googleusercontent.com/F2T8kdOJ1Oegkzfb_F5nIfJ8K0ikaGm105XpU8Rg9iN2bQxbDByNQLM_KqtoRZy0Y93tcZieUV0=s160-c-k-c0x00ffffff-no-rj'">
-    <span>القطة روفان – Rovan The Cat</span>
-  </div>
-  <nav class="flinks" aria-label="روابط التذييل">
-    <a href="#videos">الفيديوهات</a>
-    <a href="#games">الألعاب</a>
-    <a href="#quran">القرآن</a>
-    <a href="#prophets">القصص</a>
-    <a href="privacy.html">سياسة الخصوصية</a>
-    <a href="terms.html">شروط الاستخدام</a>
-    <a href="https://www.youtube.com/@RovanTheCat" target="_blank" rel="noopener">قناة يوتيوب ▶</a>
-  </nav>
-  <div class="fnote">
-    🕌 نصوص القرآن الكريم والأحاديث النبوية مراجَعة من مصادرها المعتمدة • محتوى تعليمي آمن للأطفال<br>
-    الموقع لا يجمع أي بيانات شخصية عن الأطفال — التقدم محفوظ على الجهاز فقط.<br>
-    © <span id="year">2026</span> القطة روفان — جميع الحقوق محفوظة 🐾
-  </div>
-</footer>
+<div id="siteFooter"></div>
 
-<!-- ================= مودال الفيديو ================= -->
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="مشغل الفيديو">
-  <div class="modal-box">
-    <div class="player" id="player"></div>
-    <div class="modal-title">
-      <span id="modalTitle">فيديو</span>
-      <button type="button" class="modal-close" aria-label="إغلاق الفيديو">✕</button>
+<!-- المساعد -->
+<button type="button" id="guideBtn" aria-label="مساعد روفان">
+  <img src="images/avatar.jpg" alt="">
+</button>
+<div id="guidePanel">
+  <div class="guide-box" role="dialog" aria-label="مساعد روفان">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <b style="font-size:1.15rem;">🐱 Rovan</b>
+      <button type="button" class="modal-close" id="guideClose" aria-label="إغلاق">✕</button>
     </div>
-    <div class="modal-fallback" id="videoFallback"></div>
+    <div id="guideBody"></div>
   </div>
 </div>
 
-<!-- ================= مودال الألعاب ================= -->
-<div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-label="اللعبة">
-  <div class="modal-box light">
-    <div class="modal-title">
-      <span id="gameTitle">🎮 لعبة</span>
-      <button type="button" class="modal-close" aria-label="إغلاق اللعبة">✕</button>
-    </div>
-    <div class="game-area">
-      <div id="gameInstructions"></div>
-      <div id="gameArea"></div>
-    </div>
-  </div>
-</div>
+<div id="confettiBox" aria-hidden="true"></div>
 
 <script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
 <script src="js/games.js"></script>
+<script src="js/academy.js"></script>
+<script src="js/stories.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
