@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 القرآن والمحتوى الإسلامي | القطة روفان</title>
+<meta name="description" content="تحفيظ القرآن الكريم للأطفال (10 سور قصيرة بالتشكيل)، أحاديث نبوية صحيحة بمصادرها، وقصص الأنبياء كما وردت في القرآن الكريم — مراجَعة وموثقة.">
+<link rel="canonical" href="https://rovan-the-cat.vercel.app/quran.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <div class="page-hero">
+    <span class="ph-icon" aria-hidden="true">📖</span>
+    <h1 data-i18n="quran.title">📖 القرآن والمحتوى الإسلامي</h1>
+    <p data-i18n="quran.sub">تحفيظ القرآن • أحاديث صحيحة • قصص الأنبياء</p>
+  </div>
+
+  <section id="surahs">
+    <div class="sec-head"><h2>🌙 تحفيظ القرآن الكريم</h2></div>
+    <div class="quran-progress">
+      <h3>🏆 <span id="hifzText">0 / 10</span></h3>
+      <div class="pbar" role="progressbar" aria-label="تقدم التحفيظ"><div class="fill" id="hifzFill"></div></div>
+    </div>
+    <div class="surah-grid" id="surahGrid"></div>
+    <div style="text-align:center; margin-top:28px;">
+      <a href="https://www.youtube.com/@RovanTheCat/search?q=%D8%AA%D8%AD%D9%81%D9%8A%D8%B8" target="_blank" rel="noopener" class="btn btn-yt">▶ احفظ مع روفان</a>
+    </div>
+  </section>
+
+  <section id="hadith">
+    <div class="sec-head">
+      <h2>🕌 أحاديث النبي ﷺ</h2>
+      <p>أحاديث صحيحة قصيرة مع شرح مبسط — مراجَعة ومذكورة بمصادرها</p>
+    </div>
+    <div class="hadith-grid" id="hadithGrid"></div>
+  </section>
+
+  <section id="prophets">
+    <div class="sec-head">
+      <h2>⭐ قصص الأنبياء</h2>
+      <p>كما وردت في القرآن الكريم — ملخصات تعليمية للأطفال</p>
+    </div>
+    <div class="prophets-grid" id="prophetsGrid"></div>
+    <div style="text-align:center; margin-top:28px;">
+      <a href="https://www.youtube.com/playlist?list=PLa82TLGr0UKA" target="_blank" rel="noopener" class="btn btn-play">▶ بلاي ليست قصص الأنبياء</a>
+    </div>
+  </section>
+
+  <section aria-label="ملاحظة">
+    <div class="form-note" style="max-width:760px; margin:0 auto;">🕌 نصوص القرآن الكريم والأحاديث مراجَعة من مصادرها المعتمدة (البخاري/مسلم/الترمذي/أبو داود). المحتوى الديني معروض باللغة العربية كما هو في مصادره.</div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+
+<button type="button" id="guideBtn" aria-label="مساعد روفان"><img src="images/avatar.jpg" alt=""></button>
+<div id="guidePanel"><div class="guide-box" role="dialog" aria-label="مساعد روفان">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <b style="font-size:1.15rem;">🐱 Rovan</b>
+    <button type="button" class="modal-close" id="guideClose" aria-label="إغلاق">✕</button>
+  </div><div id="guideBody"></div>
+</div></div>
+<div id="confettiBox" aria-hidden="true"></div>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/games.js"></script>
+<script src="js/academy.js"></script>
+<script src="js/stories.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
