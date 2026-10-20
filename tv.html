@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📺 Rovan TV — مكتبة الفيديوهات | القطة روفان</title>
+<meta name="description" content="مكتبة فيديوهات القطة روفان التعليمية للأطفال: العلوم والحساب واللغة العربية والإنجليزية والقصص والآداب — معروضة عبر المشغّل الآمن.">
+<link rel="canonical" href="https://rovan-the-cat.vercel.app/tv.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐱</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="siteHeader"></div>
+
+<main id="main">
+  <div class="page-hero">
+    <span class="ph-icon" aria-hidden="true">📺</span>
+    <h1 data-i18n="tv.title">📺 Rovan TV</h1>
+    <p data-i18n="tv.sub">كل مغامرات القطة روفان على يوتيوب — في مكان واحد!</p>
+  </div>
+
+  <section id="videos">
+    <div class="filters" id="filters" role="group" aria-label="تصفية البلاي ليستات"></div>
+    <div id="plBanner"></div>
+    <div class="grid" id="videoGrid" aria-live="polite">
+      <div class="empty">جاري التحميل... 🐱</div>
+    </div>
+    <div style="text-align:center; margin-top:28px;">
+      <a href="https://www.youtube.com/@RovanTheCat" target="_blank" rel="noopener" class="btn btn-yt btn-big" data-i18n="tv.channel">▶ زوروا قناة القطة روفان</a>
+    </div>
+  </section>
+</main>
+
+<div id="siteFooter"></div>
+
+<button type="button" id="guideBtn" aria-label="مساعد روفان"><img src="images/avatar.jpg" alt=""></button>
+<div id="guidePanel"><div class="guide-box" role="dialog" aria-label="مساعد روفان">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+    <b style="font-size:1.15rem;">🐱 Rovan</b>
+    <button type="button" class="modal-close" id="guideClose" aria-label="إغلاق">✕</button>
+  </div><div id="guideBody"></div>
+</div></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="مشغل الفيديو">
+  <div class="modal-box">
+    <div class="player" id="player"></div>
+    <div class="modal-title">
+      <span id="modalTitle">🎬</span>
+      <button type="button" class="modal-close" aria-label="إغلاق">✕</button>
+    </div>
+    <div class="modal-fallback" id="videoFallback"></div>
+  </div>
+</div>
+<div id="confettiBox" aria-hidden="true"></div>
+
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/games.js"></script>
+<script src="js/academy.js"></script>
+<script src="js/stories.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
