@@ -186,6 +186,14 @@
   .tag.grade { background: #FFE9DF; color: var(--coral); }
   .tag.date { background: #E8FBF6; color: #0E9F87; }
   .empty { text-align: center; padding: 50px 20px; color: #6B5B7B; grid-column: 1/-1; }
+  .pl-banner {
+    display: block; text-align: center; background: linear-gradient(135deg, var(--purple), var(--coral));
+    color: #fff; font-weight: 800; padding: 16px 22px; border-radius: 16px; margin: 0 0 26px;
+    box-shadow: var(--shadow); transition: .2s;
+  }
+  .pl-banner:hover { transform: translateY(-3px); }
+  .filters { max-width: 100%; }
+  .chip { white-space: nowrap; }
 
   /* ===== عن القناة ===== */
   .about {
@@ -291,16 +299,8 @@
     <div class="live-badge"><span class="live-dot"></span> متزامن تلقائيًا مع قناة يوتيوب</div>
   </div>
 
-  <div class="filters" id="filters">
-    <button class="chip active" data-filter="all">الكل 🐾</button>
-    <button class="chip" data-filter="KG2">KG2 🧒</button>
-    <button class="chip" data-filter="أولى">أولى ابتدائي 📚</button>
-    <button class="chip" data-filter="تانية">تانية ابتدائي ✏️</button>
-    <button class="chip" data-filter="علوم">علوم 🔬</button>
-    <button class="chip" data-filter="لغة">لغة عربية 📖</button>
-    <button class="chip" data-filter="آداب">آداب وقيم 🕌</button>
-    <button class="chip" data-filter="إنجليزي">إنجليزي 🔤</button>
-  </div>
+  <div class="filters" id="filters"></div>
+  <div id="plBanner"></div>
 
   <div class="grid" id="videoGrid">
     <!-- الفيديوهات بتتضاف هنا بالجافاسكريبت -->
@@ -389,21 +389,50 @@ const FALLBACK_VIDEOS = [
 ];
 
 /* ---------- أدوات مساعدة ---------- */
-function gradeOf(title) {
-  if (/KG2/i.test(title)) return "KG2";
-  if (/أولى/.test(title)) return "أولى";
-  if (/تانية/.test(title)) return "تانية";
-  return "";
+function plEmoji(title) {
+  if (/قصص|أنبياء|أحاديث/.test(title)) return "📚";
+  if (/علوم/.test(title)) return "🔬";
+  if (/اجتماعية/.test(title)) return "🌍";
+  if (/رياضيات|حساب|فونيكس|أرقام/.test(title)) return "🔢";
+  if (/إنجليز|الإنجليزي/.test(title)) return "🔤";
+  if (/إسلامية|آداب/.test(title)) return "🕌";
+  if (/نحو|العربية|قراءة|العربي|الحروف/.test(title)) return "📖";
+  if (/تربية|نصائح|للأهل/.test(title)) return "👨‍👩‍👧";
+  return "🐾";
 }
-function subjectOf(title, desc) {
-  const t = title + " " + (desc || "");
-  if (/آداب|الصدق|مسجد|زيارة|قيم/.test(t)) return "آداب";
-  if (/إنجليزي|next to|behind|Prepositions|English/i.test(t)) return "إنجليزي";
-  if (/لغة|جمع التكسير|المبتدأ|مذكر ومؤنث|كم وكيف/.test(t)) return "لغة";
-  return "علوم";
-}
-function subjectEmoji(s) {
-  return { "علوم": "🔬", "لغة": "📖", "آداب": "🕌", "إنجليزي": "🔤" }[s] || "📚";
+
+/* البلاي ليستات الرسمية (نسخة احتياطية لو النت مقطوع) */
+const FALLBACK_PLAYLISTS = [
+  { id: "PLG50mJYVDDco", title: "[أولى ابتدائي] العلوم مع روفان", count: 29 },
+  { id: "PLIVpDYcFIcm4", title: "[أولى ابتدائي] الدراسات الاجتماعية مع روفان", count: 9 },
+  { id: "PLRozo9ag1Lag", title: "[تانية ابتدائي] اللغة العربية مع روفان", count: 8 },
+  { id: "PLJRD26p0HcoE", title: "النحو", count: 6 },
+  { id: "PLMYbZgP_wMZE", title: "[تانية ابتدائي] الحساب مع روفان", count: 29 },
+  { id: "PLWCN2vGHzWgE", title: "[تانية ابتدائي] دروس الإنجليزي مع روفان", count: 22 },
+  { id: "PLLPWuYzjWbxw", title: "[KG2] القراءة بالعربي والحروف مع روفان", count: 4 },
+  { id: "PLduABixlqgso", title: "[KG2] تربية إسلامية مع روفان", count: 10 },
+  { id: "PLCnaNGQU8SbA", title: "[KG2] الفونيكس والأرقام والكلمات بالإنجليزي مع روفان", count: 50 },
+  { id: "PLKtI8IXHHqzE", title: "[KG1] تعلم الإنجليزية للأطفال مع روفان", count: 55 },
+  { id: "PLVhMrXuQw4Ak", title: "[KG1] تعلم الإنجليزية للأطفال مع روفان", count: 5 },
+  { id: "PLDo92YXMwDyE", title: "[أولى ابتدائي] الرياضيات بالإنجليزي مع روفان", count: 19 },
+  { id: "PLIYkrsqz2ywM", title: "[أولى ابتدائي] القراءة والجمل بالإنجليزي مع روفان", count: 62 },
+  { id: "PLLUWe7PcHG98", title: "سلسلة الآداب مع روفان", count: 26 },
+  { id: "PLFaRbrIzTz1o", title: "قصص مصورة", count: 8 },
+  { id: "PLa82TLGr0UKA", title: "قصص الأنبياء", count: 24 },
+  { id: "PLWwW8uOfUEYI", title: "الأحاديث النبوية", count: 31 },
+  { id: "PLGgO-9ttvWaY", title: "قصص روفان التعليمية", count: 6 },
+  { id: "PLYe9vHcpOKzQ", title: "تربية الأبناء", count: 6 },
+  { id: "PLaNIk5VLXQIc", title: "نصائح لأولياء الأمور مع روفان", count: 2 },
+  { id: "PLSDZ7QiBOhRQ", title: "للأهل: تعليم الأطفال في البيت", count: 5 }
+].map(p => ({ ...p, url: `https://www.youtube.com/playlist?list=${p.id}`, videos: [] }));
+
+function fallbackPlaylistVideos(pl) {
+  const words = pl.title.replace(/\[.*?\]/g, " ").replace(/مع روفان/g, " ")
+    .split(/\s+/).map(w => w.replace(/^ال/, "")).filter(w => w.length > 2);
+  return FALLBACK_VIDEOS.filter(v => {
+    const s = (v.title + " " + (v.desc || ""));
+    return words.some(w => s.includes(w) || s.includes("ال" + w));
+  });
 }
 function cleanDesc(d) {
   return (d || "").replace(/#[^\s#]+/g, "").replace(/\s+/g, " ").trim();
@@ -464,17 +493,17 @@ async function fetchFromYouTube() {
 }
 
 async function loadVideos() {
-  const grid = document.getElementById("videoGrid");
-
   // 1) اعرض المخزن أو النسخة الاحتياطية فورًا
-  let videos = FALLBACK_VIDEOS;
+  let payload = { videos: FALLBACK_VIDEOS, playlists: FALLBACK_PLAYLISTS };
   try {
     const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
     if (cached && Date.now() - cached.at < CACHE_MAX_AGE && cached.videos?.length) {
-      videos = cached.videos;
+      payload = cached;
     }
   } catch {}
-  render(videos);
+  ALL_VIDEOS = payload.videos;
+  ALL_PLAYLISTS = (payload.playlists && payload.playlists.length) ? payload.playlists.map(p => ({ ...p, url: p.url || `https://www.youtube.com/playlist?list=${p.id}` })) : FALLBACK_PLAYLISTS;
+  buildChips(); render();
 
   // 2) هات الجديد: أولًا videos.json (بيتحدّث أوتوماتيك عبر GitHub Action كل 6 ساعات)
   try {
@@ -483,40 +512,41 @@ async function loadVideos() {
       const r = await fetch("videos.json?t=" + Date.now());
       if (r.ok) {
         const j = await r.json();
-        if (j.videos && j.videos.length) fresh = j.videos;
+        if (j.videos && j.videos.length) fresh = j;
       }
     } catch {}
     // لو الملف مش موجود (أول تشغيل محلي) — نجيب مباشرة من يوتيوب
-    if (!fresh) fresh = await fetchFromYouTube();
-    if (fresh && fresh.length) {
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), videos: fresh }));
-      render(fresh);
+    if (!fresh) {
+      const vids = await fetchFromYouTube();
+      if (vids && vids.length) fresh = { videos: vids, playlists: FALLBACK_PLAYLISTS };
+    }
+    if (fresh && fresh.videos && fresh.videos.length) {
+      localStorage.setItem(CACHE_KEY, JSON.stringify({ at: Date.now(), videos: fresh.videos, playlists: fresh.playlists }));
+      ALL_VIDEOS = fresh.videos;
+      ALL_PLAYLISTS = (fresh.playlists && fresh.playlists.length) ? fresh.playlists : FALLBACK_PLAYLISTS;
+      buildChips(); render();
     }
   } catch (e) {
     // النت مقطوع؟ عادي — الفيديوهات المعروضة شغالة من النسخة الاحتياطية
   }
 }
 
-/* ---------- عرض الفيديوهات ---------- */
+/* ---------- عرض الفيديوهات والبلاي ليستات ---------- */
 let ALL_VIDEOS = [];
-let activeFilter = "all";
+let ALL_PLAYLISTS = [];
+let activePL = "all";
 
-function render(videos) {
-  ALL_VIDEOS = videos;
-  const grid = document.getElementById("videoGrid");
-  const filtered = activeFilter === "all" ? videos : videos.filter(v => {
-    const s = subjectOf(v.title, v.desc), g = gradeOf(v.title);
-    return s === activeFilter || g === activeFilter;
-  });
-
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="empty">مافيش فيديوهات في القسم ده لسه 🐱</div>';
-    return;
+function buildChips() {
+  const box = document.getElementById("filters");
+  const chips = [`<button class="chip ${activePL === "all" ? "active" : ""}" data-pl="all">الكل 🐾</button>`];
+  for (const p of ALL_PLAYLISTS) {
+    chips.push(`<button class="chip ${activePL === p.id ? "active" : ""}" data-pl="${p.id}" title="${p.title}">${plEmoji(p.title)} ${p.title}</button>`);
   }
+  box.innerHTML = chips.join("");
+}
 
-  grid.innerHTML = filtered.map((v, i) => {
-    const g = gradeOf(v.title), s = subjectOf(v.title, v.desc);
-    return `
+function card(v, i) {
+  return `
     <article class="vcard" onclick="openVideo('${v.id}', ${JSON.stringify(v.title).replace(/"/g, "&quot;")})" style="animation:fadeUp .4s ${i * 0.04}s both">
       <div class="thumb">
         <div class="fallback">🐱</div>
@@ -527,23 +557,42 @@ function render(videos) {
       <div class="vinfo">
         <h3>${v.title}</h3>
         <div class="vmeta">
-          ${g ? `<span class="tag grade">${g}</span>` : ""}
-          <span class="tag">${subjectEmoji(s)} ${s}</span>
           <span class="tag date">📅 ${fmtDate(v.date)}</span>
         </div>
       </div>
     </article>`;
-  }).join("");
 }
 
-/* ---------- الفلاتر ---------- */
+function render() {
+  const grid = document.getElementById("videoGrid");
+  const banner = document.getElementById("plBanner");
+  let list = ALL_VIDEOS;
+
+  if (activePL !== "all") {
+    const p = ALL_PLAYLISTS.find(x => x.id === activePL);
+    if (p) {
+      list = (p.videos && p.videos.length) ? p.videos : fallbackPlaylistVideos(p);
+      banner.innerHTML = `<a class="pl-banner" href="${p.url}" target="_blank" rel="noopener">▶ افتح بلاي ليست "${p.title}" كاملة على يوتيوب (${p.count} فيديو)</a>`;
+    }
+  } else {
+    banner.innerHTML = "";
+  }
+
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty">مافيش فيديوهات في البلاي ليست دي لسه 🐱</div>';
+    return;
+  }
+  grid.innerHTML = list.map(card).join("");
+}
+
+/* ---------- الفلاتر (البلاي ليستات) ---------- */
 document.getElementById("filters").addEventListener("click", (e) => {
   const btn = e.target.closest(".chip");
   if (!btn) return;
   document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
   btn.classList.add("active");
-  activeFilter = btn.dataset.filter;
-  render(ALL_VIDEOS);
+  activePL = btn.dataset.pl;
+  render();
 });
 
 /* ---------- مودال المشاهدة ---------- */
