@@ -1,42 +1,8 @@
 /* ============================================================
    🎮 القطة روفان — محركات الألعاب (games.js)
-   منطق الألعاب منفصل عن الواجهة — كل لعبة فيها تعليمات
-   ونقاط وتصحيح فوري وإعادة لعب
+   كل لعبة: بداية ونهاية + نجاح/خطأ واضح + تعليمات + إعادة لعب
+   + نطق اختياري عبر RovanSpeech — فشل الصوت لا يوقف اللعبة
    ============================================================ */
-window.RovanSound = (function () {
-  "use strict";
-  let ctx = null;
-  function ensure() {
-    if (!ctx) {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (AC) ctx = new AC();
-    }
-    return ctx;
-  }
-  function beep(freq, dur, type, when) {
-    if (window.RovanSound && !window.RovanSound.enabled) return;
-    try {
-      const a = ensure();
-      if (!a) return;
-      const o = a.createOscillator(), g = a.createGain();
-      o.type = type || "sine";
-      o.frequency.value = freq;
-      g.gain.value = 0.09;
-      o.connect(g); g.connect(a.destination);
-      const t = a.currentTime + (when || 0);
-      g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-      o.start(t); o.stop(t + dur + 0.02);
-    } catch (e) { /* الصوت اختياري — لا نوقف اللعبة */ }
-  }
-  return {
-    enabled: true,
-    click: function () { beep(560, 0.07, "triangle"); },
-    correct: function () { beep(660, 0.12); beep(880, 0.14, "sine", 0.09); beep(1170, 0.2, "sine", 0.2); },
-    wrong: function () { beep(200, 0.18, "square"); beep(150, 0.24, "square", 0.11); },
-    win: function () { [523, 659, 784, 1046, 1318, 1568].forEach(function (f, i) { beep(f, 0.2, "triangle", i * 0.11); }); }
-  };
-})();
-
 window.RovanConfetti = function (n) {
   "use strict";
   const box = document.getElementById("confettiBox");
@@ -57,9 +23,8 @@ window.RovanConfetti = function (n) {
 window.RovanGames = (function () {
   "use strict";
   const D = window.ROVAN;
-  const sound = window.RovanSound;
+  const S = window.RovanSpeech;
 
-  /* ---------- مساعدات ---------- */
   function shuffle(arr) {
     const a = arr.slice();
     for (let i = a.length - 1; i > 0; i--) {
@@ -77,9 +42,12 @@ window.RovanGames = (function () {
   function markPlayed(id) {
     if (window.RovanProgress) window.RovanProgress.markGamePlayed(id);
   }
+  function say(group) { S.say(group); }
+
   function winScreen(area, icon, title, msg, stars, restart) {
     window.RovanConfetti(stars >= 5 ? 70 : 30);
-    sound.win();
+    S.sfx.win();
+    say("win");
     award(stars, title);
     area.innerHTML =
       '<div class="win-box">' +
@@ -87,18 +55,22 @@ window.RovanGames = (function () {
       "<h3>" + esc(title) + "</h3>" +
       "<p>" + esc(msg) + "</p>" +
       '<p style="font-size:1.3rem;">+' + stars + " نجمة ⭐</p>" +
-      '<button class="btn btn-play btn-big" id="gameRestart">🔄 العب تاني</button>' +
+      '<button type="button" class="btn btn-play btn-big" id="gameRestart">🔄 العب تاني</button>' +
       "</div>";
     const btn = area.querySelector("#gameRestart");
-    if (btn) btn.addEventListener("click", restart);
-    btn && btn.focus();
+    if (btn) {
+      btn.addEventListener("click", restart);
+      btn.focus();
+    }
   }
 
   /* ============================================================
-     🎨 لعبة التلوين
+     🎨 التلوين (مع حفظ اللوحة كصورة)
      ============================================================ */
   const PALETTE = ["#FF5A6E", "#FF7A5C", "#FFC93C", "#6BCB77", "#2ED3B7", "#5CC8FF", "#7C5CFF", "#FF8FAB", "#8D6E63", "#2B2140"];
+  const COLOR_NAMES = ["أحمر", "برتقالي", "أصفر", "أخضر", "أزرق مخضرّ", "أزرق", "بنفسجي", "وردي", "بني", "أسود"];
   let currentColor = "#FF5A6E";
+  let currentColorName = "أحمر";
 
   function startColoring(area) {
     area.innerHTML =
@@ -106,13 +78,15 @@ window.RovanGames = (function () {
       '<div class="paint-tools" id="paintTools">' +
       PALETTE.map(function (c, i) {
         return '<button type="button" class="color-dot' + (i === 0 ? " selected" : "") +
-          '" style="background:' + c + '" data-color="' + c + '" aria-label="لون ' + c + '"></button>';
+          '" style="background:' + c + '" data-color="' + c + '" data-name="' + COLOR_NAMES[i] +
+          '" aria-label="لون ' + COLOR_NAMES[i] + '"></button>';
       }).join("") +
       "</div>" +
       '<div style="text-align:center; margin-bottom:16px;">' +
-      '<button class="btn-sm btn-done" id="paintRandom">🌈 ألوان عشوائية</button> ' +
-      '<button class="btn-sm btn-link" id="paintReset">🧽 مسح الكل</button> ' +
-      '<button class="btn-sm btn-quiet" id="paintFinish">✅ أنهيت اللوحة (+3 نجوم)</button>' +
+      '<button type="button" class="btn-sm btn-done" id="paintRandom">🌈 ألوان عشوائية</button> ' +
+      '<button type="button" class="btn-sm btn-link" id="paintReset">🧽 مسح الكل</button> ' +
+      '<button type="button" class="btn-sm btn-quiet" id="paintSave">💾 احفظ اللوحة</button> ' +
+      '<button type="button" class="btn-sm btn-done" id="paintFinish">✅ أنهيت اللوحة (+3 نجوم)</button>' +
       "</div>" +
       '<svg class="paint-svg paint" id="paintSvg" viewBox="0 0 640 430" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="لوحة تلوين القطة روفان">' +
       '<rect x="0" y="0" width="640" height="430" fill="#FFFFFF"/>' +
@@ -149,15 +123,17 @@ window.RovanGames = (function () {
     area.querySelectorAll(".color-dot").forEach(function (dot) {
       dot.addEventListener("click", function () {
         currentColor = dot.dataset.color;
+        currentColorName = dot.dataset.name;
         area.querySelectorAll(".color-dot").forEach(function (d) { d.classList.remove("selected"); });
         dot.classList.add("selected");
-        sound.click();
+        S.sfx.click();
+        S.speak(currentColorName); /* 🔊 نطق اسم اللون */
       });
     });
 
     function paint(el) {
       el.setAttribute("fill", currentColor);
-      sound.click();
+      S.sfx.click();
     }
     area.querySelectorAll("#paintSvg .fillable").forEach(function (el) {
       el.addEventListener("click", function () { paint(el); });
@@ -170,11 +146,15 @@ window.RovanGames = (function () {
       area.querySelectorAll("#paintSvg .fillable").forEach(function (el) {
         el.setAttribute("fill", PALETTE[Math.floor(Math.random() * PALETTE.length)]);
       });
-      sound.correct();
+      S.sfx.correct();
     });
     area.querySelector("#paintReset").addEventListener("click", function () {
       area.querySelectorAll("#paintSvg .fillable").forEach(function (el) { el.setAttribute("fill", "#fff"); });
-      sound.click();
+      S.sfx.click();
+    });
+    area.querySelector("#paintSave").addEventListener("click", function () {
+      S.sfx.click();
+      downloadPainting(area);
     });
     area.querySelector("#paintFinish").addEventListener("click", function () {
       winScreen(area, "🎨🐱", "لوحتك تحفة!", "روفان أعجبها اللون! جرّب تلوينها بألوان تانية.", 3,
@@ -182,32 +162,107 @@ window.RovanGames = (function () {
     });
   }
 
+  function downloadPainting(area) {
+    try {
+      const svg = document.getElementById("paintSvg");
+      const data = new XMLSerializer().serializeToString(svg);
+      const blob = new Blob([data], { type: "image/svg+xml;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1280; canvas.height = 860;
+        const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, 1280, 860);
+        ctx.drawImage(img, 0, 0, 1280, 860);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(function (b) {
+          if (!b) return;
+          const a = document.createElement("a");
+          a.href = URL.createObjectURL(b);
+          a.download = "لوحة-القطة-روفان.png";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          if (window.RovanUI) window.RovanUI.toast("💾 اتحفظت اللوحة! شاركها مع أهلك 🎨");
+        }, "image/png");
+      };
+      img.onerror = function () {
+        if (window.RovanUI) window.RovanUI.toast("حصلت مشكلة في الحفظ 😿 جرّب تاني!");
+      };
+      img.src = url;
+    } catch (e) {
+      if (window.RovanUI) window.RovanUI.toast("الحفظ غير متاح على هذا الجهاز 😿");
+    }
+  }
+
   /* ============================================================
-     🧠 لعبة الذاكرة
+     🧠 الذاكرة (مستويات صعوبة + مؤقت + نطق)
      ============================================================ */
   let memState = null;
+  let memTimer = null;
 
-  function startMemory(area, setName) {
-    setName = setName || "animals";
+  function buildPairs(setName, level) {
     const set = D.memorySets[setName] || D.memorySets.animals;
+    let pairs = set.pairs.slice();
+    if (level === "easy") pairs = pairs.slice(0, 3);
+    if (level === "hard") {
+      const extra = Object.keys(D.memorySets)
+        .filter(function (k) { return k !== setName; })
+        .reduce(function (acc, k) { return acc.concat(D.memorySets[k].pairs); }, [])
+        .slice(0, 2);
+      pairs = pairs.concat(extra);
+    }
+    return pairs;
+  }
+
+  function startMemory(area, setName, level) {
+    setName = setName || "animals";
+    level = level || "medium";
+
+    /* شاشة اختيار المستوى — وقف هنا حتى يختار المستخدم */
+    if (!memState || memState.chooseLevel) {
+      area.innerHTML =
+        '<div class="filters" style="margin-bottom:16px;">' +
+        '<button type="button" class="chip" data-memlevel="easy">😊 سهل (3 أزواج)</button>' +
+        '<button type="button" class="chip active" data-memlevel="medium">🙂 متوسط (6 أزواج)</button>' +
+        '<button type="button" class="chip" data-memlevel="hard">😈 صعب (8 أزواج + مؤقت)</button>' +
+        "</div>";
+      area.querySelectorAll("[data-memlevel]").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          S.sfx.click();
+          memState = { chooseLevel: false };
+          startMemory(area, setName, chip.dataset.memlevel);
+        });
+      });
+      return;
+    }
+
+    const pairs = buildPairs(setName, level);
     const cards = [];
-    set.pairs.forEach(function (p, i) {
-      cards.push({ key: i, display: p[0], label: p[0] });
-      cards.push({ key: i, display: p[1], label: p[1] });
+    pairs.forEach(function (p, i) {
+      cards.push({ key: i, display: p[0] });
+      cards.push({ key: i, display: p[1] });
     });
     const shuffled = shuffle(cards);
-    memState = { flipped: [], matched: 0, moves: 0, lock: false, setName: setName };
+    memState = {
+      flipped: [], matched: 0, moves: 0, lock: false,
+      setName: setName, level: level, seconds: 0, chooseLevel: false
+    };
 
+    const levelLabel = { easy: "سهل", medium: "متوسط", hard: "صعب" }[level] || level;
     area.innerHTML =
       '<div class="filters" style="margin-bottom:14px;">' +
+      '<button type="button" class="chip" id="memChangeLevel">⚙️ تغيير المستوى</button>' +
       Object.keys(D.memorySets).map(function (k) {
-        return '<button class="chip' + (k === setName ? " active" : "") + '" data-set="' + k + '">' + D.memorySets[k].name + "</button>";
+        return '<button type="button" class="chip' + (k === setName ? " active" : "") + '" data-set="' + k + '">' + D.memorySets[k].name + "</button>";
       }).join("") +
       "</div>" +
-      '<div class="mem-stats" id="memStats">المحاولات: 0 • الازواج: 0/6</div>' +
+      '<div class="mem-stats" id="memStats">المستوى: ' + levelLabel + " • المحاولات: 0 • الوقت: 0ث • الازواج: 0/" + pairs.length + "</div>" +
       '<div class="mem-grid" id="memGrid" role="group" aria-label="كروت الذاكرة">' +
       shuffled.map(function (c, i) {
-        return '<button type="button" class="mcard" data-key="' + c.key + '" data-i="' + i + '" aria-label="كرت رقم ' + (i + 1) + '">' +
+        return '<button type="button" class="mcard" data-key="' + c.key + '" data-i="' + i + '" data-display="' + esc(c.display) + '" aria-label="كرت رقم ' + (i + 1) + '">' +
           '<div class="mcard-inner">' +
           '<div class="mface mback" aria-hidden="true">🐱</div>' +
           '<div class="mface mfront">' + esc(c.display) + "</div>" +
@@ -216,22 +271,41 @@ window.RovanGames = (function () {
       "</div>";
 
     markPlayed("memory");
+    clearInterval(memTimer);
+    memTimer = setInterval(function () {
+      if (!memState) { clearInterval(memTimer); return; }
+      memState.seconds++;
+      const stats = document.getElementById("memStats");
+      if (stats) {
+        stats.textContent = "المستوى: " + levelLabel + " • المحاولات: " + memState.moves +
+          " • الوقت: " + memState.seconds + "ث • الازواج: " + memState.matched + "/" + pairs.length;
+      }
+    }, 1000);
 
+    area.querySelector("#memChangeLevel").addEventListener("click", function () {
+      S.sfx.click();
+      clearInterval(memTimer);
+      memState = { chooseLevel: true };
+      startMemory(area, setName, level);
+    });
     area.querySelectorAll("[data-set]").forEach(function (chip) {
       chip.addEventListener("click", function () {
-        sound.click();
-        startMemory(area, chip.dataset.set);
+        S.sfx.click();
+        clearInterval(memTimer);
+        memState = { chooseLevel: false };
+        startMemory(area, chip.dataset.set, level);
       });
     });
     area.querySelectorAll(".mcard").forEach(function (card) {
-      card.addEventListener("click", function () { flipCard(card); });
+      card.addEventListener("click", function () { flipCard(card, pairs.length); });
     });
   }
 
-  function flipCard(el) {
+  function flipCard(el, totalPairs) {
     if (!memState || memState.lock || el.classList.contains("flipped") || el.classList.contains("matched")) return;
-    sound.click();
+    S.sfx.click();
     el.classList.add("flipped");
+    S.speak(el.dataset.display.replace(/[^\u0621-\u064Aa-zA-Z0-9 ]/g, "")); /* 🔊 نطق الكرت */
     memState.flipped.push(el);
     if (memState.flipped.length === 2) {
       memState.moves++;
@@ -244,14 +318,16 @@ window.RovanGames = (function () {
         memState.matched++;
         memState.flipped = [];
         memState.lock = false;
-        sound.correct();
-        if (memState.matched === 6) {
-          const moves = memState.moves, setName = memState.setName;
-          const stars = Math.max(3, 8 - Math.floor(moves / 4));
+        S.sfx.correct();
+        if (memState.matched === totalPairs) {
+          clearInterval(memTimer);
+          const moves = memState.moves, seconds = memState.seconds;
+          const setName = memState.setName, level = memState.level;
+          const stars = level === "hard" ? 8 : level === "medium" ? 5 : 3;
           setTimeout(function () {
             winScreen(document.getElementById("gameArea"), "🧠🎉", "أحسنت يا بطل!",
-              "خلصت اللعبة في " + moves + " محاولة — روفان فخورة بيك!", stars,
-              function () { startMemory(document.getElementById("gameArea"), setName); });
+              "خلصت في " + moves + " محاولة و" + seconds + " ثانية!", stars,
+              function () { memState = { chooseLevel: false }; startMemory(document.getElementById("gameArea"), setName, level); });
           }, 450);
         }
       } else {
@@ -263,16 +339,14 @@ window.RovanGames = (function () {
           });
           memState.flipped = [];
           memState.lock = false;
-          sound.wrong();
-        }, 750);
+          S.sfx.wrong();
+        }, 800);
       }
-      const stats = document.getElementById("memStats");
-      if (stats) stats.textContent = "المحاولات: " + memState.moves + " • الازواج: " + memState.matched + "/6";
     }
   }
 
   /* ============================================================
-     ✅ محرك اختيار من متعدد (مشترك بين 5 ألعاب)
+     ✅ محرك اختيار من متعدد (مع نطق)
      ============================================================ */
   function runChoice(area, cfg) {
     const questions = shuffle(cfg.bank).slice(0, cfg.rounds || 8);
@@ -306,8 +380,12 @@ window.RovanGames = (function () {
           return '<button type="button" class="qopt" data-i="' + i + '">' + esc(o) + "</button>";
         }).join("") +
         "</div>";
+      S.speak(q.q);
       area.querySelectorAll(".qopt").forEach(function (btn) {
-        btn.addEventListener("click", function () { answer(Number(btn.dataset.i)); });
+        btn.addEventListener("click", function () {
+          S.speak(btn.textContent.replace(/[^\u0621-\u064Aa-zA-Z0-9 ]/g, ""));
+          answer(Number(btn.dataset.i));
+        });
       });
       const first = area.querySelector(".qopt");
       if (first) first.focus();
@@ -320,18 +398,202 @@ window.RovanGames = (function () {
       if (i === q.a) {
         opts[i].classList.add("correct");
         state.score++;
-        sound.correct();
-        setTimeout(function () { state.idx++; renderQ(); }, 750);
+        S.sfx.correct();
+        say("correct");
+        setTimeout(function () { state.idx++; renderQ(); }, 800);
       } else {
         opts[i].classList.add("wrong");
-        opts[q.a].classList.add("correct"); /* صح موسومة باللون + الشكل — مش اللون لوحده */
-        sound.wrong();
-        setTimeout(function () { state.idx++; renderQ(); }, 1350);
+        opts[q.a].classList.add("correct");
+        S.sfx.wrong();
+        say("wrong");
+        S.speak(opts[q.a].textContent.replace(/[^\u0621-\u064Aa-zA-Z0-9 ]/g, "")); /* نطق الإجابة الصح */
+        setTimeout(function () { state.idx++; renderQ(); }, 1500);
       }
     }
 
     renderQ();
     markPlayed(cfg.gameId);
+  }
+
+  /* ============================================================
+     🧩 الألغاز (تلميحات + شرح الإجابة)
+     ============================================================ */
+  function startRiddles(area) {
+    const items = shuffle(D.riddles).slice(0, 5);
+    const state = { idx: 0, score: 0, hinted: false };
+
+    function renderQ() {
+      const r = items[state.idx];
+      if (!r) {
+        winScreen(area, "🧩🎉", "النتيجة: " + state.score + " من " + items.length,
+          "ألغاز صعبة وجميلة! روفان معجبة بيك.", Math.max(2, state.score),
+          function () { startRiddles(area); });
+        return;
+      }
+      area.innerHTML =
+        '<div class="quiz-top"><span>اللغز ' + (state.idx + 1) + " / " + items.length + "</span>" +
+        "<span>النتيجة: " + state.score + " ✅</span></div>" +
+        '<div class="game-q">🧩 ' + esc(r.q) + "</div>" +
+        '<div id="hintBox" class="search-note" style="margin-bottom:12px;"></div>' +
+        '<div style="text-align:center; margin-bottom:14px;"><button type="button" class="btn-sm btn-quiet" id="hintBtn">💡 تلميح</button></div>' +
+        '<div class="quiz-opts">' + r.opts.map(function (o, i) {
+          return '<button type="button" class="qopt" data-i="' + i + '">' + esc(o) + "</button>";
+        }).join("") + "</div>";
+      S.speak(r.q);
+      area.querySelector("#hintBtn").addEventListener("click", function () {
+        S.sfx.click();
+        state.hinted = true;
+        area.querySelector("#hintBox").textContent = "💡 التلميح: " + r.hint;
+        S.speak(r.hint);
+      });
+      area.querySelectorAll(".qopt").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const i = Number(btn.dataset.i);
+          const opts = area.querySelectorAll(".qopt");
+          opts.forEach(function (o) { o.disabled = true; });
+          if (i === r.a) {
+            btn.classList.add("correct");
+            state.score++;
+            S.sfx.correct();
+            say("correct");
+          } else {
+            btn.classList.add("wrong");
+            opts[r.a].classList.add("correct");
+            S.sfx.wrong();
+            say("wrong");
+          }
+          /* شرح الإجابة التعليمي دائمًا */
+          area.querySelector("#hintBox").innerHTML = "📖 " + esc(r.explain);
+          S.speak(r.explain);
+          setTimeout(function () { state.idx++; renderQ(); }, 1800);
+        });
+      });
+    }
+    renderQ();
+    markPlayed("riddles");
+  }
+
+  /* ============================================================
+     🔤 ترتيب الحروف
+     ============================================================ */
+  function startLetterOrder(area) {
+    const words = shuffle(D.letterOrder).slice(0, 5);
+    const state = { idx: 0, score: 0, built: [] };
+
+    function renderQ() {
+      const w = words[state.idx];
+      if (!w) {
+        winScreen(area, "🔤🎉", "النتيجة: " + state.score + " من " + words.length,
+          "ترتيب الحروف بقى سهل عليك!", Math.max(2, state.score),
+          function () { startLetterOrder(area); });
+        return;
+      }
+      state.built = [];
+      const tiles = shuffle(w.letters);
+      area.innerHTML =
+        '<div class="quiz-top"><span>رتب حروف الكلمة — ' + (state.idx + 1) + " / " + words.length + "</span>" +
+        "<span>النتيجة: " + state.score + " ✅</span></div>" +
+        '<div class="game-q"><div class="emoji-row">' + w.emoji + "</div>رتب حروف الكلمة دي:</div>" +
+        '<div class="letter-build" id="letterBuild" aria-live="polite"></div>' +
+        '<div class="letter-tiles" id="letterTiles">' +
+        tiles.map(function (ch, i) {
+          return '<button type="button" class="letter-tile" data-ch="' + esc(ch) + '" data-i="' + i + '" aria-label="حرف ' + esc(ch) + '">' + esc(ch) + "</button>";
+        }).join("") +
+        "</div>" +
+        '<div style="text-align:center; margin-top:16px;">' +
+        '<button type="button" class="btn-sm btn-quiet" id="orderUndo">↩️ تراجع</button> ' +
+        '<button type="button" class="btn-sm btn-quiet" id="orderSpeak">🔊 اسمع الكلمة</button>' +
+        "</div>";
+
+      area.querySelector("#orderSpeak").addEventListener("click", function () {
+        S.sfx.click();
+        S.speak(w.word.replace(/[^\u0621-\u064Aa-zA-Z0-9 ]/g, ""));
+      });
+      area.querySelector("#orderUndo").addEventListener("click", function () {
+        S.sfx.click();
+        const last = state.built.pop();
+        if (last) {
+          const tile = area.querySelector('.letter-tile[data-i="' + last.i + '"]');
+          if (tile) tile.disabled = false;
+          area.querySelector("#letterBuild").textContent = state.built.map(function (b) { return b.ch; }).join(" ");
+        }
+      });
+      area.querySelectorAll(".letter-tile").forEach(function (tile) {
+        tile.addEventListener("click", function () {
+          tile.disabled = true;
+          state.built.push({ ch: tile.dataset.ch, i: tile.dataset.i });
+          S.sfx.click();
+          S.speak(tile.dataset.ch);
+          area.querySelector("#letterBuild").textContent = state.built.map(function (b) { return b.ch; }).join(" ");
+          if (state.built.length === w.letters.length) {
+            const built = state.built.map(function (b) { return b.ch; }).join("");
+            const correct = w.letters.join("");
+            if (built === correct) {
+              state.score++;
+              S.sfx.correct();
+              S.speak(w.word.replace(/[^\u0621-\u064Aa-zA-Z0-9 ]/g, ""));
+              if (window.RovanUI) window.RovanUI.toast("✅ صح! " + w.word);
+              setTimeout(function () { state.idx++; renderQ(); }, 900);
+            } else {
+              S.sfx.wrong();
+              say("wrong");
+              if (window.RovanUI) window.RovanUI.toast("قريب! ترتيب الحروف الصح: " + w.letters.join(""));
+              setTimeout(function () { renderQ(); }, 1400);
+            }
+          }
+        });
+      });
+    }
+    renderQ();
+    markPlayed("letter-order");
+  }
+
+  /* ============================================================
+     🔍 اكتشف المختلف
+     ============================================================ */
+  function startOddOne(area) {
+    const rounds = shuffle(D.oddOneOut).slice(0, 6);
+    const state = { idx: 0, score: 0 };
+
+    function renderQ() {
+      const r = rounds[state.idx];
+      if (!r) {
+        winScreen(area, "🔍🎉", "النتيجة: " + state.score + " من " + rounds.length,
+          "عينك ذكية جدًا! اكتشفت المختلف في كل مرة.", Math.max(2, state.score),
+          function () { startOddOne(area); });
+        return;
+      }
+      area.innerHTML =
+        '<div class="quiz-top"><span>اكتشف المختلف — ' + (state.idx + 1) + " / " + rounds.length + "</span>" +
+        "<span>النتيجة: " + state.score + " ✅</span></div>" +
+        '<div class="game-q">' + esc(r.say) + "</div>" +
+        '<div class="quiz-opts" style="grid-template-columns:repeat(' + r.items.length + ',1fr);">' +
+        r.items.map(function (it, i) {
+          return '<button type="button" class="qopt" data-i="' + i + '" style="font-size:2.4rem;">' + it + "</button>";
+        }).join("") +
+        "</div>";
+      area.querySelectorAll(".qopt").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          const i = Number(btn.dataset.i);
+          const opts = area.querySelectorAll(".qopt");
+          opts.forEach(function (o) { o.disabled = true; });
+          if (i === r.odd) {
+            btn.classList.add("correct");
+            state.score++;
+            S.sfx.correct();
+            say("correct");
+          } else {
+            btn.classList.add("wrong");
+            opts[r.odd].classList.add("correct");
+            S.sfx.wrong();
+            say("wrong");
+          }
+          setTimeout(function () { state.idx++; renderQ(); }, 1000);
+        });
+      });
+    }
+    renderQ();
+    markPlayed("odd-one");
   }
 
   /* ---------- مولد أسئلة العد ---------- */
@@ -360,33 +622,21 @@ window.RovanGames = (function () {
   }
 
   /* ---------- واجهة فتح الألعاب ---------- */
-  const TITLES = {};
-  D.games.forEach(function (g) { TITLES[g.id] = g.icon + " " + g.name; });
-
   function start(area, type) {
     if (type === "coloring") return startColoring(area);
-    if (type === "memory") return startMemory(area, "animals");
-    if (type === "quiz") return runChoice(area, {
-      gameId: "quiz", bank: D.quizBank, rounds: 10, starsPerCorrect: 1
-    });
-    if (type === "animals") return runChoice(area, {
-      gameId: "animals", bank: D.animalBank, rounds: 8, starsPerCorrect: 1
-    });
-    if (type === "counting") return runChoice(area, {
-      gameId: "counting", bank: countingBank(), rounds: 8, starsPerCorrect: 1
-    });
-    if (type === "letters") return runChoice(area, {
-      gameId: "letters", bank: D.letterBank, rounds: 8, starsPerCorrect: 1
-    });
-    if (type === "shapes") return runChoice(area, {
-      gameId: "shapes", bank: D.shapesBank, rounds: 8, starsPerCorrect: 1
-    });
-    if (type === "words") return runChoice(area, {
-      gameId: "words", bank: D.wordsBank, rounds: 8, starsPerCorrect: 1
-    });
+    if (type === "memory") { memState = { chooseLevel: true }; return startMemory(area, "animals", "medium"); }
+    if (type === "quiz") return runChoice(area, { gameId: "quiz", bank: D.quizBank, rounds: 10, starsPerCorrect: 1 });
+    if (type === "animals") return runChoice(area, { gameId: "animals", bank: D.animalBank, rounds: 8, starsPerCorrect: 1 });
+    if (type === "counting") return runChoice(area, { gameId: "counting", bank: countingBank(), rounds: 8, starsPerCorrect: 1 });
+    if (type === "letters") return runChoice(area, { gameId: "letters", bank: D.letterBank, rounds: 8, starsPerCorrect: 1 });
+    if (type === "shapes") return runChoice(area, { gameId: "shapes", bank: D.shapesBank, rounds: 8, starsPerCorrect: 1 });
+    if (type === "words") return runChoice(area, { gameId: "words", bank: D.wordsBank, rounds: 8, starsPerCorrect: 1 });
+    if (type === "riddles") return startRiddles(area);
+    if (type === "letter-order") return startLetterOrder(area);
+    if (type === "odd-one") return startOddOne(area);
     area.innerHTML = '<div class="empty">العبة دي مش متاحة دلوقتي 😿</div>';
     return false;
   }
 
-  return { start: start, titles: TITLES };
+  return { start: start };
 })();
