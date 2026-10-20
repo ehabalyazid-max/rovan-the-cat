@@ -11,20 +11,7 @@
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-<header>
-  <nav class="navbar" aria-label="القائمة الرئيسية">
-    <a href="index.html" class="brand">
-      <img class="avatar-img" src="images/avatar.jpg" alt="القطة روفان">
-      <span class="bname">🐱 القطة روفان</span>
-    </a>
-    <div class="nav-links">
-      <a href="index.html#games" class="nlink">🎮 الألعاب</a>
-      <a href="index.html#videos" class="nlink">🎬 الفيديوهات</a>
-      <a href="index.html" class="btn btn-yt">🏠 الرئيسية</a>
-    </div>
-    <button type="button" class="nav-toggle" onclick="location.href='index.html'" aria-label="القائمة">☰</button>
-  </nav>
-</header>
+<div id="siteHeader"></div>
 
 <main class="page-wrap">
   <h1>🔒 سياسة الخصوصية</h1>
@@ -40,6 +27,7 @@
   <h2>2. الخدمات الخارجية</h2>
   <ul>
     <li><b>يوتيوب:</b> الموقع يعرض فيديوهات قناة «القطة روفان» عبر مشغّل YouTube المدمج (بوضع الخصوصية المحسّنة youtube-nocookie). استخدامك ليوتيوب يخضع لسياسة خصوصية Google.</li>
+    <li><b>النطق الصوتي:</b> يستخدم الموقع ميزة النطق المدمجة في المتصفح (Web Speech API) لتعليم النطق. الأصوات تُعالَج داخل جهازك، ولا تُرسل أي تسجيلات صوتية أو بيانات إلى أي خادم. الموقع لا يطلب إذن الميكروفون ولا يستخدمه إطلاقًا.</li>
     <li><b>لا إعلانات سلوكية ولا أدوات تتبع إعلانية.</b></li>
     <li><b>لا نستخدم كوكيز تسويقية.</b></li>
   </ul>
@@ -62,8 +50,10 @@
   <p style="margin-top:26px;"><a class="btn btn-play" href="index.html">🏠 العودة للرئيسية</a></p>
 </main>
 
-<footer>
-  <div class="fnote">© <script>document.write(new Date().getFullYear())</script> القطة روفان — جميع الحقوق محفوظة 🐾</div>
-</footer>
+<div id="siteFooter"></div>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/speech.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
