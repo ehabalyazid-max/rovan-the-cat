@@ -1,28 +1,70 @@
 {
- "updated": "2026-10-22T16:25:53.775943+00:00",
+ "updated": "2026-10-22T21:04:47.351928+00:00",
  "channel": "🐱القطة روفان",
  "channel_url": "https://www.youtube.com/@RovanTheCat",
  "count": 15,
  "videos": [
   {
-   "id": "V5IqwXAygWw",
-   "title": "22 أكتوبر، 2026",
+   "id": "ucodb2j22Dc",
+   "title": "[KG1] الحروف العربية أ ب ت بالحركات مع روفان | Arabic Letters Alif Ba Ta",
    "date": "2026-10-22",
-   "desc": "",
+   "desc": "نتعلم حروف الألف والباء والتاء بالحركات مع كلمات: أسد وأناناس وبطة وبيت وتفاحة وتمساح، وقراءة مقاطع، وأسئلة في الآخر. الجزء الأول من سلسلة الحروف العربية. English: Arabic letters alif, ba and ta with vowels for kindergarten.",
+   "url": "https://www.youtube.com/watch?v=ucodb2j22Dc"
+  },
+  {
+   "id": "dx2dEKomUss",
+   "title": "إيجاد الوقت قبل مدة وبعدها | حساب تالتة ابتدائي مع روفان 🐱⏰ (الدرس 578)",
+   "date": "2026-10-22",
+   "desc": "روفان بيتعلّم معانا إزاي نجيب الوقت قبل مدة وبعد مدة! ⏰ يعني لو الساعة خمسة وبعدها عشرين دقيقة، هتبقى كام بالظبط؟ ولما نقول قبلها ربع ساعة نطرح إزاي؟ درس ممتع في الحساب لتالتة ابتدائي: نقرا الساعة، نجمع الدقايق لقدام، ونطرح لورا، ومعانا أمثلة من يومنا زي المكتبة ومواعيد اللعب، ولعبة وكويز في الآخر! منهج الصف الثالث الابتدائي - رياضيات. Learn to find the time before and after a given duration! Grade 3 math lesson in Egyptian Arabic: reading the clock, adding minutes forward, subtracting backward, with real-life examples, a game, and a quiz at the end.",
+   "url": "https://www.youtube.com/watch?v=dx2dEKomUss"
+  },
+  {
+   "id": "gp6VRODNGiY",
+   "title": "[English for Kids] حروف الإنجليزي E F G H مع روفان: Egg, Fish, Grapes, Hat! 🔤🐱",
+   "date": "2026-10-22",
+   "desc": "روفان بيكمّل رحلة حروف الإنجليزية! النهاردة أربع حروف جداد: E وF وG وH، ومع كل حرف كلمتين حلوين: Egg بيضة، Elephant فيل، Fish سمكة، Frog ضفدعة، Grapes عنب، Goat ماعزة، Hat قبعة، House بيت! وفي الآخر لعبة وكويز ممتع مع أصدقائنا الصغار 🐱 Learn the English letters E F G H with Rovan the Cat! Two words with every letter, a fun game, and a quiz at the end. English learning video for kindergarten kids in Egyptian Arabic.",
+   "url": "https://www.youtube.com/watch?v=gp6VRODNGiY"
+  },
+  {
+   "id": "G3VsCbODVDU",
+   "title": "حيلة الضرب في ٥ بسرعة ⚡ | رياضيات للأطفال مع القطة روفان",
+   "date": "2026-10-22",
+   "desc": "حيلة سهلة جداً تخليك تضرب أي عدد في ٥ من غير ما تحفظ! 🐱 اضرب في ١٠ الأول، وبعدين خد النص — وخلاص! ٨ × ٥ = ٤٠ ✓ ١٢ × ٥ = ٦٠ ✓ جرب انت: ٦ × ٥ = ؟ 🤔 شوف الدرس الكامل: جدول ضرب ٥ مع روفان: https://www.youtube.com/watch?v=USrzxHbT7Ks",
+   "url": "https://www.youtube.com/watch?v=G3VsCbODVDU"
+  },
+  {
+   "id": "MnxnV7NwbKk",
+   "title": "رحلة قطرة الماء: المطر بينزل منين؟ 💧 | علوم للأطفال مع القطة روفان",
+   "date": "2026-10-22",
+   "desc": "يلا نطلع رحلة مع نقطة قطرة مية صغيرة! 🐱💧 الشمس بتسخّن مية البحر فبتتحوّل لبخار، والبخار بيطلع السما ويتحوّل لقطرات صغيرة بتعمل السحاب، ولما القطرات بتتجمّع وتكبر وتتقل، الجاذبية بتشدّها لتحت فبتنزل مطر يسقّي الزرع ويملّى البحر تاني! سؤال ليك: المية طلعت السما وهي إيه؟ 🤔",
+   "url": "https://www.youtube.com/watch?v=MnxnV7NwbKk"
+  },
+  {
+   "id": "G4xyOAWSPjs",
+   "title": "[English for Kids] حروف الإنجليزي A B C D مع روفان: Apple, Ball, Cat, Dog! 🔤🐱",
+   "date": "2026-10-22",
+   "desc": "روفان بتعلّمنا أول أربع حروف إنجليزي: A B C D! 🔤 مع كل حرف كلمتين حلوين: Apple يعني تفاحة، Ant نملة، Ball كورة، Book كتاب، Cat قطة، Car عربية، Duck بطة، وDog كلب! هنقولهم مع بعض بصوت عالي، هنلعب لعبة \"بتبدأ بأنهي حرف؟\"، وهنحل كويز في الآخر! فيديو ممتع لتعليم الأطفال حروف الإنجليزية من أول خطوة، مناسب لأطفال الحضانة والتمهيدي. Learn the English letters A B C D with Rovan the Cat! Two words with every letter, a fun game, and a quiz at the end. English learning video for kindergarten kids in Egyptian Arabic.",
+   "url": "https://www.youtube.com/watch?v=G4xyOAWSPjs"
+  },
+  {
+   "id": "V5IqwXAygWw",
+   "title": "قصة ليلة النجوم مع القطة روفان 🌟🐱",
+   "date": "2026-10-22",
+   "desc": "بالليل، وقفت روفان جنب الشباك تبص للنجوم واتمنت تقرب منها. وفي الحلم طارت على سحابة طرية لبيت النجوم، اتعرفت على الهلال الطيب، حضنت نجمة صغيرة وسمتها «نجمتي»، عدّت جنب الكواكب على نهر من النور، وتمنت أمنية حلوة لصحابها وأهلها. قصة قيم للأطفال عن الأحلام الحلوة والأمنيات الطيبة | الحضانة وما قبلها (KG2). روفان وليلة النجوم | Starry night story for kids | القطة روفان",
    "url": "https://www.youtube.com/watch?v=V5IqwXAygWw"
   },
   {
    "id": "iyfkcOlefKo",
-   "title": "22 أكتوبر، 2026",
+   "title": "إزاي البذرة بتبقى زهرة؟ 🌱🌸 مع روفان #shorts",
    "date": "2026-10-22",
-   "desc": "",
+   "desc": "روفان بتوضح إزاي البذرة بتكبر: إنبات، شتلة، نبات كبير، زهرة، وبعدين ثمرة فيها بذور جديدة! شوفوا الرحلة كلها. الدرس الكامل على القناة: https://youtu.be/eyI24U1tJeg",
    "url": "https://www.youtube.com/watch?v=iyfkcOlefKo"
   },
   {
    "id": "m22Yp8Ey9hw",
-   "title": "22 أكتوبر، 2026",
+   "title": "حيلة الحساب الذهني مع روفان: ابدأ بالعشرات الأول! 🐱🧮 #shorts",
    "date": "2026-10-22",
-   "desc": "",
+   "desc": "روفان بيعلمنا حيلة الحساب الذهني: ابدأ بالعشرات الأول وبعدين الآحاد! شوف المثال، وقف وجرب بنفسك، وبعدين شوف الإجابة. الدرس الكامل على القناة: https://youtu.be/Mx-2HeiDwmE",
    "url": "https://www.youtube.com/watch?v=m22Yp8Ey9hw"
   },
   {
@@ -66,48 +108,6 @@
    "date": "2026-10-22",
    "desc": "روفان لقت عش عصافير في الشجرة! 🐱🐦 روفان فرحانة بالعصافير الصغيرة، بس ماما علّمتها إننا نحترم الكائنات ونتفرّج عليها بهدوء من غير ما نزعجها. قصة قصيرة للأطفال عن احترام الكائنات والرفق بالحيوان - مناسبة لأطفال الحضانة والابتدائي. شوفوا القصة كاملة على القناة! روفان وعش العصافير | Birds nest respect story for kids | القطة روفان",
    "url": "https://www.youtube.com/watch?v=E0i4kd77rQo"
-  },
-  {
-   "id": "H_Q8jZf1SKg",
-   "title": "روفان ولعبة الشكر 💝 | القطة روفان",
-   "date": "2026-10-22",
-   "desc": "المطر نزل فجأة... بس روفان عرفت تشوف الحاجات الحلوة في يومها! قصة قصيرة عن الشكر والامتنان للأطفال من قصص القطة روفان 🐱 شوفوا القصة كاملة على قناة القطة روفان. قصة لعبة الشكر كاملة: https://www.youtube.com/@RovanTheCat",
-   "url": "https://www.youtube.com/watch?v=H_Q8jZf1SKg"
-  },
-  {
-   "id": "cdkhj89JSB8",
-   "title": "روفان والأمانة 💝 | القطة روفان",
-   "date": "2026-10-22",
-   "desc": "روفان لقت عربية لعب ضايعة... وهترجعها لصاحبها! قصة قصيرة عن الأمانة للأطفال من قصص القطة روفان 🐱 شوفوا القصة كاملة على قناة القطة روفان. قصة الأمانة كاملة: https://www.youtube.com/@RovanTheCat",
-   "url": "https://www.youtube.com/watch?v=cdkhj89JSB8"
-  },
-  {
-   "id": "CzTRH-8eSIw",
-   "title": "حيلة الضرب في العشرات مع روفان ✖️ | القطة روفان",
-   "date": "2026-10-22",
-   "desc": "حيلة الضرب في مضاعفات العشرة بطريقة سهلة! روفان بتشرح للأطفال إزاي يضربوا أي عدد في 10 و20 و100 في ثواني - درس رياضيات ممتع للصف الثالث الابتدائي ✖️ اضرب الرقمين اللي بتعرفهم وبعدين حط صفر على اليمين! حيلة روفان السريعة للضرب في العشرات. شوفوا الدرس كامل على القناة: https://www.youtube.com/@RovanTheCat",
-   "url": "https://www.youtube.com/watch?v=CzTRH-8eSIw"
-  },
-  {
-   "id": "zw1-RATiocE",
-   "title": "روفان بتتعلم التوازن ⚖️ | القطة روفان",
-   "date": "2026-10-22",
-   "desc": "روفان نسيت اللعب بسبب التابلت… بس ماما علّمتها إن التوازن أحلى 💪 شوفوا الدرس كامل على القناة: https://www.youtube.com/@RovanTheCat",
-   "url": "https://www.youtube.com/watch?v=zw1-RATiocE"
-  },
-  {
-   "id": "_DANmdNKGRI",
-   "title": "روفان بتتعلم تركب العجلة 🚲 | القطة روفان",
-   "date": "2026-10-22",
-   "desc": "روفان وقعت من العجلة وزعلت… بس ماما علّمتها إن التقدم الصغير تقدم برضه 💪 شوفوا الدرس كامل على القناة: https://www.youtube.com/@RovanTheCat",
-   "url": "https://www.youtube.com/watch?v=_DANmdNKGRI"
-  },
-  {
-   "id": "qMm4wa6wXkY",
-   "title": "[لأولياء الأمور] الروتين الصباحي قبل المدرسة | Morning Routine",
-   "date": "2026-10-22",
-   "desc": "صبح هادي ومنظم بيغير يوم طفلك كله. في الفيديو ده خطوات عملية لبناء روتين صباحي ثابت قبل المدرسة: التحضير من الليل، تقسيم المهام، وتقليل العجلة والتوتر للطفل وليك. سلسلة نصائح لأولياء الأمور من قناة القطة روفان.",
-   "url": "https://www.youtube.com/watch?v=qMm4wa6wXkY"
   }
  ],
  "playlists": [
@@ -904,6 +904,20 @@
    "url": "https://www.youtube.com/playlist?list=PLKtI8IXHHqzE",
    "videos": [
     {
+     "id": "gp6VRODNGiY",
+     "title": "[English for Kids] حروف الإنجليزي E F G H مع روفان: Egg, Fish, Grapes, Hat! 🔤🐱",
+     "date": "2026-10-22",
+     "desc": "روفان بيكمّل رحلة حروف الإنجليزية! النهاردة أربع حروف جداد: E وF وG وH، ومع كل حرف كلمتين حلوين: Egg بيضة، Elephant فيل، Fish سمكة، Frog ضفدعة، Grapes عنب، Goat ماعزة، Hat قبعة، House بيت! وفي الآخر لعبة وكويز ممتع مع أصدقائنا الصغار 🐱 Learn the English letters E F G H with Rovan the Cat! Two words with every letter, a fun game, and a quiz at the end. English learning video for kindergarten kids in Egyptian Arabic.",
+     "url": "https://www.youtube.com/watch?v=gp6VRODNGiY"
+    },
+    {
+     "id": "G4xyOAWSPjs",
+     "title": "[English for Kids] حروف الإنجليزي A B C D مع روفان: Apple, Ball, Cat, Dog! 🔤🐱",
+     "date": "2026-10-22",
+     "desc": "روفان بتعلّمنا أول أربع حروف إنجليزي: A B C D! 🔤 مع كل حرف كلمتين حلوين: Apple يعني تفاحة، Ant نملة، Ball كورة، Book كتاب، Cat قطة، Car عربية، Duck بطة، وDog كلب! هنقولهم مع بعض بصوت عالي، هنلعب لعبة \"بتبدأ بأنهي حرف؟\"، وهنحل كويز في الآخر! فيديو ممتع لتعليم الأطفال حروف الإنجليزية من أول خطوة، مناسب لأطفال الحضانة والتمهيدي. Learn the English letters A B C D with Rovan the Cat! Two words with every letter, a fun game, and a quiz at the end. English learning video for kindergarten kids in Egyptian Arabic.",
+     "url": "https://www.youtube.com/watch?v=G4xyOAWSPjs"
+    },
+    {
      "id": "E5Hv32V1Kqc",
      "title": "[English for Kids] التحيات بالإنجليزي مع روفان: Hello! Hi! Good morning! Goodbye! 👋🐱",
      "date": "2026-10-22",
@@ -993,20 +1007,6 @@
      "date": "2026-10-17",
      "desc": "أجزاء اليد والرجل بالإنجليزي | Hand and Foot - تعليم إنجليزي للأطفال (KG1) مع القطة روفان نتعلم أجزاء اليد والرجل بالإنجليزي: Hand وFinger وThumb وNail وFoot وToe وKnee وElbow، ونعد الأصابع في سؤال الختام. Parts of the hand and foot in English for kindergarten: hand, finger, thumb, nail, foot, toe, knee and elbow. تعليم اللغة الإنجليزية للأطفال، KG1 | تمهيدي | رياض أطفال، منهج مصر، كرتون تعليمي عربي، القطة روفان. English for kids, Hand and Foot, Arabic and English lessons.",
      "url": "https://www.youtube.com/watch?v=28OId1sSmWE"
-    },
-    {
-     "id": "JVHvR3k6DLU",
-     "title": "[KG1] حيوانات الليل بالإنجليزي مع روفان | Night Animals",
-     "date": "2026-10-17",
-     "desc": "حيوانات الليل بالإنجليزي | Night Animals - تعليم إنجليزي للأطفال (KG1) مع القطة روفان نتعرف مع روفان على حيوانات الليل بالإنجليزي: Owl وBat وFox وHedgehog وCricket وFirefly، مع كلمتي Night وMoon وسؤال ممتع في الآخر. Night animals in English for kindergarten: owl, bat, fox, hedgehog, cricket and firefly, plus night and moon. تعليم اللغة الإنجليزية للأطفال، KG1 | تمهيدي | رياض أطفال، منهج مصر، كرتون تعليمي عربي، القطة روفان. English for kids, Night Animals, Arabic and English lessons.",
-     "url": "https://www.youtube.com/watch?v=JVHvR3k6DLU"
-    },
-    {
-     "id": "r8Clte8S-Ac",
-     "title": "[KG1] التخييم بالإنجليزي مع روفان | Camping Words",
-     "date": "2026-10-17",
-     "desc": "نتعلم كلمات التخييم بالإنجليزي: Tent وFire وTorch وBackpack وMap وMoon وStar وCamp، وسؤال في الآخر. English: Camping words in English for kindergarten.",
-     "url": "https://www.youtube.com/watch?v=r8Clte8S-Ac"
     }
    ]
   },
@@ -1399,6 +1399,20 @@
    "url": "https://www.youtube.com/playlist?list=PLFaRbrIzTz1o",
    "videos": [
     {
+     "id": "V5IqwXAygWw",
+     "title": "قصة ليلة النجوم مع القطة روفان 🌟🐱",
+     "date": "2026-10-22",
+     "desc": "بالليل، وقفت روفان جنب الشباك تبص للنجوم واتمنت تقرب منها. وفي الحلم طارت على سحابة طرية لبيت النجوم، اتعرفت على الهلال الطيب، حضنت نجمة صغيرة وسمتها «نجمتي»، عدّت جنب الكواكب على نهر من النور، وتمنت أمنية حلوة لصحابها وأهلها. قصة قيم للأطفال عن الأحلام الحلوة والأمنيات الطيبة | الحضانة وما قبلها (KG2). روفان وليلة النجوم | Starry night story for kids | القطة روفان",
+     "url": "https://www.youtube.com/watch?v=V5IqwXAygWw"
+    },
+    {
+     "id": "nIEtNiFMvN4",
+     "title": "قصة البحر والقلعة مع القطة روفان 🏰🐱",
+     "date": "2026-10-22",
+     "desc": "روفان قضت يوم حلو على البحر مع بابا وماما: بنت أحلى قلعة رملية، ولما الموج قرب رجعت معاهم لمكان أبعد وأأمن، وشافت نجمة البحر من غير ما تلمسها، واخدت صدف فاضي بس كتذكار. قصة قيم للأطفال عن الأمان على البحر والخيال | الحضانة وما قبلها (KG2). روفان والبحر والقلعة | Sea and sandcastle story for kids | القطة روفان",
+     "url": "https://www.youtube.com/watch?v=nIEtNiFMvN4"
+    },
+    {
      "id": "GXfuKjSW-OY",
      "title": "قصة الكوكيز السحرية مع القطة روفان 🍪🐱",
      "date": "2026-10-22",
@@ -1488,20 +1502,6 @@
      "date": "2026-10-20",
      "desc": "قصة مصورة للأطفال مع القطة روفان: روفان قبل النوم. في الليل لبست روفان البيجاما. غسلت سنانها. وقرأت قصة صغيرة. وقالت: أذكار النوم وباسمك ربي. وبعدين نامت مبسوطة. الدرس: النوم بدري بيخلينا نصحى نشيطين. برافو! قصة قصيرة ومصورة بقيم جميلة للأطفال.",
      "url": "https://www.youtube.com/watch?v=hEdLlM2vRp8"
-    },
-    {
-     "id": "G-65PYFSzdU",
-     "title": "قصة مصورة: روفان والحديقة | Story: Rovan in the Garden",
-     "date": "2026-10-20",
-     "desc": "قصة مصورة للأطفال مع القطة روفان: روفان والحديقة. نزلت روفان تلعب في الحديقة. شافت ورقة على الأرض فرمتها في السلة. وسقت الورد. وقالت لصاحبتها: نحافظ على الحديقة. الدرس: نحافظ على بيئتنا. برافو! قصة قصيرة ومصورة بقيم جميلة للأطفال.",
-     "url": "https://www.youtube.com/watch?v=G-65PYFSzdU"
-    },
-    {
-     "id": "1kM8oowa6hU",
-     "title": "قصة مصورة: روفان ومطبخ ماما | Story: Rovan in Mama's Kitchen",
-     "date": "2026-10-20",
-     "desc": "قصة مصورة للأطفال مع القطة روفان: روفان ومطبخ ماما. كانت روفان بتحب تساعد ماما في المطبخ. غسلت إيديها الأول. وساعدت ماما تحط الأطباق على السفرة. وقالت: بالهنا والشفا. ماما قالت: شكرا يا روفان! الدرس: المساعدة في البيت حلوة. برافو! قصة قصيرة ومصورة بقيم جميلة للأطفال.",
-     "url": "https://www.youtube.com/watch?v=1kM8oowa6hU"
     }
    ]
   },
